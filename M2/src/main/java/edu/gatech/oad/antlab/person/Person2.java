@@ -43,7 +43,7 @@ public class Person2 {
 			output.append(characters.remove(randPicker));
 		}
 		name = output.toString();
-		return null;
+		return name;
 	}
 
 	/**
