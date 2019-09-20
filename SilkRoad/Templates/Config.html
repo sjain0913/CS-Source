@@ -3,9 +3,35 @@
     <body>
         <div>
             Please Enter your Character Name
-            <form method = "post" action = '/createName'>
+            <form name="createCahracterName" method = "post" action = '/createName'>
                 <input name="characterName">
-                <input type = "button">
+                <input type = "button"><br>
+            </form>
+        </div>
+        <div>
+            <form name="difficultySelect" method="post" action="">
+                <input type="radio" name="difficulty" value="Easy">Easy<br>
+                <input type="radio" name="difficulty" value="Medium">Medium<br>
+                <input type="radio" name="difficulty" value="Hard">Hard
+            </form>
+        </div>
+        <div>
+            Allocate Skill Points
+            <form name="skillPointSelect" method="post" action="">
+                <table>
+                    <tr>
+                        <th></th>
+                        <th>Skill Type</th>
+                        <th>Allocation</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td><input type="button" name="subPilot" value="-"></td>
+                        <td>Pilot</td>
+                        <td></td>
+                        <td><input type="button" name="addPilot"></td>
+                    </tr>
+                </table>
             </form>
         </div>
     </body>
