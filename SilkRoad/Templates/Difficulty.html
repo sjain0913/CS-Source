@@ -15,10 +15,23 @@
         </div>
         <div>
             <form name="difficultySelect" method="post" action="">
-                <input type="radio" name="difficulty" value="Easy">Easy<br>
-                <input type="radio" name="difficulty" value="Medium">Medium<br>
-                <input type="radio" name="difficulty" value="Hard">Hard
+                <input type="radio" name="difficulty" value="Easy" id='d1' onclick="setDifficulty()"/>Easy
+                <input type="radio" name="difficulty" value="Medium"/>Medium
+                <input type="radio" name="difficulty" value="Hard"/>Hard
             </form>
         </div>
 </body>
+
+<script type="text/javascript">
+    function setDifficulty() {
+        window.top.console.log('here')
+        if (document.getElementById('d1').checked) {
+            console.log("eat my asshole")
+        }
+
+    }
+
+</script>
+
+
 </html>
