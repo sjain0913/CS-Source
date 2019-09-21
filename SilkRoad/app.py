@@ -10,5 +10,9 @@ def titleScreen():
 def config():
     return render_template("Config.html")
 
+@app.route('/diff')
+def diff():
+    return render_template("Difficulty.html")
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
