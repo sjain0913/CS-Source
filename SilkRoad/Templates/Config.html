@@ -12,28 +12,32 @@
                         <th></th>
                     </tr>
                     <tr>
-                        <td><input type="button" name="subSailing" value="-"></td>
-                        <td>Sailing</td>
-                        <td></td>
-                        <td><input type="button" name="addSailing" value="+"></td>
-                    </tr>
-                    <tr>
-                        <td><input type="button" name="subCannoneer" value="-"></td>
-                        <td>Cannoneer</td>
-                        <td></td>
-                        <td><input type="button" name="addCannoneer" value="+"></td>
-                    </tr>
-                    <tr>
-                        <td><input type="button" name="subBarterer" value="-"></td>
-                        <td>Barterer</td>
-                        <td></td>
-                        <td><input type="button" name="addBarterer" value="+"></td>
-                    </tr>
-                    <tr>
-                        <td><input type="button" name="subCraftsman" value="-"></td>
-                        <td>Craftsman</td>
-                        <td></td>
-                        <td><input type="button" name="addCraftsman" value="+"></td>
+                        <tc>
+                            <div>
+                                Sailor
+                                <form name="sailPoints" method="post" actions="">
+                                <input type="number" name="sailPoints" min="0"/>
+                                </form>
+                            </div>
+                        </tc>
+                        <tc>
+                            <th>Cannoneer</th>
+                            <form name="cannonPoints" method="post" actions="">
+                            <input type="number" name="cannonPoints" min="0"/>
+                            </form>
+                        </tc>
+                        <tc>
+                            <th>Barterer</th>>
+                            <form name="barterPoints" method="post" actions="">
+                            <input type="number" name="barterPoints" min="0"/>
+                            </form>
+                        </tc>
+                        <tc>
+                            <th>Craftsman</th>
+                            <form name="craftPoints" method="post" actions="">
+                            <input type="number" name="craftPoints" min="0"/>
+                            </form>
+                        </tc>
                     </tr>
                 </table>
             </form>
