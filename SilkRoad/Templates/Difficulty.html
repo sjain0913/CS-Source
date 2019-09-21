@@ -9,8 +9,7 @@
 <div>
             Please Enter your Character Name
             <form name="createCharacterName" method = "post" action = '/createName'>
-                <input name="characterName">
-                <input type = "button" name = "Submit"><br>
+                <input name="characterName" id='n1'>
             </form>
         </div>
         <div>
@@ -22,12 +21,29 @@
         </div>
         <div>
             <form method="get" action = '/config'>
-                <button type = "submit">Submit</button>
+                <button type = "submit" onclick="setName()">Submit</button>
             </form>
         </div>
 </body>
 
 <script type="text/javascript">
+    function setName() {
+        window.parent.top.console.log('here')
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+            }
+        };
+
+        xhttp.open("POST", "receiver", true);
+        const name = document.getElementById("n1").value
+        xhttp.setRequestHeader('Content-Type', 'application/json');
+        xhttp.send(JSON.stringify({
+            "name" : name
+        }));
+    }
+
     function setDifficulty() {
         window.parent.top.console.log('here')
         if (document.getElementById('d1').checked) {
