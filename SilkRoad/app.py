@@ -17,6 +17,16 @@ def config():
 def diff():
     return render_template("Difficulty.html")
 
+@app.route('/receiver', methods = ['POST'])
+def difficultyparse():
+    # read json + reply
+    data = request.get_json()
+    result = ''
+    for item in data:
+    	# loop over every row
+    	result += str(item['make']) + '\n'
+    print(result)
+    return result
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
