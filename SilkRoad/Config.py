@@ -1,11 +1,17 @@
 class Config:
-    skill_pts_remaining, sail_skill, cannon_skill, barter_skill, craft_skill,  money = 0
+    skill_pts = 0
+    sail_skill = 0
+    cannon_skill = 0
+    barter_skill = 0
+    craft_skill = 0
+    money = 0
     diff_settings = ["easy", "medium", "hard"]
     diff = ""
     player_name = ""
 
-    def difficulty(self, button):
-        Config.diff = Config.diff_settings[button]
+    @staticmethod
+    def difficulty(jsonDiff):
+        Config.diff = jsonDiff
         if Config.diff == "easy":
             Config.skill_pts_remaining = 16
             Config.money = 1000
