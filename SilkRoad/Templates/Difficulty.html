@@ -16,8 +16,13 @@
         <div>
             <form name="difficultySelect" method="post" action="">
                 <input type="radio" name="difficulty" value="Easy" id='d1' onclick="setDifficulty()"/>Easy
-                <input type="radio" name="difficulty" value="Medium"/>Medium
-                <input type="radio" name="difficulty" value="Hard"/>Hard
+                <input type="radio" name="difficulty" value="Medium" id='d2' onclick="setDifficulty()" />Medium
+                <input type="radio" name="difficulty" value="Hard" onclick="setDifficulty()"/>Hard
+            </form>
+        </div>
+        <div>
+            <form method="get" action = '/config'>
+                <button type = "submit">Submit</button>
             </form>
         </div>
 </body>
@@ -38,6 +43,34 @@
             xhttp.setRequestHeader('Content-Type', 'application/json');
             xhttp.send(JSON.stringify({
                 'difficulty': 'easy'
+            }));
+        }
+        else if (document.getElementById('d2').checked) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(this.responseText);
+                }
+            };
+
+            xhttp.open("POST", "receiver", true);
+            xhttp.setRequestHeader('Content-Type', 'application/json');
+            xhttp.send(JSON.stringify({
+                'difficulty': 'medium'
+            }));
+        }
+        else {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(this.responseText);
+                }
+            };
+
+            xhttp.open("POST", "receiver", true);
+            xhttp.setRequestHeader('Content-Type', 'application/json');
+            xhttp.send(JSON.stringify({
+                'difficulty': 'hard'
             }));
         }
 
