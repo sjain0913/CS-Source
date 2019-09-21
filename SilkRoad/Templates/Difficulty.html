@@ -26,12 +26,19 @@
     function setDifficulty() {
         window.parent.top.console.log('here')
         if (document.getElementById('d1').checked) {
-            // ajax the JSON to the server
-            $.post("receiver", {'difficulty':"easy"}, function(){
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(this.responseText);
+                }
+            };
 
-            });
-            // stop link reloading the page
-            event.preventDefault();
+            
+            xhttp.open("POST", "receiver", true);
+            xhttp.setRequestHeader('Content-Type', 'application/json');
+            xhttp.send(JSON.stringify({
+                'difficulty': 'easy'
+            }));
         }
 
     }
