@@ -24,9 +24,14 @@
 
 <script type="text/javascript">
     function setDifficulty() {
-        window.top.console.log('here')
+        window.parent.top.console.log('here')
         if (document.getElementById('d1').checked) {
-            console.log("eat my asshole")
+            // ajax the JSON to the server
+            $.post("receiver", {'difficulty':"easy"}, function(){
+
+            });
+            // stop link reloading the page
+            event.preventDefault();
         }
 
     }
