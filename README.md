@@ -1,2 +1,3 @@
 # CS-Source
-Our 2340 Project
+Our CS2340 Project
+Building a space traders game using Python Flask
