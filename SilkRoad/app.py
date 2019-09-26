@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, session, redirect
-import Config
+import Config, json
 
 app = Flask(__name__)
 
@@ -23,7 +23,11 @@ def diff():
 def difficultyparse():
     # read json + reply
     data = request.get_json()
-    Config.difficulty()
+    print(data)
+    config = Config.Config(data)
+    config.to_String
+
+
 
 
 

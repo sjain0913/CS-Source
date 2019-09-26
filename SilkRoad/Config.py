@@ -9,8 +9,13 @@ class Config:
     diff = ""
     player_name = ""
 
-    @staticmethod
-    def difficulty(jsonDiff):
+    def __init__(self, data):
+        self.difficulty(data)
+
+    def to_String(self):
+        print(self.diff)
+
+    def difficulty(self, jsonDiff):
         Config.diff = jsonDiff
         if Config.diff == "easy":
             Config.skill_pts_remaining = 16
