@@ -41,12 +41,11 @@
                     </tr>
                 </table>
             </form>
-            <form method="get" action = ''>
+            <form method="get" action = '/playerdata'>
                 <button type = "submit" onclick="setSailor(), setCannoneer(), setBarter(), setCraftsman()">Submit</button>
             </form>
         </div>
     </body>
-</html>
 
 <script type="text/javascript">
     function setSailor() {
@@ -79,7 +78,7 @@
         const number = document.getElementById("Cannoneer").value
         xhttp.setRequestHeader('Content-Type', 'application/json');
         xhttp.send(JSON.stringify({
-            "Cannoneer Points" : Number
+            "Cannoneer Points" : number
         }));
     }
 
@@ -96,7 +95,7 @@
         const number = document.getElementById("Barterer").value
         xhttp.setRequestHeader('Content-Type', 'application/json');
         xhttp.send(JSON.stringify({
-            "Barterer Points" : Number
+            "Barterer Points" : number
         }));
     }
 
@@ -113,7 +112,9 @@
         const craftNum = document.getElementById("Craftsman").value
         xhttp.setRequestHeader('Content-Type', 'application/json');
         xhttp.send(JSON.stringify({
-            "Craftsman Points" : craftNum
+                "Craftsman Points" : craftNum
         }));
     }
 </script>
+
+</html>
