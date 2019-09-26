@@ -59,7 +59,7 @@
         };
 
         xhttp.open("POST", "reciever", true);
-        const number = document.getElementById("Sailor").value
+        const number = document.getElementById("Sailor").nodeValue
         xhttp.setRequestHeader('Content-Type', 'application/json');
         xhttp.send(JSON.stringify({
             "Sailor Points" : number
