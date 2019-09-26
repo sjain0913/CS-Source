@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, session, redirect
+import Config, json
 
 app = Flask(__name__)
 
@@ -22,11 +23,14 @@ def diff():
 def difficultyparse():
     # read json + reply
     data = request.get_json()
-
     print(data)
-    return data
+    config = Config.Config(data)
+    config.to_String
+
+
+
 
 
 if __name__ == '__main__':
-    app.debug = True
+    # app.debug = True
     app.run(host='0.0.0.0')
