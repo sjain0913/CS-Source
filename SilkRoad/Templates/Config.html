@@ -6,41 +6,114 @@
             <form name="skillPointSelect" method="post" action="">
                 <table>
                     <tr>
-                        <th></th>
-                        <th>Skill Type</th>
-                        <th>Allocation</th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <tc>
+                        <tr>
                             <div>
-                                Sailor
-                                <form name="sailPoints" method="post" actions="">
-                                <input type="number" name="sailPoints" min="0"/>
+                                Sailor  
+                                <form name="createSailPoints" method="post" actions="/createNumber">
+                                <input name="SailPoints" id="Sailor"/>
                                 </form>
                             </div>
-                        </tc>
-                        <tc>
-                            <th>Cannoneer</th>
-                            <form name="cannonPoints" method="post" actions="">
-                            <input type="number" name="cannonPoints" min="0"/>
-                            </form>
-                        </tc>
-                        <tc>
-                            <th>Barterer</th>>
-                            <form name="barterPoints" method="post" actions="">
-                            <input type="number" name="barterPoints" min="0"/>
-                            </form>
-                        </tc>
-                        <tc>
-                            <th>Craftsman</th>
-                            <form name="craftPoints" method="post" actions="">
-                            <input type="number" name="craftPoints" min="0"/>
-                            </form>
-                        </tc>
+                        </tr>
+                        <tr>
+                            <div>
+                                Cannoneer
+                                <form name="cannonPoints" method="post" actions="/createNumber">
+                                <input type="number" name="cannonPoints" min="0" id="Cannoneer"/>
+                                </form>
+                            </div> 
+                        </tr>
+                        <tr>
+                            <div>
+                                Barterer
+                                <form name="barterPoints" method="post" actions="/createNumber">
+                                <input type="number" name="barterPoints" min="0" id="Barterer"/>
+                                </form>
+                            </div>
+                        </tr>
+                        <tr>
+                            <div>
+                                Craftsman
+                                <form name="craftPoints" method="post" actions="/createNumber">
+                                <input type="number" name="craftPoints" min="0" id="Craftsman"/>
+                                </form>
+                            </div>
+                        </tr>
                     </tr>
                 </table>
+            </form>
+            <form method="get" action = ''>
+                <button type = "submit" onclick="setSailor(), setCannoneer(), setBarter(), setCraftsman()">Submit</button>
             </form>
         </div>
     </body>
 </html>
+
+<script type="text/javascript">
+    function setSailor() {
+        window.parent.top.console.log('here')
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+            }
+        };
+
+        xhttp.open("POST", "reciever", true);
+        const number = document.getElementById("Sailor").value
+        xhttp.setRequestHeader('Content-Type', 'application/json');
+        xhttp.send(JSON.stringify({
+            "Sailor Points" : number
+        }));
+    }
+
+    function setCannoneer() {
+        window.parent.top.console.log('here')
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+            }
+        };
+
+        xhttp.open("POST", "reciever", true);
+        const number = document.getElementById("Cannoneer").value
+        xhttp.setRequestHeader('Content-Type', 'application/json');
+        xhttp.send(JSON.stringify({
+            "Cannoneer Points" : Number
+        }));
+    }
+
+    function setBarter() {
+        window.parent.top.console.log('here')
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+            }
+        };
+
+        xhttp.open("POST", "reciever", true);
+        const number = document.getElementById("Barterer").value
+        xhttp.setRequestHeader('Content-Type', 'application/json');
+        xhttp.send(JSON.stringify({
+            "Barterer Points" : Number
+        }));
+    }
+
+    function setCraftsman() {
+        window.parent.top.console.log('here')
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+            }
+        };
+
+        xhttp.open("POST", "reciever", true);
+        const craftNum = document.getElementById("Craftsman").value
+        xhttp.setRequestHeader('Content-Type', 'application/json');
+        xhttp.send(JSON.stringify({
+            "Craftsman Points" : craftNum
+        }));
+    }
+</script>
