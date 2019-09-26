@@ -18,6 +18,10 @@ def config():
 def diff():
     return render_template("Difficulty.html")
 
+@app.route('/playerdata')
+def playerdata():
+    return render_template("PlayerData.html")
+
 
 @app.route('/receiver', methods = ['GET', 'POST'])
 def difficultyparse():
