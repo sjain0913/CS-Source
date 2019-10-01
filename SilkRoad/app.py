@@ -29,7 +29,7 @@ def difficultyparse():
     print(request)
     data = request.get_json()
     print(data)
-    config = Config.Config(data)
+    config = Config.Config(data['difficulty'])
     config.to_String
 
 
