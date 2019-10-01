@@ -23,12 +23,13 @@ def playerdata():
     return render_template("PlayerData.html")
 
 
-@app.route('/receiver', methods = ['GET', 'POST'])
+@app.route('/receiver', methods = ['POST'])
 def difficultyparse():
     # read json + reply
+    print(request)
     data = request.get_json()
     print(data)
-    config = Config.Config(data)
+    config = Config.Config(data['difficulty'])
     config.to_String
 
 

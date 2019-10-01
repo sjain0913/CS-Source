@@ -56,10 +56,10 @@
 
             
             xhttp.open("POST", "receiver", true);
-            xhttp.setRequestHeader('Content-Type', 'application/json');
-            xhttp.send(JSON.stringify({
-                'difficulty': 'easy'
+            xhttp.setRequestHeader(content_type = 'application/json');
+            xhttp.send('difficulty': 'easy')
             }));
+
         }
         else if (document.getElementById('d2').checked) {
             var xhttp = new XMLHttpRequest();
