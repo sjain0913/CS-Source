@@ -4,3 +4,15 @@ class Region:
         self.__x = x
         self.__y = y
         self.__name = name
+
+    def getX(self):
+        return self.__x
+
+    def getName(self):
+        return self.__name
+
+    def getY(self):
+        return self.__y
+
+    def getTechLevel(self):
+        return self.__techLevel
