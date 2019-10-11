@@ -8,5 +8,32 @@
         <p>Region: Persia</p>
         <p>Coordinates: </p>
         <img height=200 width=300 src="Images/Persia.jpg">
+        <form>
+            <fieldset>
+                <legend> Select a Region</legend>
+                <p> 
+                    <label><u>R</u>egion Select</label>
+                    <select accesskey="R" onchange="goToNewPage(this.options(this.selectedIndex).value)">
+                        <option value="/Byzantium">Byzantium</option>
+                        <option value="/China">China</option>
+                        <option value="/Denmark">Denmark</option>
+                        <option value="/Egypt">Egypt</option>
+                        <option value="/GreatBritain">GreatBritain</option>
+                        <option value="/India">India</option>
+                        <option value="/Java">Java</option>
+                        <option value="/Arabia">Arabia</option>
+                        <option value="/Somalia">Somalia</option>
+                    </select>
+                </p>
+            </fieldset>
+        </form>
     </body>
 </html>
+
+<script type="text/javascript">
+    function goToNewPage(url) {
+        if (url != "") {
+            window.open(url);
+        }
+    }
+</script>
