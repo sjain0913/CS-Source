@@ -41,7 +41,7 @@
             diff = 3;
         }
 
-        xhttp.open("POST", "reciever", true);
+        xhttp.open("POST", "DifficultyReceiver", true);
         xhttp.setRequestHeader('Content-Type', 'application/json');
         xhttp.send(JSON.stringify({
             'difficulty' : diff,
