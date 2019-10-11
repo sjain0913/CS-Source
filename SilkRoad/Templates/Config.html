@@ -55,8 +55,8 @@
         var craftPts = document.getElementById("Craftsman").value;
         var xhttp = new XMLHttpRequest();
 
-        xhttp.open("POST", "receiver", true);
-        xhttp.setRequestHeader('Content-Type', 'Sailor/json');
+        xhttp.open("POST", "SkillReceiver", true);
+        xhttp.setRequestHeader('Content-Type', 'application/json');
         xhttp.send(JSON.stringify({
             'SailorPoints' : sailPts,
             'CannoneerPoints' : cannonPts,
