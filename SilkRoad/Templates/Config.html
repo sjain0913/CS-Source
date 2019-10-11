@@ -48,71 +48,20 @@
     </body>
 
 <script type="text/javascript">
-    function setSailor() {
-        window.parent.top.console.log('here')
+    function parsePoints() {
+        var sailPts = document.getElementById("Sailor").value;
+        var cannonPts = document.getElementById("Cannoneer").value;
+        var barterPts = document.getElementById("Barterer").value;
+        var craftPts = document.getElementById("Craftsman").value;
         var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                console.log(this.responseText);
-            }
-        };
 
-        xhttp.open("POST", "reciever", true);
-        const number = document.getElementById("Sailor").nodeValue
-        xhttp.setRequestHeader('Content-Type', 'application/json');
+        xhttp.open("POST", "receiver", true);
+        xhttp.setRequestHeader('Content-Type', 'Sailor/json');
         xhttp.send(JSON.stringify({
-            "Sailor Points" : number
-        }));
-    }
-
-    function setCannoneer() {
-        window.parent.top.console.log('here')
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                console.log(this.responseText);
-            }
-        };
-
-        xhttp.open("POST", "reciever", true);
-        const number = document.getElementById("Cannoneer").value
-        xhttp.setRequestHeader('Content-Type', 'application/json');
-        xhttp.send(JSON.stringify({
-            "Cannoneer Points" : number
-        }));
-    }
-
-    function setBarter() {
-        window.parent.top.console.log('here')
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                console.log(this.responseText);
-            }
-        };
-
-        xhttp.open("POST", "reciever", true);
-        const number = document.getElementById("Barterer").value
-        xhttp.setRequestHeader('Content-Type', 'application/json');
-        xhttp.send(JSON.stringify({
-            "Barterer Points" : number
-        }));
-    }
-
-    function setCraftsman() {
-        window.parent.top.console.log('here')
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                console.log(this.responseText);
-            }
-        };
-
-        xhttp.open("POST", "reciever", true);
-        const craftNum = document.getElementById("Craftsman").value
-        xhttp.setRequestHeader('Content-Type', 'application/json');
-        xhttp.send(JSON.stringify({
-                "Craftsman Points" : craftNum
+            'SailorPoints' : sailPts,
+            'CannoneerPoints' : cannonPts,
+            'BartererPoints' : barterPts,
+            'CraftsmanPoints' : craftPts
         }));
     }
 </script>
