@@ -14,14 +14,14 @@
         </div>
         <div>
             <form name="difficultySelect" method="post" action="">
-                <input type="radio" name="difficulty" value="Easy" id='d1' onclick="setDifficulty()"/>Easy
-                <input type="radio" name="difficulty" value="Medium" id='d2' onclick="setDifficulty()" />Medium
-                <input type="radio" name="difficulty" value="Hard" onclick="setDifficulty()"/>Hard
+                <input type="radio" name="difficulty" value="Easy" id='d1'/>Easy
+                <input type="radio" name="difficulty" value="Medium" id='d2'/>Medium
+                <input type="radio" name="difficulty" value="Hard"/>Hard
             </form>
         </div>
         <div>
             <form method="get" action = '/config'>
-                <button type = "submit" onclick="setName()">Submit</button>
+                <button type = "submit" onclick="parseForm()">Submit</button>
             </form>
         </div>
 </body>

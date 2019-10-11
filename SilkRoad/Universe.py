@@ -1,6 +1,5 @@
 import random
-from .Region import Region
-from .TechLevel import TechLevel
+import Region, TechLevel
 class Universe:
     __instance = None
 
