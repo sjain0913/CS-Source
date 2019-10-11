@@ -1,11 +1,11 @@
 class Player:
-    def __init__(self, name, sailor, cannoneer, barterer, craftsman, region, credits):
+    def __init__(self, name, credits):
         self.name = name
-        self.sailor = sailor
-        self.cannoneer = cannoneer
-        self.barterer = barterer
-        self.craftsman = craftsman
-        self.region = region
+        self.sailor = 0
+        self.cannoneer = 0
+        self.barterer = 0
+        self.craftsman = 0
+        self.region = None
         self.credits = credits
 
     #Setters

@@ -1,7 +1,7 @@
-from .Universe import Universe
-from .Player import Player
-from .Region import Region
-from .app import *
+from Universe import Universe
+from Player import Player
+from Region import Region
+from app import *
 import random
 
 regionNames = ['China','India','Denmark','Great Britain','Egypt','Somalia','Persia','Java','Byzantium','Arabia']
@@ -22,3 +22,6 @@ class Game:
             player.setCredits(500)
         else:
             player.setCredits(100)
+
+    def getDifficulty(self):
+        return self.difficulty
