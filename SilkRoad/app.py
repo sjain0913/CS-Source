@@ -22,17 +22,17 @@ def diff():
 
 @app.route('/playerdata')
 def playerdata():
-    return render_template("PlayerData.html")
+    playerData = [app.player.getSa]
+    return render_template("PlayerData.html", playerData = map(json.dumps, playerData))
 
 
-@app.route('/receiver', methods = ['POST'])
+@app.route('/DifficultyReceiver', methods = ['POST'])
 def difficultyparse():
     # read json + reply
     print(request)
     data = request.get_json()
     print(data)
-    app.player = Player.Player(data['sailor'], data['cannoneer'], data['barterer'], data['craftsman'], data['region'], data['credits'])
-    config.to_String
+    app.player = Player.Player(data['name'], data['sailor'], data['cannoneer'], data['barterer'], data['craftsman'], data['region'], data['credits'])
 
 
 @app.route('/China')

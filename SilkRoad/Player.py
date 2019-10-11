@@ -1,5 +1,6 @@
 class Player:
-    def __init__(self, sailor, cannoneer, barterer, craftsman, region, credits):
+    def __init__(self, name, sailor, cannoneer, barterer, craftsman, region, credits):
+        self.name = name
         self.sailor = sailor
         self.cannoneer = cannoneer
         self.barterer = barterer
@@ -27,6 +28,9 @@ class Player:
         self.credits = credits
 
     #Getters
+    def getName(self):
+        return self.name
+
     def getSailor(self):
         return self.sailor
 
