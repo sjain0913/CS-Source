@@ -1,9 +1,10 @@
 from flask import Flask, render_template, request, session, redirect
-import Player, Universe, json
+import Player, Universe, Game, json
 
 app = Flask(__name__)
 player = None 
 universe = None
+game = None
 
 @app.route('/')
 def titleScreen():
@@ -13,7 +14,8 @@ def titleScreen():
 
 @app.route('/config')
 def config():
-    return render_template("Config.html")
+    diff = game.getDifficulty()
+    return render_template("Config.html", diff = json.dumps(diff))
 
 
 @app.route('/diff')
@@ -22,7 +24,7 @@ def diff():
 
 @app.route('/playerdata')
 def playerdata():
-    playerData = [app.player.getSa]
+    playerData = [app.player.getSailor()]
     return render_template("PlayerData.html", playerData = map(json.dumps, playerData))
 
 
@@ -32,8 +34,22 @@ def difficultyparse():
     print(request)
     data = request.get_json()
     print(data)
-    app.player = Player.Player(data['name'], data['sailor'], data['cannoneer'], data['barterer'], data['craftsman'], data['region'], data['credits'])
+    game = Game.Game(data['difficulty'])
+    player = Player.Player(data['name'])
 
+@app.route('/SkillReceiver', methods = ['POST'])
+def skillparse():
+    print(request)
+    data = request.get_json()
+    print(data)
+    skillpts = 0
+    if (app.game.getDifficulty() == 1):
+        skillpts = 16
+    elif (app.game.getDifficulty() == 2):
+        skillpts = 12
+    else:
+        skillpts = 8
+    
 
 @app.route('/China')
 def china():
