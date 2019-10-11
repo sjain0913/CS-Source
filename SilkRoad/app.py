@@ -14,7 +14,7 @@ def titleScreen():
 
 @app.route('/config')
 def config():
-    diff = game.getDifficulty()
+    diff = app.game.getDifficulty()
     return render_template("Config.html", diff = json.dumps(diff))
 
 
@@ -34,7 +34,7 @@ def difficultyparse():
     print(request)
     data = request.get_json()
     print(data)
-    game = Game.Game(data['difficulty'])
+    app.game = Game.Game(data['difficulty'])
     player = Player.Player(data['name'])
 
 @app.route('/SkillReceiver', methods = ['POST'])
