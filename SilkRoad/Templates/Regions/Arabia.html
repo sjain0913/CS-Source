@@ -12,20 +12,28 @@
             <fieldset>
                 <legend> Select a Region</legend>
                 <p> 
-                    <label>Region Select</label>
-                    <select id="myList">
-                        <option value="1">Byzantium</option>
-                        <option value="2">China</option>
-                        <option value="3">Denmark</option>
-                        <option value="4">Egypt</option>
-                        <option value="5">GreatBritain</option>
-                        <option value="6">India</option>
-                        <option value="7">Java</option>
-                        <option value="8">Persia</option>
-                        <option value="9">Somalia</option>
+                    <label><u>R</u>egion Select</label>
+                    <select accesskey="R" onchange="goToNewPage(this.options(this.selectedIndex).value)">
+                        <option value="/Byzantium">Byzantium</option>
+                        <option value="/China">China</option>
+                        <option value="/Denmark">Denmark</option>
+                        <option value="/Egypt">Egypt</option>
+                        <option value="/GreatBritain">GreatBritain</option>
+                        <option value="/India">India</option>
+                        <option value="/Java">Java</option>
+                        <option value="/Persia">Persia</option>
+                        <option value="/Somalia">Somalia</option>
                     </select>
                 </p>
             </fieldset>
         </form>
     </body>
 </html>
+
+<script type="text/javascript">
+function goToNewPage(url) {
+    if (url != "") {
+        window.open(url);
+    }
+}
+</script>
