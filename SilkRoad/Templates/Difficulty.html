@@ -20,18 +20,6 @@
             </form>
         </div>
         <div>
-            <form name = "skillSelect" method="post" action="">
-                <label for="pilotSkill">Pilot Skill</label>
-                <input type = "range" min = "1" max = "16" value = "1" step = "1" id = "pilotSkill"><br>
-                <label for = "fighterSkill">Fighter Skill</label>
-                <input type = "range" min = "1" max = "16" value = "1" id = "fighterSkill" step = "1"><br>
-                <label for = "merchantSkill">Merchant Skill</label>
-                <input type = "range" min = "1" max = "16" value = "1" id = "merchantSkill" step = "1"><br>
-                <label for = "engineerSkill">Engineer Skill</label>
-                <input type = "range" min = "1" max = "16" value = "1" id = "engineerSkill" step = "1"><br>
-            </form>
-        </div>
-        <div>
             <form method="get" action = '/config'>
                 <button type = "submit" onclick="parseForm()">Submit</button>
             </form>
@@ -52,14 +40,6 @@
             diff = 2;
         } else if (document.getElementById('d3').checked) {
             diff = 3;
-        }
-
-        if (document.getElementById('d1').checked) {
-            skillpoint = 16;
-        } else if (document.getElementById('d2').checked) {
-            skillpoint = 12;
-        } else if (document.getElementById('d3').checked) {
-            skillpoint = 8;
         }
 
         xhttp.open("POST", "DifficultyReceiver", true);
