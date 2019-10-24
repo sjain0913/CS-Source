@@ -5,3 +5,5 @@ class Ship:
         self.fuel_cap = fuel_cap
         self.health = health
     
+    def ship_upgrade(self, ship_type, cargo_space, fuel_cap, health):
+        
