@@ -21,7 +21,7 @@
         </div>
         <div>
             <form method="get" action = '/config'>
-                <button type = "submit" onclick="parseForm()">Submit</button>
+                <button onclick="parseForm()">Submit</button>
             </form>
         </div>
 </body>
@@ -31,7 +31,7 @@
      function parseForm() {
         var diff = 0;
         var name = document.getElementById("n1").value;
-        var xxhtp = new XMLHttpRequest();
+        var xhttp = new XMLHttpRequest();
 
         if (document.getElementById('d1').checked) {
             diff = 1;
@@ -40,8 +40,8 @@
         } else {
             diff = 3;
         }
-
-        xhttp.open("POST", "DifficultyReceiver", true);
+        console.log(xhttp)
+        xhttp.open("POST", "/DifficultyReceiver", true);
         xhttp.setRequestHeader('Content-Type', 'application/json');
         xhttp.send(JSON.stringify({
             'difficulty' : diff,

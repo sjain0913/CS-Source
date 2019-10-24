@@ -7,9 +7,9 @@ import random
 regionNames = ['China','India','Denmark','Great Britain','Egypt','Somalia','Persia','Java','Byzantium','Arabia']
 
 class Game:
-    def __init__(self, difficulty):
+    def __init__(self, difficulty, regions):
         self.difficulty = difficulty
-        self.regionNames= Game.regionNames
+        self.regions = regions
 
     def startGame(self):
         newUniverse = Universe(regionNames)

@@ -2,7 +2,7 @@
 <html>
     <body>
         <div>
-            Allocate Skill Points
+            Allocate {{skillpts}} Skill Points
             <form name="skillPointSelect" method="post" action="">
                 <table>
                     <tr>
@@ -48,6 +48,7 @@
     </body>
 
 <script type="text/javascript">
+    test = {{diff}}
     function parsePoints() {
         var sailPts = document.getElementById("Sailor").value;
         var cannonPts = document.getElementById("Cannoneer").value;
