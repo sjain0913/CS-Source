@@ -16,7 +16,15 @@
             <form name="difficultySelect" method="post" action="">
                 <input type="radio" name="difficulty" value="Easy" id='d1'/>Easy
                 <input type="radio" name="difficulty" value="Medium" id='d2'/>Medium
-                <input type="radio" name="difficulty" value="Hard"/>Hard
+                <input type="radio" name="difficulty" value="Hard" id ='d3'/>Hard
+            </form>
+        </div>
+        <div>
+            <form name = "skillSelect" method="post" action="">
+                <input type = "range" min = "1" max = "16" value = "1" class = "slider" id = "pilotSkill">
+                <input type = "range" min = "1" max = "16" value = "1" class = "slider" id = "fighterSkill">
+                <input type = "range" min = "1" max = "16" value = "1" class = "slider" id = "merchantSkill">
+                <input type = "range" min = "1" max = "16" value = "1" class = "slider" id = "engineerSkill">
             </form>
         </div>
         <div>
@@ -31,14 +39,23 @@
      function parseForm() {
         var diff = 0;
         var name = document.getElementById("n1").value;
+        var skillpoint = 0;
         var xxhtp = new XMLHttpRequest();
 
         if (document.getElementById('d1').checked) {
             diff = 1;
         } else if (document.getElementById('d2').checked) {
             diff = 2;
-        } else {
+        } else if (document.getElementById('d3').checked) {
             diff = 3;
+        }
+
+        if (document.getElementById('d1').checked) {
+            skillpoint = 16;
+        } else if (document.getElementById('d2').checked) {
+            skillpoint = 12;
+        } else if (document.getElementById('d3').checked) {
+            skillpoint = 8;
         }
 
         xhttp.open("POST", "DifficultyReceiver", true);
