@@ -1,5 +1,5 @@
 class Player:
-    def __init__(self, name, credits):
+    def __init__(self, name):
         self.name = name
         self.sailor = 0
         self.cannoneer = 0
@@ -74,3 +74,4 @@ class Player:
 
     def decrementCraftsman(self):
         self.craftsman -= 1
+
