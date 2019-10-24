@@ -16,7 +16,7 @@
             <form name="difficultySelect" method="post" action="">
                 <input type="radio" name="difficulty" value="Easy" id='d1'/>Easy
                 <input type="radio" name="difficulty" value="Medium" id='d2'/>Medium
-                <input type="radio" name="difficulty" value="Hard"/>Hard
+                <input type="radio" name="difficulty" value="Hard" id ='d3'/>Hard
             </form>
         </div>
         <div>
@@ -31,13 +31,18 @@
      function parseForm() {
         var diff = 0;
         var name = document.getElementById("n1").value;
+<<<<<<< HEAD
         var xhttp = new XMLHttpRequest();
+=======
+        var skillpoint = 0;
+        var xxhtp = new XMLHttpRequest();
+>>>>>>> dee9e627a939443e8c7af3c50003868160cffe3a
 
         if (document.getElementById('d1').checked) {
             diff = 1;
         } else if (document.getElementById('d2').checked) {
             diff = 2;
-        } else {
+        } else if (document.getElementById('d3').checked) {
             diff = 3;
         }
         console.log(xhttp)
