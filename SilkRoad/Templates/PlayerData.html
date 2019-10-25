@@ -5,8 +5,13 @@
     </head>
     <body>
         <div>
-            Player:
-            
+            Player Name:    Player Credits:    Starting Region:   Sailor Points:    Barterer Points:    Cannoneer Points:    Craftsman Points:
+
+            {{player_data}}
+
+            <form method="get" action="/{{player_data[3]}}">
+                <button>Continue</button>
+            </form>
         </div>
     </body>
 </html>
