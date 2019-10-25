@@ -76,10 +76,10 @@ def skillparse():
     data = request.get_json()
     print(data)
     global player
-    player.sailor = data['SailorPoints']
-    player.barterer = data['BartererPoints']
-    player.craftsman = data['CraftsmanPoints']
-    player.cannoneer = data['CannoneerPoints']
+    player.sailor = int(data['SailorPoints'])
+    player.barterer = int(data['BartererPoints'])
+    player.craftsman = int(data['CraftsmanPoints'])
+    player.cannoneer = int(data['CannoneerPoints'])
 
 @app.route('/China')
 def china():
