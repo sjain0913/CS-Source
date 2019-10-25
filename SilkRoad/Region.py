@@ -1,11 +1,17 @@
 from TechLevel import TechLevel
 import app
+import Math
 class Region: 
     def __init__(self, name, techLevel, x, y):
         self.__techLevel = techLevel
         self.__x = x
         self.__y = y
         self.__name = name
+        if self.__techLevel == TechLevel(0):
+            self.items = []
+
+    def getDistance(self, x, y):
+        return Math.sqrt((x-self.__x)(x-self.__x) + (y-self.__y)(y-self.__y))
 
     def price_multiplier(self):
         if self.__techLevel == TechLevel(0):

@@ -13,9 +13,9 @@ class Game:
 
     def startGame(self):
         newUniverse = Universe(regionNames)
-        regionNum = random.randint(0,10)
+        regionNum = random.randint(0,9)
         player = app.player
-        player.setRegion(Universe.regions[regionNum])
+        player.setRegion(Universe.getInstance().regions[regionNum])
         if (self.difficulty is 'easy'):
             player.setCredits(1000)
         elif (self.difficulty is 'medium'):
