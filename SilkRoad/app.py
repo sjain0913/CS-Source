@@ -40,6 +40,7 @@ def playerdata():
     skillpts = 0
     global game
     global player
+    game.startGame()
     if game.getDifficulty() == 1:
         skillpts = 16
         player.credits = 1000
@@ -55,8 +56,8 @@ def playerdata():
         player.craftsman = 0
         player.cannoneer = 0
         return render_template("Failure.html")
-    player_data = [player.name, player.credits, player.sailor, player.cannoneer, player.barterer, player.craftsman]
-    return render_template("PlayerData.html", player_data=map(json.dumps, player_data))
+    player_data = [player.name, player.credits, player.region.getName(), player.sailor, player.cannoneer, player.barterer, player.craftsman]
+    return render_template("PlayerData.html", player_data=player_data)
 
 
 @app.route('/DifficultyReceiver', methods=['POST'])
@@ -86,70 +87,70 @@ def china():
     region_info = [Universe.getInstance().regions[0].getX(),
                    Universe.getInstance().regions[0].getY(),
                    Universe.getInstance().regions[0].getTechLevel()]
-    return render_template("China.html", region_info=region_info)
+    return render_template("Regions/China.html", region_info=region_info)
 
 @app.route('/India')
 def india():
     region_info = [Universe.getInstance().regions[1].getX(),
                    Universe.getInstance().regions[1].getY(),
                    Universe.getInstance().regions[1].getTechLevel()]
-    return render_template("India.html", region_info=region_info)
+    return render_template("Regions/India.html", region_info=region_info)
 
 @app.route('/Denmark')
 def denmark():
     region_info = [Universe.getInstance().regions[2].getX(),
                    Universe.getInstance().regions[2].getY(),
                    Universe.getInstance().regions[2].getTechLevel()]
-    return render_template("Denmark.html", region_info=region_info)
+    return render_template("Regions/Denmark.html", region_info=region_info)
 
 @app.route('/Britain')
 def britain():
     region_info = [Universe.getInstance().regions[3].getX(),
                    Universe.getInstance().regions[3].getY(),
                    Universe.getInstance().regions[3].getTechLevel()]
-    return render_template("Britain.html", region_info=region_info)
+    return render_template("Regions/Britain.html", region_info=region_info)
 
 @app.route('/Egypt')
 def egypt():
     region_info = [Universe.getInstance().regions[4].getX(),
                    Universe.getInstance().regions[4].getY(),
                    Universe.getInstance().regions[4].getTechLevel()]
-    return render_template("Egypt.html", region_info=region_info)
+    return render_template("Regions/Egypt.html", region_info=region_info)
 
 @app.route('/Somalia')
 def somalia():
     region_info = [Universe.getInstance().regions[5].getX(),
                    Universe.getInstance().regions[5].getY(),
                    Universe.getInstance().regions[5].getTechLevel()]
-    return render_template("Somalia.html", region_info=region_info)
+    return render_template("Regions/Somalia.html", region_info=region_info)
 
 @app.route('/Persia')
 def persia():
     region_info = [Universe.getInstance().regions[6].getX(),
                    Universe.getInstance().regions[6].getY(),
                    Universe.getInstance().regions[6].getTechLevel()]
-    return render_template("Persia.html", region_info=region_info)
+    return render_template("Regions/Persia.html", region_info=region_info)
 
 @app.route('/Java')
 def java():
     region_info = [Universe.getInstance().regions[7].getX(),
                    Universe.getInstance().regions[7].getY(),
                    Universe.getInstance().regions[7].getTechLevel()]
-    return render_template("Java.html", region_info=region_info)
+    return render_template("Regions/Java.html", region_info=region_info)
 
 @app.route('/Byzantium')
 def byzantium():
     region_info = [Universe.getInstance().regions[8].getX(),
                    Universe.getInstance().regions[8].getY(),
                    Universe.getInstance().regions[8].getTechLevel()]
-    return render_template("Byzantium.html", region_info=region_info)
+    return render_template("Regions/Byzantium.html", region_info=region_info)
 
 @app.route('/Arabia')
 def arabia():
     region_info = [Universe.getInstance().regions[9].getX(),
                    Universe.getInstance().regions[9].getY(),
                    Universe.getInstance().regions[9].getTechLevel()]
-    return render_template("Arabia.html", region_info=region_info)
+    return render_template("Regions/Arabia.html", region_info=region_info)
 
 
 if __name__ == '__main__':
