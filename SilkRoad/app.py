@@ -37,8 +37,25 @@ def diff():
 
 @app.route('/playerdata')
 def playerdata():
+    skillpts = 0
+    global game
     global player
-    player_data = [player.name, player.sailor, player.cannoneer, player.barterer, player.craftsman]
+    if game.getDifficulty() == 1:
+        skillpts = 16
+        player.credits = 1000
+    elif game.getDifficulty() == 2:
+        skillpts = 12
+        player.credits = 500
+    else:
+        skillpts = 8
+        player.credits = 250
+    if player.sailor + player.barterer + player.craftsman + player.cannoneer > skillpts:
+        player.sailor = 0
+        player.barterer = 0
+        player.craftsman = 0
+        player.cannoneer = 0
+        return render_template("Failure.html")
+    player_data = [player.name, player.credits, player.sailor, player.cannoneer, player.barterer, player.craftsman]
     return render_template("PlayerData.html", player_data=map(json.dumps, player_data))
 
 
@@ -58,16 +75,7 @@ def skillparse():
     print(request)
     data = request.get_json()
     print(data)
-    skillpts = 0
-    global game
-    if game.getDifficulty() == 1:
-        skillpts = 16
-    elif game.getDifficulty() == 2:
-        skillpts = 12
-    else:
-        skillpts = 8
     global player
-    if data[]
     player.sailor = data['SailorPoints']
     player.barterer = data['BartererPoints']
     player.craftsman = data['CraftsmanPoints']
