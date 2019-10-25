@@ -38,7 +38,7 @@ def diff():
 @app.route('/playerdata')
 def playerdata():
     global player
-    player_data = [player.getSailor()]
+    player_data = [player.name, player.sailor, player.cannoneer, player.barterer, player.craftsman]
     return render_template("PlayerData.html", player_data=map(json.dumps, player_data))
 
 
@@ -51,7 +51,6 @@ def difficultyparse():
                                           'Byzantium', 'Arabia'])
     global player
     player = Player(data['name'])
-    skillpts = 0
     return None
 
 @app.route('/SkillReceiver', methods=['POST'])
@@ -67,6 +66,12 @@ def skillparse():
         skillpts = 12
     else:
         skillpts = 8
+    global player
+    if data[]
+    player.sailor = data['SailorPoints']
+    player.barterer = data['BartererPoints']
+    player.craftsman = data['CraftsmanPoints']
+    player.cannoneer = data['CannoneerPoints']
 
 @app.route('/China')
 def china():
