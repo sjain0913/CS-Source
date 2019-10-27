@@ -84,10 +84,18 @@ def skillparse():
 
 @app.route('/China')
 def china():
+    global player
     region_info = [Universe.getInstance().regions[0].getX(),
                    Universe.getInstance().regions[0].getY(),
                    Universe.getInstance().regions[0].getTechLevel()]
-    return render_template("Regions/China.html", region_info=region_info)
+    fuel_cost = Universe.getInstance().regions[0].get_fuel_cost(player.region.getX(), player.region.getY())
+    if (fuel_cost <= player.ship.fuel):
+        player.ship.fuel = player.ship.fuel - fuel_cost
+        player.region = Universe.getInstance().regions[0]
+        region_info.append(player.ship.fuel)
+        return render_template("Regions/China.html", region_info=region_info)
+    else:
+        return render_template("Regions/" + player.region.getName() + ".html", region_info=region_info)
 
 @app.route('/India')
 def india():
@@ -108,7 +116,7 @@ def britain():
     region_info = [Universe.getInstance().regions[3].getX(),
                    Universe.getInstance().regions[3].getY(),
                    Universe.getInstance().regions[3].getTechLevel()]
-    return render_template("Regions/Britain.html", region_info=region_info)
+    return render_template("Regions/GreatBritain.html", region_info=region_info)
 
 @app.route('/Egypt')
 def egypt():

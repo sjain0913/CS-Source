@@ -7,6 +7,7 @@ class Player:
         self.craftsman = 0
         self.region = None
         self.credits = credits
+        self.ship = None
         self.inventory = []
 
     #Setters
