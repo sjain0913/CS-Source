@@ -1,10 +1,11 @@
 from Universe import Universe
 from Player import Player
 from Region import Region
+from Ship import Ship
 import app
 import random
 
-regionNames = ['China','India','Denmark','Great Britain','Egypt','Somalia','Persia','Java','Byzantium','Arabia']
+regionNames = ['China','India','Denmark','Britain','Egypt','Somalia','Persia','Java','Byzantium','Arabia']
 
 class Game:
     def __init__(self, difficulty, regions):
@@ -15,6 +16,7 @@ class Game:
         newUniverse = Universe(regionNames)
         regionNum = random.randint(0,9)
         player = app.player
+        player.ship = Ship("Clipper")
         player.setRegion(Universe.getInstance().regions[regionNum])
         if (self.difficulty is 'easy'):
             player.setCredits(1000)

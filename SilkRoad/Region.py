@@ -10,8 +10,8 @@ class Region:
         if self.__techLevel == TechLevel(0):
             self.items = []
 
-    def getDistance(self, x, y):
-        return math.sqrt((x-self.__x)(x-self.__x) + (y-self.__y)(y-self.__y))
+    def get_fuel_cost(self, x, y):
+        return (5 * math.sqrt((x-self.__x) * (x-self.__x) + (y-self.__y) * (y-self.__y))) / (28 * app.player.getSailor())
 
     def price_multiplier(self):
         if self.__techLevel == TechLevel(0):
