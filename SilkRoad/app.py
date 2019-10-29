@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect
+from flask import Flask, render_template, request, session, redirect, url_for
 from Player import Player
 from Universe import Universe
 from Game import Game
@@ -95,7 +95,7 @@ def china():
         region_info.append(player.ship.fuel)
         return render_template("Regions/China.html", region_info=region_info)
     else:
-        return render_template("Regions/" + player.region.getName() + ".html", region_info=region_info)
+        return redirect(url_for(player.region.getName()))
 
 @app.route('/India')
 def india():
