@@ -111,56 +111,56 @@ def india():
 def denmark():
     region_info = [Universe.getInstance().regions[2].getX(),
                    Universe.getInstance().regions[2].getY(),
-                   Universe.getInstance().regions[2].getTechLevel()]
+                   Universe.getInstance().regions[2].getTechLevel().value]
     return render_template("Regions/Denmark.html", region_info=region_info)
 
 @app.route('/Britain')
 def britain():
     region_info = [Universe.getInstance().regions[3].getX(),
                    Universe.getInstance().regions[3].getY(),
-                   Universe.getInstance().regions[3].getTechLevel()]
+                   Universe.getInstance().regions[3].getTechLevel().value]
     return render_template("Regions/GreatBritain.html", region_info=region_info)
 
 @app.route('/Egypt')
 def egypt():
     region_info = [Universe.getInstance().regions[4].getX(),
                    Universe.getInstance().regions[4].getY(),
-                   Universe.getInstance().regions[4].getTechLevel()]
+                   Universe.getInstance().regions[4].getTechLevel().value]
     return render_template("Regions/Egypt.html", region_info=region_info)
 
 @app.route('/Somalia')
 def somalia():
     region_info = [Universe.getInstance().regions[5].getX(),
                    Universe.getInstance().regions[5].getY(),
-                   Universe.getInstance().regions[5].getTechLevel()]
+                   Universe.getInstance().regions[5].getTechLevel().value]
     return render_template("Regions/Somalia.html", region_info=region_info)
 
 @app.route('/Persia')
 def persia():
     region_info = [Universe.getInstance().regions[6].getX(),
                    Universe.getInstance().regions[6].getY(),
-                   Universe.getInstance().regions[6].getTechLevel()]
+                   Universe.getInstance().regions[6].getTechLevel().value]
     return render_template("Regions/Persia.html", region_info=region_info)
 
 @app.route('/Java')
 def java():
     region_info = [Universe.getInstance().regions[7].getX(),
                    Universe.getInstance().regions[7].getY(),
-                   Universe.getInstance().regions[7].getTechLevel()]
+                   Universe.getInstance().regions[7].getTechLevel().value]
     return render_template("Regions/Java.html", region_info=region_info)
 
 @app.route('/Byzantium')
 def byzantium():
     region_info = [Universe.getInstance().regions[8].getX(),
                    Universe.getInstance().regions[8].getY(),
-                   Universe.getInstance().regions[8].getTechLevel()]
+                   Universe.getInstance().regions[8].getTechLevel().value]
     return render_template("Regions/Byzantium.html", region_info=region_info)
 
 @app.route('/Arabia')
 def arabia():
     region_info = [Universe.getInstance().regions[9].getX(),
                    Universe.getInstance().regions[9].getY(),
-                   Universe.getInstance().regions[9].getTechLevel()]
+                   Universe.getInstance().regions[9].getTechLevel().val]
     return render_template("Regions/Arabia.html", region_info=region_info)
 
 
