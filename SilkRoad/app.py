@@ -13,7 +13,25 @@ game = None
 def title_screen():
     global player
     player = None
+    Universe.__instance = None
     return render_template('TitleScreen.html')
+
+
+@app.route('/diff')
+def diff():
+    return render_template("Difficulty.html")
+
+
+@app.route('/DifficultyReceiver', methods=['POST'])
+def difficultyparse():
+    data = request.get_json()
+    global game
+    game = Game(data['difficulty'], ['China', 'India', 'Denmark', 'Great Britain',
+                                          'Egypt', 'Somalia', 'Persia', 'Java',
+                                          'Byzantium', 'Arabia'])
+    global player
+    player = Player(data['name'])
+    return None
 
 
 @app.route('/config')
@@ -30,10 +48,6 @@ def config():
         skillpts = 8
     return render_template("Config.html", skillpts=skillpts)
 
-
-@app.route('/diff')
-def diff():
-    return render_template("Difficulty.html")
 
 @app.route('/playerdata')
 def playerdata():
@@ -60,17 +74,6 @@ def playerdata():
     return render_template("PlayerData.html", player_data=player_data)
 
 
-@app.route('/DifficultyReceiver', methods=['POST'])
-def difficultyparse():
-    data = request.get_json()
-    global game
-    game = Game(data['difficulty'], ['China', 'India', 'Denmark', 'Great Britain',
-                                          'Egypt', 'Somalia', 'Persia', 'Java',
-                                          'Byzantium', 'Arabia'])
-    global player
-    player = Player(data['name'])
-    return None
-
 @app.route('/SkillReceiver', methods=['POST'])
 def skillparse():
     print(request)
@@ -95,7 +98,7 @@ def china():
         region_info.append(player.ship.fuel)
         return render_template("Regions/China.html", region_info=region_info)
     else:
-        return redirect(url_for(player.region.getName()))
+        return redirect(url_for(player.region.getName().lower()))
 
 @app.route('/India')
 def india():
