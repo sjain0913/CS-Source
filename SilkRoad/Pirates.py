@@ -13,39 +13,39 @@ class Pirates:
     def flee(self):
         chance_of_success = random.randint(30, 70) * (app.player.sailor / 3)
         if (chance_of_success >= 40):
-            Pirates.success = True
+            self.success = True
         else:
-            Pirates.success = False
-            Ship.health -= random.randint(25,50)
-            if (app.player.credits < Pirates.ransom):
-                Pirates.credits += app.player.credits
+            self.success = False
+            app.player.ship.health -= random.randint(25,50)
+            if (app.player.credits < self.ransom):
+                self.credits += app.player.credits
                 app.player.credits = 0
-                Player.inventory.remove(Pirates.stolen_items)
+                app.player.inventory.remove(self.stolen_items)
             else:
-                Pirates.credits += Pirates.ransom
-                app.player.credits -= Pirates.ransom
+                self.credits += self.ransom
+                app.player.credits -= self.ransom
     
     def fight(self):
         chance_of_success = random.randint(30,70) * (app.player.cannoneer / 3)
         if (chance_of_success >= 60):
-            Pirates.success = True
-            app.player.credits += Pirates.credits
+            self.success = True
+            app.player.credits += self.credits
         else:
-            Pirates.success = False
-            Ship.health -= random.randint(25,50)
-            if (app.player.credits <= Pirates.ransom):
-                Pirates.credits += app.player.credits
+            self.success = False
+            app.player.ship.health -= random.randint(25,50)
+            if (app.player.credits <= self.ransom):
+                self.credits += app.player.credits
                 app.player.credits = 0
             else:
-                Pirates.credits += Pirates.ransom
-                app.player.credits -= Pirates.ransom
+                self.credits += self.ransom
+                app.player.credits -= self.ransom
 
     def pay(self):
-        if (app.player.credit >= Pirates.ransom):
-            app.player.credit -= Pirates.ransom
-            Pirates.credits += Pirates.ransom
-        elif (app.player.credit < Pirates.ransom):
-            Player.inventory = []
-        elif (Player.inventory == [] and app.player.credit < Pirates.ransom):
-            Ship.health -= random.randint(25,50)
+        if (app.player.credit >= self.ransom):
+            app.player.credit -= self.ransom
+            self.credits += self.ransom
+        elif (app.player.credit < self.ransom):
+            app.player.inventory = []
+        elif (app.player.inventory == [] and app.player.credit < self.ransom):
+            app.player.ship.health -= random.randint(25,50)
 
