@@ -1,6 +1,9 @@
 from flask import Flask, flash, render_template, request, session, redirect, url_for
 from Player import Player
 from Universe import Universe
+from Pirates import Pirates
+from Navy import Navy
+from Trader import Trader
 from Game import Game
 import json
 
@@ -89,6 +92,16 @@ def trader():
 @app.route('/TraderReceiver', methods=['POST'])
 def traderparse():
     data = request.get_json()
+    choice = data['traderChoice']
+    trade = Trader()
+    if choice == "buy":
+        trade.buy(data['itemBought'])
+    elif choice == "sell":
+        trade.sell(data['itemSold'])
+    elif choice == "rob":
+        trade.rob()
+    else:
+        trade.negotiate()
 
 @app.route('/pirate')
 def pirate():
@@ -98,6 +111,14 @@ def pirate():
 @app.route('/PirateReceiver', methods=['POST'])
 def pirateparse():
     data = request.get_json()
+    choice = data['pirateChoice']
+    pir = Pirates()
+    if choice == "pay":
+        pir.pay()
+    elif choice == "flee":
+        pir.flee()
+    else:
+        pir.fight()
 
 @app.route('/navy')
 def navy():
@@ -106,6 +127,7 @@ def navy():
 @app.route('/NavyReceiver', methods=['POST'])
 def navyparse():    
     data = request.get_json()
+    choice = data['navyChoice']
 
 @app.route('/China')
 def china():

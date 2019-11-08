@@ -5,9 +5,10 @@ class Pirates:
     success = True
 
     def __init__(self):
-        self.success = success
+        self.success = Pirates.success
         self.credits = random.randint(1, 1000)
-        self.stolen_item = Player.inventory[random.randint(0, len(Player.inventory) - 1)]
+        item_list = app.player.inventory.keys()
+        self.stolen_item = item_list[random.randint(0, len(item_list) - 1)]
         self.ransom = random.randint(100,250)
     
     def flee(self):
@@ -20,7 +21,7 @@ class Pirates:
             if (app.player.credits < self.ransom):
                 self.credits += app.player.credits
                 app.player.credits = 0
-                app.player.inventory.remove(self.stolen_items)
+                app.player.remove_from_inv(self.stolen_item)
             else:
                 self.credits += self.ransom
                 app.player.credits -= self.ransom
@@ -41,11 +42,11 @@ class Pirates:
                 app.player.credits -= self.ransom
 
     def pay(self):
-        if (app.player.credit >= self.ransom):
-            app.player.credit -= self.ransom
+        if (app.player.credits >= self.ransom):
+            app.player.credits -= self.ransom
             self.credits += self.ransom
-        elif (app.player.credit < self.ransom):
+        elif (app.player.credits < self.ransom):
             app.player.inventory = []
-        elif (app.player.inventory == [] and app.player.credit < self.ransom):
+        elif (app.player.inventory == [] and app.player.credits < self.ransom):
             app.player.ship.health -= random.randint(25,50)
 
