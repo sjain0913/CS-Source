@@ -41,7 +41,6 @@
         } else if (document.getElementById('d3').checked) {
             diff = 3;
         }
-        console.log(xhttp)
         xhttp.open("POST", "/DifficultyReceiver", true);
         xhttp.setRequestHeader('Content-Type', 'application/json');
         xhttp.send(JSON.stringify({

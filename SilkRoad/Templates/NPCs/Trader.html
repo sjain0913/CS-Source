@@ -1,4 +1,49 @@
 <!DOCTYPE html>
 <html>
-    
+    <head>
+        <title>SilkRoad</title>
+    </head>
+    <body>
+        <h1>
+            Praise be! A traveling merchant thankfully boards your ship!
+        </h1>
+        <div>
+            <form name="tradeSelect" method="post" action="">
+                <input type="radio" name="tchoice" value="Buy" id='t1'/>Buy Some Items!
+                <input type="radio" name="tchoice" value="Sell" id='t2'/>Sell Some Items!
+                <input type="radio" name="tchoice" value="Rob" id ='t3'/>Rob the Traveling Merchant!
+                <input type="radio" name="tchoice" value="Negotiate" id="t4"/>Negotiate Better Prices!
+            </form>
+        </div>
+        <div>
+            <form method="get"> 
+                <button onclick="parseForm()">Submit</button>
+            </form>
+        </div>
+    </body>
 </html>
+
+<script type="text/javascript">
+    function parseForm() {
+        var trader = "";
+        var xhttp = new XMLHttpRequest();
+
+        if (document.getElementById('t1').checked) {
+            trader = "buy";
+        }
+        else if (document.getElementById('t2').checked) {
+            trader = "sell";
+        }
+        else if (document.getElementbyId('t3').checked) {
+            trader = "rob";
+        }
+        else {
+            trader = "negotiate";
+        }
+        xhttp.open("POST", "/TraderReceiver", true);
+        xhttp.RequestHeader('Content-Type', 'application/json');
+        xhttp.send(JSON.stringify({
+            'traderChoice' : trader
+        }));
+    }
+</script>
