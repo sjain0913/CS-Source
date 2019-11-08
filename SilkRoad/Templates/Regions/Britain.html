@@ -5,24 +5,24 @@
         <title>MY WENSITE</title>
     </head>
     <body>
-        <p>Region: Java</p>
+        <p>Region: Britain</p>
         <p>Coordinates: ({{region_info['region_x']}},{{region_info['region_y']}})</p>
         <p>Technology Level: {{region_info[region_tech]}}</p>
         <p>Fuel: {{region_info['fuel']}}
-        <img height=200 width=300 src="Images/Java.jpg">
+        <img height=200 width=300 src="Images/GreatBritain.jpg">
         <form>
             <fieldset>
                 <legend> Select a Region</legend>
                 <p> 
                     <label><u>R</u>egion Select</label>
-                    <select id="TD8" accesskey="R" onchange="canITravel(this.options[this.selectedIndex].value)">
+                    <select id="TD6" accesskey="R" onchange="canITravel(this.options[this.selectedIndex].value)">
                         <option value="/Byzantium">Byzantium {{region_info['fuel_costs']['Byzantium']}}</option>
                         <option value="/China">China {{region_info['fuel_costs']['China']}}</option>
                         <option value="/Denmark">Denmark {{region_info['fuel_costs']['Denmark']}}</option>
                         <option value="/Egypt">Egypt {{region_info['fuel_costs']['Egypt']}}</option>
-                        <option value="/Britain">Britain {{region_info['fuel_costs']['Britain']}}</option>
-                        <option value="/India">India {{region_info['fuel_costs']['India']}}</option>
                         <option value="/Arabia">Arabia {{region_info['fuel_costs']['Arabia']}}</option>
+                        <option value="/India">India {{region_info['fuel_costs']['India']}}</option>
+                        <option value="/Java">Java {{region_info['fuel_costs']['Java']}}</option>
                         <option value="/Persia">Persia {{region_info['fuel_costs']['Persia']}}</option>
                         <option value="/Somalia">Somalia {{region_info['fuel_costs']['Somalia']}}</option>
                     </select>
@@ -34,7 +34,7 @@
 
 <script type="text/javascript">
     function canITravel(url) {
-        var tRegion = document.getElementById("TD8").replace('/', '');
+        var tRegion = document.getElementById("TD6").replace('/', '');
         var fuel_cost = "{{ region_info['fuel_costs'][" + tRegion + "] }}";
         var current_fuel = "{{ region_info['fuel'] }}";
         
