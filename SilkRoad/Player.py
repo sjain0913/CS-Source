@@ -1,5 +1,5 @@
 from Item import Item
-import app, random
+import app, random, Game
 class Player:
     def __init__(self, name):
         self.name = name
@@ -11,6 +11,7 @@ class Player:
         self.credits = credits
         self.ship = None
         self.inventory = {}
+        self.game = Game
 
     def add_to_inv(self, item):
         if self.inventory[item] is not None:
@@ -35,8 +36,9 @@ class Player:
                 trav['enc'] = "Pirate"
                 return trav
             elif random.randint(0, 2) == 0:
-                trav['enc'] = "Navy"
-                return trav
+                if len(self.inventory) > 0:
+                    trav['enc'] = "Navy"
+                    return trav
             else:
                 app.player.ship.fuel = app.player.ship.fuel - app.player.region.get_fuel_cost(
                     region.getX(), region.getY())
@@ -139,3 +141,5 @@ class Player:
     def decrementCraftsman(self):
         self.craftsman -= 1
 
+    def setGame(self, Game):
+        self.game = Game
