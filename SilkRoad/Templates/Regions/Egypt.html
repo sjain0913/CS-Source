@@ -37,7 +37,8 @@
         var tRegion = url.replace('/', '');
         var fuel_cost = "{{ region_info['fuel_costs'][" + tRegion + "] }}";
         var current_fuel = "{{ region_info['fuel'] }}";
-        
+        console.log(current_fuel);
+        console.log(fuel_cost);
         if (current_fuel < fuel_cost) {
             alert("You do not have enough fuel");
         }
