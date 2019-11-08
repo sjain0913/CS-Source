@@ -10,6 +10,21 @@
         <p>Technology Level: {{region_info['region_tech']}}</p>
         <p>Fuel: {{region_info['fuel']}}
         <img height=200 width=300 src="Images/Arabia.jpg">
+
+        Local Merchant: I see you have taken a liking to my wares. What item would you like to buy?
+        <form name="itemBought" method = "post" action = '/buyingItem'>
+            <input type = "text" name="itembough" id='b1'>
+        </form>
+
+        Local Merchant: Or would you rather sell something?
+        <form name="itemSold" method = "post" action = '/sellingItem'>
+            <input type = "text" name="itemsold" id='s1'>
+        </form>
+
+        <form method="get" action = ''>
+            <button onclick="parseForm()">Submit</button>
+        </form>
+
         <form>
             <fieldset>
                 <legend> Select a Region</legend>
@@ -33,6 +48,18 @@
 </html>
 
 <script type="text/javascript">
+
+    function parseForm() {
+        var buy = document.getElementById('b1').value;
+        var sell = document.getElementById('s1').value;
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "/MarketReceiver", true);
+        xhttp.RequestHeader('Content-Type', 'application/json');
+        xhttp.send(JSON.stringify({
+            'itemBought' : buy,
+            'itemSold' : sell
+        }));
+    }
 
     function canITravel(url) {
         var tRegion = url.replace('/', '');

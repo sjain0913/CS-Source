@@ -5,14 +5,25 @@
     </head>
     <body>
         <h1>
-            Praise be! A traveling merchant thankfully boards your ship!
+            Praise the Sun! A traveling merchant thankfully boards your ship!
         </h1>
         <div>
+            What action are you going to take?
             <form name="tradeSelect" method="post" action="">
                 <input type="radio" name="tchoice" value="Buy" id='t1'/>Buy Some Items!
                 <input type="radio" name="tchoice" value="Sell" id='t2'/>Sell Some Items!
                 <input type="radio" name="tchoice" value="Rob" id ='t3'/>Rob the Traveling Merchant!
                 <input type="radio" name="tchoice" value="Negotiate" id="t4"/>Negotiate Better Prices!
+            </form>
+
+            What item would you like to buy?
+            <form name="itemBought" method = "post" action = '/buyingItem'>
+                <input type = "text" name="itembough" id='b1'>
+            </form>
+
+            What item would you like to sell?
+            <form name="itemSold" method = "post" action = '/sellingItem'>
+                <input type = "text" name="itemsold" id='s1'>
             </form>
         </div>
         <div>
@@ -24,26 +35,31 @@
 </html>
 
 <script type="text/javascript">
+
     function parseForm() {
         var trader = "";
+        var buy = document.getElementById('b1').value;
+        var sell = document.getElementById('s1').value;
         var xhttp = new XMLHttpRequest();
-
         if (document.getElementById('t1').checked) {
-            trader = "buy";
+            trader = "buy"
         }
         else if (document.getElementById('t2').checked) {
-            trader = "sell";
+            trader = "sell"
         }
-        else if (document.getElementbyId('t3').checked) {
+        else if (document.getElementById('t3').checked) {
             trader = "rob";
         }
         else {
             trader = "negotiate";
         }
+
         xhttp.open("POST", "/TraderReceiver", true);
         xhttp.RequestHeader('Content-Type', 'application/json');
         xhttp.send(JSON.stringify({
-            'traderChoice' : trader
+            'traderChoice' : trader,
+            'itemBought' : buy,
+            'itemSold' : sell
         }));
     }
 </script>
