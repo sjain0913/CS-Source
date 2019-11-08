@@ -11,11 +11,15 @@
         <p>Fuel: {{region_info['fuel']}}
         <img height=200 width=300 src="Images/China.jpg">
 
+        <h1>{{ region_market[market] }}</h1>
+
         Local Merchant: I see you have taken a liking to my wares. What item would you like to buy?
         <form name="itemBought" method = "post" action = '/buyingItem'>
             <input type = "text" name="itembough" id='b1'>
         </form>
 
+        <h2>{{ region_market[inventory] }}</h2>
+        
         Local Merchant: Or would you rather sell something?
         <form name="itemSold" method = "post" action = '/sellingItem'>
             <input type = "text" name="itemsold" id='s1'>
