@@ -15,7 +15,7 @@
                 <legend> Select a Region</legend>
                 <p> 
                     <label><u>R</u>egion Select</label>
-                    <select id="TD2" accesskey="R" onchange="canITravel(this.options[this.selectedIndex].value)">
+                    <select accesskey="R" onchange="canITravel(this.options[this.selectedIndex].value)">
                         <option value="/Arabia">Arabia {{region_info['fuel_costs']['Arabia']}}</option>
                         <option value="/China">China {{region_info['fuel_costs']['China']}}</option>
                         <option value="/Denmark">Denmark {{region_info['fuel_costs']['Denmark']}}</option>
@@ -34,7 +34,7 @@
 
 <script type="text/javascript">
     function canITravel(url) {
-        var tRegion = document.getElementById("TD2").replace('/', '');
+        var tRegion = url.replace('/', '');
         var fuel_cost = "{{ region_info['fuel_costs'][" + tRegion + "] }}";
         var current_fuel = "{{ region_info['fuel'] }}";
         
