@@ -36,18 +36,87 @@
 
     function canITravel(url) {
         var tRegion = url.replace('/', '');
-        var str = "region_info['fuel_costs']['" + tRegion + "']";
-        var fuel_cost = "{{"+str+"}}";
         var current_fuel = "{{ region_info['fuel'] }}";
-        console.log(current_fuel);
-        console.log(fuel_cost);
-        console.log(str);
-        console.log(tRegion);
-        if (current_fuel < fuel_cost) {
-            alert("You do not have enough fuel");
+        if (tRegion == 'Byzantium') {
+            var fuel_cost = "{{ region_info['fuel_costs']['Byzantium'] }}";
+            if (current_fuel < fuel_cost) {
+                alert("You do not have enough fuel!");
+            }
+            else {
+                goToNewPage(url);
+            }
         }
-        else {
-            
+        else if (tRegion == 'China') {
+            var fuel_cost = "{{ region_info['fuel_costs']['China'] }}";
+            if (current_fuel < fuel_cost) {
+                alert("You do not have enough fuel!");
+            }
+            else {
+                goToNewPage(url);
+            }
+        }
+        else if (tRegion == 'Denmark') {
+            var fuel_cost = "{{ region_info['fuel_costs']['Denmark'] }}";
+            if (current_fuel < fuel_cost) {
+                alert("You do not have enough fuel!");
+            }
+            else {
+                goToNewPage(url);
+            }
+        }
+        else if (tRegion == 'Egypt') {
+            var fuel_cost = "{{ region_info['fuel_costs']['Egypt'] }}";
+            if (current_fuel < fuel_cost) {
+                alert("You do not have enough fuel!");
+            }
+            else {
+                goToNewPage(url);
+            }
+        }
+        else if (tRegion == 'Britain') {
+            var fuel_cost = "{{ region_info['fuel_costs']['Britain'] }}";
+            if (current_fuel < fuel_cost) {
+                alert("You do not have enough fuel!");
+            }
+            else {
+                goToNewPage(url);
+            }
+        }
+        else if (tRegion == 'India') {
+            var fuel_cost = "{{ region_info['fuel_costs']['India'] }}";
+            if (current_fuel < fuel_cost) {
+                alert("You do not have enough fuel!");
+            }
+            else {
+                goToNewPage(url);
+            }
+        }
+        else if (tRegion == 'Java') {
+            var fuel_cost = "{{ region_info['fuel_costs']['Java'] }}";
+            if (current_fuel < fuel_cost) {
+                alert("You do not have enough fuel!");
+            }
+            else {
+                goToNewPage(url);
+            }
+        }
+        else if (tRegion == 'Persia') {
+            var fuel_cost = "{{ region_info['fuel_costs']['Persia'] }}";
+            if (current_fuel < fuel_cost) {
+                alert("You do not have enough fuel!");
+            }
+            else {
+                goToNewPage(url);
+            }
+        }
+        else if (tRegion == 'Somalia') {
+            var fuel_cost = "{{ region_info['fuel_costs']['Somalia'] }}";
+            if (current_fuel < fuel_cost) {
+                alert("You do not have enough fuel!");
+            }
+            else {
+                goToNewPage(url);
+            }
         }
     }
 
