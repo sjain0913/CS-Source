@@ -26,7 +26,7 @@ def diff():
 def difficultyparse():
     data = request.get_json()
     global game
-    game = Game(data['difficulty'], ['China', 'India', 'Denmark', 'Great Britain',
+    game = Game(data['difficulty'], ['China', 'India', 'Denmark', 'Britain',
                                           'Egypt', 'Somalia', 'Persia', 'Java',
                                           'Byzantium', 'Arabia'])
     global player
@@ -127,7 +127,7 @@ def denmark():
     region_info['fuel_costs'] = fuel_costs
     return render_template("Regions/Denmark.html", region_info=region_info)
 
-@app.route('/GreatBritain')
+@app.route('/Britain')
 def britain():
     global player
     region_info = {'region_x' : Universe.getInstance().regions[3].getX(),
@@ -139,7 +139,7 @@ def britain():
     for i in regions:
         fuel_costs[i.getName()] = regions[3].get_fuel_cost(i.getX(), i.getY())
     region_info['fuel_costs'] = fuel_costs
-    return render_template("Regions/GreatBritain.html", region_info=region_info)
+    return render_template("Regions/Britain.html", region_info=region_info)
 
 @app.route('/Egypt')
 def egypt():
