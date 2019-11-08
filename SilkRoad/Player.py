@@ -1,3 +1,5 @@
+from Item import Item
+import app, random
 class Player:
     def __init__(self, name):
         self.name = name
@@ -8,8 +10,33 @@ class Player:
         self.region = None
         self.credits = credits
         self.ship = None
-        self.inventory = []
+        self.inventory = {}
 
+    def add_to_inv(self, item):
+        if self.inventory[item] is not None:
+            self.inventory[item].inc_number()
+        else:
+            self.inventory[item] = Item(item, (app.player.barterer / 3), 1)
+    
+    def remove_from_inv(self, item):
+        if self.inventory[item] > 1:
+            self.inventory[item].dec_number()
+        else:
+            self.inventory[item] = None
+    
+    def travel(self, region):
+        trav = ""
+        if random.randint(0,9) == 0:
+            trav = "Trader"
+        elif random.randint(0,3) == 0:
+            trav = "Pirate"
+        elif random.randint(0,2) == 0:
+            trav = "Navy"
+
+        app.player.ship.fuel = app.player.ship.fuel - app.player.region.get_fuel_cost(
+            region.getX(), region.getY())
+        player.region = region
+    
     #Setters
     def setSailor(self, sailor):
         self.sailor = sailor

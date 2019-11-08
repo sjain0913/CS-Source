@@ -87,13 +87,13 @@ def china():
     global player
     this_region = Universe.getInstance().regions[0]
     if (player.region.getName() is not 'China'):
-        player.ship.fuel = player.ship.fuel - player.region.get_fuel_cost(
-            this_region.getX(), this_region.getY())
-        player.region = this_region
+        trav = player.travel(this_region)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
-                   'region_tech' : this_region.getTechLevel()}
-    region_info['fuel'] = player.ship.fuel
+                   'region_tech' : this_region.getTechLevel(),
+                   'market' : this_region.market,
+                   'inventory' : player.inventory,
+                   'fuel' : player.ship.fuel}
     regions = Universe.getInstance().regions
     fuel_costs = {}
     for i in regions:
@@ -106,13 +106,13 @@ def india():
     global player
     this_region = Universe.getInstance().regions[1]
     if (player.region.getName() is not 'India'):
-        player.ship.fuel = player.ship.fuel - player.region.get_fuel_cost(
-            this_region.getX(), this_region.getY())
-        player.region = this_region
+        player.travel(this_region)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
-                   'region_tech' : this_region.getTechLevel()}
-    region_info['fuel'] = player.ship.fuel
+                   'region_tech' : this_region.getTechLevel(),
+                   'market' : this_region.market,
+                   'inventory' : player.inventory,
+                   'fuel' : player.ship.fuel}
     regions = Universe.getInstance().regions
     fuel_costs = {}
     for i in regions:
@@ -125,13 +125,13 @@ def denmark():
     global player
     this_region = Universe.getInstance().regions[2]
     if (player.region.getName() is not 'Denmark'):
-        player.ship.fuel = player.ship.fuel - player.region.get_fuel_cost(
-            this_region.getX(), this_region.getY())
-        player.region = this_region
+        player.travel(this_region)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
-                   'region_tech' : this_region.getTechLevel()}
-    region_info['fuel'] = player.ship.fuel
+                   'region_tech' : this_region.getTechLevel(),
+                   'market' : this_region.market,
+                   'inventory' : player.inventory,
+                   'fuel' : player.ship.fuel}
     regions = Universe.getInstance().regions
     fuel_costs = {}
     for i in regions:
@@ -144,13 +144,13 @@ def britain():
     global player
     this_region = Universe.getInstance().regions[3]
     if (player.region.getName() is not 'Britain'):
-        player.ship.fuel = player.ship.fuel - player.region.get_fuel_cost(
-            this_region.getX(), this_region.getY())
-        player.region = this_region
+        player.travel(this_region)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
-                   'region_tech' : this_region.getTechLevel()}
-    region_info['fuel'] = player.ship.fuel
+                   'region_tech' : this_region.getTechLevel(),
+                   'market' : this_region.market,
+                   'inventory' : player.inventory,
+                   'fuel' : player.ship.fuel}
     regions = Universe.getInstance().regions
     fuel_costs = {}
     for i in regions:
@@ -163,13 +163,13 @@ def egypt():
     global player
     this_region = Universe.getInstance().regions[4]
     if (player.region.getName() is not 'Egypt'):
-        player.ship.fuel = player.ship.fuel - player.region.get_fuel_cost(
-            this_region.getX(), this_region.getY())
-        player.region = this_region
+        player.travel(this_region)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
-                   'region_tech' : this_region.getTechLevel()}
-    region_info['fuel'] = player.ship.fuel
+                   'region_tech' : this_region.getTechLevel(),
+                   'market' : this_region.market,
+                   'inventory' : player.inventory,
+                   'fuel' : player.ship.fuel}
     regions = Universe.getInstance().regions
     fuel_costs = {}
     for i in regions:
@@ -182,13 +182,13 @@ def somalia():
     global player
     this_region = Universe.getInstance().regions[5]
     if (player.region.getName() is not 'Somalia'):
-        player.ship.fuel = player.ship.fuel - player.region.get_fuel_cost(
-            this_region.getX(), this_region.getY())
-        player.region = this_region
+        player.travel(this_region)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
-                   'region_tech' : this_region.getTechLevel()}
-    region_info['fuel'] = player.ship.fuel
+                   'region_tech' : this_region.getTechLevel(),
+                   'market' : this_region.market,
+                   'inventory' : player.inventory,
+                   'fuel' : player.ship.fuel}
     regions = Universe.getInstance().regions
     fuel_costs = {}
     for i in regions:
@@ -201,13 +201,13 @@ def persia():
     global player
     this_region = Universe.getInstance().regions[6]
     if (player.region.getName() is not 'Persia'):
-        player.ship.fuel = player.ship.fuel - player.region.get_fuel_cost(
-            this_region.getX(), this_region.getY())
-        player.region = this_region
+        player.travel(this_region)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
-                   'region_tech' : this_region.getTechLevel()}
-    region_info['fuel'] = player.ship.fuel
+                   'region_tech' : this_region.getTechLevel(),
+                   'market' : this_region.market,
+                   'inventory' : player.inventory,
+                   'fuel' : player.ship.fuel}
     regions = Universe.getInstance().regions
     fuel_costs = {}
     for i in regions:
@@ -220,13 +220,13 @@ def java():
     global player
     this_region = Universe.getInstance().regions[7]
     if (player.region.getName() is not 'Java'):
-        player.ship.fuel = player.ship.fuel - player.region.get_fuel_cost(
-            this_region.getX(), this_region.getY())
-        player.region = this_region
+        player.travel(this_region)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
-                   'region_tech' : this_region.getTechLevel()}
-    region_info['fuel'] = player.ship.fuel
+                   'region_tech' : this_region.getTechLevel(),
+                   'market' : this_region.market,
+                   'inventory' : player.inventory,
+                   'fuel' : player.ship.fuel}
     regions = Universe.getInstance().regions
     fuel_costs = {}
     for i in regions:
@@ -239,13 +239,13 @@ def byzantium():
     global player
     this_region = Universe.getInstance().regions[8]
     if (player.region.getName() is not 'Byzantium'):
-        player.ship.fuel = player.ship.fuel - player.region.get_fuel_cost(
-            this_region.getX(), this_region.getY())
-        player.region = this_region
+        player.travel(this_region)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
-                   'region_tech' : this_region.getTechLevel()}
-    region_info['fuel'] = player.ship.fuel
+                   'region_tech' : this_region.getTechLevel(),
+                   'market' : this_region.market,
+                   'inventory' : player.inventory,
+                   'fuel' : player.ship.fuel}
     regions = Universe.getInstance().regions
     fuel_costs = {}
     for i in regions:
@@ -258,13 +258,13 @@ def arabia():
     global player
     this_region = Universe.getInstance().regions[9]
     if (player.region.getName() is not 'Arabia'):
-        player.ship.fuel = player.ship.fuel - player.region.get_fuel_cost(
-            this_region.getX(), this_region.getY())
-        player.region = this_region
+        player.travel(this_region)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
-                   'region_tech' : this_region.getTechLevel()}
-    region_info['fuel'] = player.ship.fuel
+                   'region_tech' : this_region.getTechLevel(),
+                   'market' : this_region.market,
+                   'inventory' : player.inventory,
+                   'fuel' : player.ship.fuel}
     regions = Universe.getInstance().regions
     fuel_costs = {}
     for i in regions:

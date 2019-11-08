@@ -6,6 +6,13 @@ class Item:
     late_middle_items = ["Brass", "Gunpowder", "Silk"]
     early_modern_items = ["Coffee", "Paper", "Opium"]
     modern_items = ["Oil", "Rubber", "Textile"]
+    trader_items = ["Ivory", "Animal Hide", "Meat",
+              "Dye", "Lumber", "Wine",
+              "Cloth", "Iron", "Jewelry",
+              "Copper", "Gold", "Honey",
+              "Brass", "Gunpowder", "Silk",
+              "Coffee", "Paper", "Opium",
+              "Oil", "Rubber", "Textile"]
     base_values = {"Ivory" : 6, "Animal Hide" : 2, "Meat" : 1,
               "Dye" : 7, "Lumber" : 4, "Wine" : 9,
               "Cloth" : 4, "Iron" : 5, "Jewelry" : 12,
@@ -24,3 +31,6 @@ class Item:
 
     def dec_number(self):
         self.number = self.number - 1
+
+    def inc_number(self):
+        self.number = self.number + 1
