@@ -15,9 +15,9 @@
                 <legend> Select a Region</legend>
                 <p> 
                     <label><u>R</u>egion Select</label>
-                    <select accesskey="R" onchange="goToNewPage(this.options[this.selectedIndex].value)">
-                        <option value="/Byzantium">Byzantium</option>
-                        <option value="/China">China</option>
+                    <select id="TravelDrop" accesskey="R" onchange="canITravel(this.options[this.selectedIndex].value)">
+                        <option value="/Byzantium">Byzantium {{region_info['fuel_costs']['Byzantium']}}</option>
+                        <option value="/China">China {{region_info['fuel_costs']['China']}}</option>
                         <option value="/Denmark">Denmark</option>
                         <option value="/Egypt">Egypt</option>
                         <option value="/GreatBritain">GreatBritain</option>
@@ -33,9 +33,24 @@
 </html>
 
 <script type="text/javascript">
+
+    function canITravel(url) {
+        var tRegion = document.getElementById("TravelDrop");
+        var fuel_cost = '{{ region_info[fuel_costs][tRegion] }}';
+        var current_fuel = '{{ region_info[fuel] }}'
+        
+        if (current_fuel < fuel_cost) {
+            windows.alert("You do not have enough fuel");
+        }
+        else {
+            goToNewPage(url);
+        }
+    }
+
     function goToNewPage(url) {
         if (url != "") {
             window.open(url, "_self");
         }
     }
+
 </script>
