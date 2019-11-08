@@ -11,7 +11,7 @@ class Universe:
             Universe.__instance = self
             self.regions = []
             for i in regionList:
-                self.regions.append(Region.Region(i, TechLevel.TechLevel(random.randint(0,6)), random.randint(-200,200), random.randint(-200, 200)))
+                self.regions.append(Region.Region(i, TechLevel.TechLevel(random.randint(0,6)).name, random.randint(-200,200), random.randint(-200, 200)))
 
     @staticmethod
     def getInstance():
