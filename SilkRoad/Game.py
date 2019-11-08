@@ -5,7 +5,6 @@ from Ship import Ship
 import app
 import random
 
-regionNames = ['China','India','Denmark','Britain','Egypt','Somalia','Persia','Java','Byzantium','Arabia']
 
 class Game:
     def __init__(self, difficulty, regions):
@@ -13,7 +12,7 @@ class Game:
         self.regions = regions
 
     def startGame(self):
-        newUniverse = Universe(regionNames)
+        newUniverse = Universe(self.regions)
         regionNum = random.randint(0,9)
         player = app.player
         player.ship = Ship("Clipper")

@@ -15,7 +15,7 @@
                 <legend> Select a Region</legend>
                 <p> 
                     <label><u>R</u>egion Select</label>
-                    <select accesskey="R" onchange="canITravel(this.options[this.selectedIndex].value)">
+                    <select accesskey="R" onchange="goToNewPage(this.options[this.selectedIndex].value)">
                         <option value="/Arabia">Arabia</option>
                         <option value="/China">China</option>
                         <option value="/Denmark">Denmark</option>
@@ -34,16 +34,7 @@
 
 <script type="text/javascript">
 
-    function canITravel(url) {
-        var tRegion = document.getElementById("TravelDrop");
-        {{fuelcost[tRegion]}}
-        if (currfuel < fuelcost) {
-            windows.alert("You do not have enough fuel");
-        }
-        else {
-            goToNewPage(url);
-        }
-    }
+    
     function goToNewPage(url) {
         if (url != "") {
             window.open(url, "_self");

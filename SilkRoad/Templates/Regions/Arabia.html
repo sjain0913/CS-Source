@@ -35,12 +35,12 @@
 <script type="text/javascript">
 
     function canITravel(url) {
-        var tRegion = document.getElementById("TravelDrop");
-        var fuel_cost = '{{ region_info[fuel_costs][tRegion] }}';
-        var current_fuel = '{{ region_info[fuel] }}'
+        var tRegion = document.getElementById("TravelDrop").replace('/', '');
+        var fuel_cost = "{{ region_info['fuel_costs'][" + tRegion + "] }}";
+        var current_fuel = "{{ region_info['fuel'] }}";
         
         if (current_fuel < fuel_cost) {
-            windows.alert("You do not have enough fuel");
+            window.alert("You do not have enough fuel");
         }
         else {
             goToNewPage(url);
