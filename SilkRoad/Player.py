@@ -25,17 +25,22 @@ class Player:
             self.inventory[item] = None
     
     def travel(self, region):
-        trav = ""
+        trav = {}
+        trav['toRegion'] = region
         if random.randint(0,9) == 0:
-            trav = "Trader"
+            trav['enc'] = "Trader"
+            return trav
         elif random.randint(0,3) == 0:
-            trav = "Pirate"
+            trav['enc'] = "Pirate"
+            return trav
         elif random.randint(0,2) == 0:
-            trav = "Navy"
-
-        app.player.ship.fuel = app.player.ship.fuel - app.player.region.get_fuel_cost(
-            region.getX(), region.getY())
-        player.region = region
+            trav['enc'] = "Navy"
+            return trav
+        else:
+            app.player.ship.fuel = app.player.ship.fuel - app.player.region.get_fuel_cost(
+                region.getX(), region.getY())
+            app.player.region = region
+            return trav
     
     #Setters
     def setSailor(self, sailor):
