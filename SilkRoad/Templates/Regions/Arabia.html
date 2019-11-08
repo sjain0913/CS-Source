@@ -7,7 +7,7 @@
     <body>
         <p>Region: Arabia</p>
         <p>Coordinates: ({{region_info['region_x']}},{{region_info['region_y']}})</p>
-        <p>Technology Level: {{region_info[region_tech]}}</p>
+        <p>Technology Level: {{region_info['region_tech']}}</p>
         <p>Fuel: {{region_info['fuel']}}
         <img height=200 width=300 src="Images/Arabia.jpg">
         <form>
@@ -39,6 +39,9 @@
         var current_fuel = "{{ region_info['fuel'] }}";
         if (tRegion == 'Byzantium') {
             var fuel_cost = "{{ region_info['fuel_costs']['Byzantium'] }}";
+            console.log(fuel_cost);
+            console.log(current_fuel);
+            console.log(current_fuel < fuel_cost)
             if (current_fuel < fuel_cost) {
                 alert("You do not have enough fuel!");
             }
