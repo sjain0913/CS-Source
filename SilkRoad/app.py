@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect, url_for
+from flask import Flask, flash, render_template, request, session, redirect, url_for
 from Player import Player
 from Universe import Universe
 from Game import Game
@@ -91,14 +91,13 @@ def china():
     region_info = {'region_x' : Universe.getInstance().regions[0].getX(),
                    'region_y' : Universe.getInstance().regions[0].getY(),
                    'region_tech' : Universe.getInstance().regions[0].getTechLevel()}
-    fuel_cost = Universe.getInstance().regions[0].get_fuel_cost(player.region.getX(), player.region.getY())
-    if (fuel_cost <= player.ship.fuel):
-        player.ship.fuel = player.ship.fuel - fuel_cost
-        player.region = Universe.getInstance().regions[0]
-        region_info['fuel'] = player.ship.fuel
-        return render_template("Regions/China.html", region_info=region_info)
-    else:
-        return redirect(url_for(player.region.getName().lower()))
+    region_info['fuel'] = player.ship.fuel
+    regions = Universe.getInstance().regions
+    fuel_costs = {}
+    for i in regions:
+        fuel_costs[i.getName()] = regions[0].get_fuel_cost(i.getX(), i.getY())
+    region_info['fuel_costs'] = fuel_costs
+    return render_template("Regions/China.html", region_info=region_info)
 
 @app.route('/India')
 def india():
@@ -106,14 +105,13 @@ def india():
     region_info = {'region_x' : Universe.getInstance().regions[1].getX(),
                    'region_y' : Universe.getInstance().regions[1].getY(),
                    'region_tech' : Universe.getInstance().regions[1].getTechLevel()}
-    fuel_cost = Universe.getInstance().regions[1].get_fuel_cost(player.region.getX(), player.region.getY())
-    if (fuel_cost <= player.ship.fuel):
-        player.ship.fuel = player.ship.fuel - fuel_cost
-        player.region = Universe.getInstance().regions[1]
-        region_info['fuel'] = player.ship.fuel
-        return render_template("Regions/India.html", region_info=region_info)
-    else:
-        return redirect(url_for(player.region.getName().lower()))
+    region_info['fuel'] = player.ship.fuel
+    regions = Universe.getInstance().regions
+    fuel_costs = {}
+    for i in regions:
+        fuel_costs[i.getName()] = regions[1].get_fuel_cost(i.getX(), i.getY())
+    region_info['fuel_costs'] = fuel_costs
+    return render_template("Regions/India.html", region_info=region_info)
 
 @app.route('/Denmark')
 def denmark():
@@ -121,29 +119,27 @@ def denmark():
     region_info = {'region_x' : Universe.getInstance().regions[2].getX(),
                    'region_y' : Universe.getInstance().regions[2].getY(),
                    'region_tech' : Universe.getInstance().regions[2].getTechLevel()}
-    fuel_cost = Universe.getInstance().regions[2].get_fuel_cost(player.region.getX(), player.region.getY())
-    if (fuel_cost <= player.ship.fuel):
-        player.ship.fuel = player.ship.fuel - fuel_cost
-        player.region = Universe.getInstance().regions[2]
-        region_info['fuel'] = player.ship.fuel
-        return render_template("Regions/Denmark.html", region_info=region_info)
-    else:
-        return redirect(url_for(player.region.getName().lower()))
+    region_info['fuel'] = player.ship.fuel
+    regions = Universe.getInstance().regions
+    fuel_costs = {}
+    for i in regions:
+        fuel_costs[i.getName()] = regions[2].get_fuel_cost(i.getX(), i.getY())
+    region_info['fuel_costs'] = fuel_costs
+    return render_template("Regions/Denmark.html", region_info=region_info)
 
-@app.route('/Britain')
+@app.route('/GreatBritain')
 def britain():
     global player
     region_info = {'region_x' : Universe.getInstance().regions[3].getX(),
                    'region_y' : Universe.getInstance().regions[3].getY(),
                    'region_tech' : Universe.getInstance().regions[3].getTechLevel()}
-    fuel_cost = Universe.getInstance().regions[3].get_fuel_cost(player.region.getX(), player.region.getY())
-    if (fuel_cost <= player.ship.fuel):
-        player.ship.fuel = player.ship.fuel - fuel_cost
-        player.region = Universe.getInstance().regions[3]
-        region_info['fuel'] = player.ship.fuel
-        return render_template("Regions/GreatBritain.html", region_info=region_info)
-    else:
-        return redirect(url_for(player.region.getName().lower()))
+    region_info['fuel'] = player.ship.fuel
+    regions = Universe.getInstance().regions
+    fuel_costs = {}
+    for i in regions:
+        fuel_costs[i.getName()] = regions[3].get_fuel_cost(i.getX(), i.getY())
+    region_info['fuel_costs'] = fuel_costs
+    return render_template("Regions/GreatBritain.html", region_info=region_info)
 
 @app.route('/Egypt')
 def egypt():
@@ -151,14 +147,13 @@ def egypt():
     region_info = {'region_x' : Universe.getInstance().regions[4].getX(),
                    'region_y' : Universe.getInstance().regions[4].getY(),
                    'region_tech' : Universe.getInstance().regions[4].getTechLevel()}
-    fuel_cost = Universe.getInstance().regions[4].get_fuel_cost(player.region.getX(), player.region.getY())
-    if (fuel_cost <= player.ship.fuel):
-        player.ship.fuel = player.ship.fuel - fuel_cost
-        player.region = Universe.getInstance().regions[4]
-        region_info['fuel'] = player.ship.fuel
-        return render_template("Regions/Egypt.html", region_info=region_info)
-    else:
-        return redirect(url_for(player.region.getName().lower()))
+    region_info['fuel'] = player.ship.fuel
+    regions = Universe.getInstance().regions
+    fuel_costs = {}
+    for i in regions:
+        fuel_costs[i.getName()] = regions[4].get_fuel_cost(i.getX(), i.getY())
+    region_info['fuel_costs'] = fuel_costs
+    return render_template("Regions/Egypt.html", region_info=region_info)
 
 @app.route('/Somalia')
 def somalia():
@@ -166,14 +161,13 @@ def somalia():
     region_info = {'region_x' : Universe.getInstance().regions[5].getX(),
                    'region_y' : Universe.getInstance().regions[5].getY(),
                    'region_tech' : Universe.getInstance().regions[5].getTechLevel()}
-    fuel_cost = Universe.getInstance().regions[5].get_fuel_cost(player.region.getX(), player.region.getY())
-    if (fuel_cost <= player.ship.fuel):
-        player.ship.fuel = player.ship.fuel - fuel_cost
-        player.region = Universe.getInstance().regions[5]
-        region_info['fuel'] = player.ship.fuel
-        return render_template("Regions/Somalia.html", region_info=region_info)
-    else:
-        return redirect(url_for(player.region.getName().lower()))
+    region_info['fuel'] = player.ship.fuel
+    regions = Universe.getInstance().regions
+    fuel_costs = {}
+    for i in regions:
+        fuel_costs[i.getName()] = regions[5].get_fuel_cost(i.getX(), i.getY())
+    region_info['fuel_costs'] = fuel_costs
+    return render_template("Regions/Somalia.html", region_info=region_info)
 
 @app.route('/Persia')
 def persia():
@@ -181,14 +175,13 @@ def persia():
     region_info = {'region_x' : Universe.getInstance().regions[6].getX(),
                    'region_y' : Universe.getInstance().regions[6].getY(),
                    'region_tech' : Universe.getInstance().regions[6].getTechLevel()}
-    fuel_cost = Universe.getInstance().regions[6].get_fuel_cost(player.region.getX(), player.region.getY())
-    if (fuel_cost <= player.ship.fuel):
-        player.ship.fuel = player.ship.fuel - fuel_cost
-        player.region = Universe.getInstance().regions[6]
-        region_info['fuel'] = player.ship.fuel
-        return render_template("Regions/Persia.html", region_info=region_info)
-    else:
-        return redirect(url_for(player.region.getName().lower()))
+    region_info['fuel'] = player.ship.fuel
+    regions = Universe.getInstance().regions
+    fuel_costs = {}
+    for i in regions:
+        fuel_costs[i.getName()] = regions[6].get_fuel_cost(i.getX(), i.getY())
+    region_info['fuel_costs'] = fuel_costs
+    return render_template("Regions/Persia.html", region_info=region_info)
 
 @app.route('/Java')
 def java():
@@ -196,14 +189,13 @@ def java():
     region_info = {'region_x' : Universe.getInstance().regions[7].getX(),
                    'region_y' : Universe.getInstance().regions[7].getY(),
                    'region_tech' : Universe.getInstance().regions[7].getTechLevel()}
-    fuel_cost = Universe.getInstance().regions[7].get_fuel_cost(player.region.getX(), player.region.getY())
-    if (fuel_cost <= player.ship.fuel):
-        player.ship.fuel = player.ship.fuel - fuel_cost
-        player.region = Universe.getInstance().regions[7]
-        region_info['fuel'] = player.ship.fuel
-        return render_template("Regions/Java.html", region_info=region_info)
-    else:
-        return redirect(url_for(player.region.getName().lower()))
+    region_info['fuel'] = player.ship.fuel
+    regions = Universe.getInstance().regions
+    fuel_costs = {}
+    for i in regions:
+        fuel_costs[i.getName()] = regions[7].get_fuel_cost(i.getX(), i.getY())
+    region_info['fuel_costs'] = fuel_costs
+    return render_template("Regions/Java.html", region_info=region_info)
 
 @app.route('/Byzantium')
 def byzantium():
@@ -211,14 +203,13 @@ def byzantium():
     region_info = {'region_x' : Universe.getInstance().regions[8].getX(),
                    'region_y' : Universe.getInstance().regions[8].getY(),
                    'region_tech' : Universe.getInstance().regions[8].getTechLevel()}
-    fuel_cost = Universe.getInstance().regions[8].get_fuel_cost(player.region.getX(), player.region.getY())
-    if (fuel_cost <= player.ship.fuel):
-        player.ship.fuel = player.ship.fuel - fuel_cost
-        player.region = Universe.getInstance().regions[8]
-        region_info['fuel'] = player.ship.fuel
-        return render_template("Regions/Byzantium.html", region_info=region_info)
-    else:
-        return redirect(url_for(player.region.getName().lower()))
+    region_info['fuel'] = player.ship.fuel
+    regions = Universe.getInstance().regions
+    fuel_costs = {}
+    for i in regions:
+        fuel_costs[i.getName()] = regions[8].get_fuel_cost(i.getX(), i.getY())
+    region_info['fuel_costs'] = fuel_costs
+    return render_template("Regions/Byzantium.html", region_info=region_info)
 
 @app.route('/Arabia')
 def arabia():
@@ -226,14 +217,13 @@ def arabia():
     region_info = {'region_x' : Universe.getInstance().regions[9].getX(),
                    'region_y' : Universe.getInstance().regions[9].getY(),
                    'region_tech' : Universe.getInstance().regions[9].getTechLevel()}
-    fuel_cost = Universe.getInstance().regions[9].get_fuel_cost(player.region.getX(), player.region.getY())
-    if (fuel_cost <= player.ship.fuel):
-        player.ship.fuel = player.ship.fuel - fuel_cost
-        player.region = Universe.getInstance().regions[9]
-        region_info['fuel'] = player.ship.fuel
-        return render_template("Regions/Arabia.html", region_info=region_info)
-    else:
-        return redirect(url_for(player.region.getName().lower()))
+    region_info['fuel'] = player.ship.fuel
+    regions = Universe.getInstance().regions
+    fuel_costs = {}
+    for i in regions:
+        fuel_costs[i.getName()] = regions[9].get_fuel_cost(i.getX(), i.getY())
+    region_info['fuel_costs'] = fuel_costs
+    return render_template("Regions/Arabia.html", region_info=region_info)
 
 
 if __name__ == '__main__':
