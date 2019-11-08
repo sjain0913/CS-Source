@@ -27,21 +27,51 @@ class Player:
     def travel(self, region):
         trav = {}
         trav['toRegion'] = region
-        if random.randint(0,9) == 0:
-            trav['enc'] = "Trader"
-            return trav
-        elif random.randint(0,3) == 0:
-            trav['enc'] = "Pirate"
-            return trav
-        elif random.randint(0,2) == 0:
-            trav['enc'] = "Navy"
-            return trav
-        else:
-            app.player.ship.fuel = app.player.ship.fuel - app.player.region.get_fuel_cost(
-                region.getX(), region.getY())
-            app.player.region = region
-            return trav
-    
+        if game.getDifficulty() == 1:
+            if random.randint(0, 9) == 0:
+                trav['enc'] = "Trader"
+                return trav
+            elif random.randint(0, 3) == 0:
+                trav['enc'] = "Pirate"
+                return trav
+            elif random.randint(0, 2) == 0:
+                trav['enc'] = "Navy"
+                return trav
+            else:
+                app.player.ship.fuel = app.player.ship.fuel - app.player.region.get_fuel_cost(
+                    region.getX(), region.getY())
+                app.player.region = region
+                return trav
+        if game.getDifficulty() == 2:
+            if random.randint(0, 6) == 0:
+                trav['enc'] = "Trader"
+                return trav
+            elif random.randint(0, 5) == 0:
+                trav['enc'] = "Pirate"
+                return trav
+            elif random.randint(0, 3) == 0:
+                trav['enc'] = "Navy"
+                return trav
+            else:
+                app.player.ship.fuel = app.player.ship.fuel - app.player.region.get_fuel_cost(
+                    region.getX(), region.getY())
+                app.player.region = region
+                return trav
+        if game.getDifficulty() == 3:
+            if random.randint(0, 3) == 0:
+                trav['enc'] = "Trader"
+                return trav
+            elif random.randint(0, 7) == 0:
+                trav['enc'] = "Pirate"
+                return trav
+            elif random.randint(0, 4) == 0:
+                trav['enc'] = "Navy"
+                return trav
+            else:
+                app.player.ship.fuel = app.player.ship.fuel - app.player.region.get_fuel_cost(
+                    region.getX(), region.getY())
+                app.player.region = region
+                return trav
     #Setters
     def setSailor(self, sailor):
         self.sailor = sailor
