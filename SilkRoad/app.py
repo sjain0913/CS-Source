@@ -38,7 +38,6 @@ def difficultyparse():
 def config():
     global game
     difficulty = game.getDifficulty()
-    print(difficulty)
     skillpts = 0
     if difficulty == 1:
         skillpts = 16
@@ -76,9 +75,7 @@ def playerdata():
 
 @app.route('/SkillReceiver', methods=['POST'])
 def skillparse():
-    print(request)
     data = request.get_json()
-    print(data)
     global player
     player.sailor = int(data['SailorPoints'])
     player.barterer = int(data['BartererPoints'])
@@ -88,9 +85,14 @@ def skillparse():
 @app.route('/China')
 def china():
     global player
-    region_info = {'region_x' : Universe.getInstance().regions[0].getX(),
-                   'region_y' : Universe.getInstance().regions[0].getY(),
-                   'region_tech' : Universe.getInstance().regions[0].getTechLevel()}
+    this_region = Universe.getInstance().regions[0]
+    if (player.region.getName() is not 'China'):
+        player.ship.fuel = player.ship.fuel - player.region.get_fuel_cost(
+            this_region.getX(), this_region.getY())
+        player.region = this_region
+    region_info = {'region_x' : this_region.getX(),
+                   'region_y' : this_region.getY(),
+                   'region_tech' : this_region.getTechLevel()}
     region_info['fuel'] = player.ship.fuel
     regions = Universe.getInstance().regions
     fuel_costs = {}
@@ -102,9 +104,14 @@ def china():
 @app.route('/India')
 def india():
     global player
-    region_info = {'region_x' : Universe.getInstance().regions[1].getX(),
-                   'region_y' : Universe.getInstance().regions[1].getY(),
-                   'region_tech' : Universe.getInstance().regions[1].getTechLevel()}
+    this_region = Universe.getInstance().regions[1]
+    if (player.region.getName() is not 'India'):
+        player.ship.fuel = player.ship.fuel - player.region.get_fuel_cost(
+            this_region.getX(), this_region.getY())
+        player.region = this_region
+    region_info = {'region_x' : this_region.getX(),
+                   'region_y' : this_region.getY(),
+                   'region_tech' : this_region.getTechLevel()}
     region_info['fuel'] = player.ship.fuel
     regions = Universe.getInstance().regions
     fuel_costs = {}
@@ -116,9 +123,14 @@ def india():
 @app.route('/Denmark')
 def denmark():
     global player
-    region_info = {'region_x' : Universe.getInstance().regions[2].getX(),
-                   'region_y' : Universe.getInstance().regions[2].getY(),
-                   'region_tech' : Universe.getInstance().regions[2].getTechLevel()}
+    this_region = Universe.getInstance().regions[2]
+    if (player.region.getName() is not 'Denmark'):
+        player.ship.fuel = player.ship.fuel - player.region.get_fuel_cost(
+            this_region.getX(), this_region.getY())
+        player.region = this_region
+    region_info = {'region_x' : this_region.getX(),
+                   'region_y' : this_region.getY(),
+                   'region_tech' : this_region.getTechLevel()}
     region_info['fuel'] = player.ship.fuel
     regions = Universe.getInstance().regions
     fuel_costs = {}
@@ -130,9 +142,14 @@ def denmark():
 @app.route('/Britain')
 def britain():
     global player
-    region_info = {'region_x' : Universe.getInstance().regions[3].getX(),
-                   'region_y' : Universe.getInstance().regions[3].getY(),
-                   'region_tech' : Universe.getInstance().regions[3].getTechLevel()}
+    this_region = Universe.getInstance().regions[3]
+    if (player.region.getName() is not 'Britain'):
+        player.ship.fuel = player.ship.fuel - player.region.get_fuel_cost(
+            this_region.getX(), this_region.getY())
+        player.region = this_region
+    region_info = {'region_x' : this_region.getX(),
+                   'region_y' : this_region.getY(),
+                   'region_tech' : this_region.getTechLevel()}
     region_info['fuel'] = player.ship.fuel
     regions = Universe.getInstance().regions
     fuel_costs = {}
@@ -144,9 +161,14 @@ def britain():
 @app.route('/Egypt')
 def egypt():
     global player
-    region_info = {'region_x' : Universe.getInstance().regions[4].getX(),
-                   'region_y' : Universe.getInstance().regions[4].getY(),
-                   'region_tech' : Universe.getInstance().regions[4].getTechLevel()}
+    this_region = Universe.getInstance().regions[4]
+    if (player.region.getName() is not 'Egypt'):
+        player.ship.fuel = player.ship.fuel - player.region.get_fuel_cost(
+            this_region.getX(), this_region.getY())
+        player.region = this_region
+    region_info = {'region_x' : this_region.getX(),
+                   'region_y' : this_region.getY(),
+                   'region_tech' : this_region.getTechLevel()}
     region_info['fuel'] = player.ship.fuel
     regions = Universe.getInstance().regions
     fuel_costs = {}
@@ -158,9 +180,14 @@ def egypt():
 @app.route('/Somalia')
 def somalia():
     global player
-    region_info = {'region_x' : Universe.getInstance().regions[5].getX(),
-                   'region_y' : Universe.getInstance().regions[5].getY(),
-                   'region_tech' : Universe.getInstance().regions[5].getTechLevel()}
+    this_region = Universe.getInstance().regions[5]
+    if (player.region.getName() is not 'Somalia'):
+        player.ship.fuel = player.ship.fuel - player.region.get_fuel_cost(
+            this_region.getX(), this_region.getY())
+        player.region = this_region
+    region_info = {'region_x' : this_region.getX(),
+                   'region_y' : this_region.getY(),
+                   'region_tech' : this_region.getTechLevel()}
     region_info['fuel'] = player.ship.fuel
     regions = Universe.getInstance().regions
     fuel_costs = {}
@@ -172,9 +199,14 @@ def somalia():
 @app.route('/Persia')
 def persia():
     global player
-    region_info = {'region_x' : Universe.getInstance().regions[6].getX(),
-                   'region_y' : Universe.getInstance().regions[6].getY(),
-                   'region_tech' : Universe.getInstance().regions[6].getTechLevel()}
+    this_region = Universe.getInstance().regions[6]
+    if (player.region.getName() is not 'Persia'):
+        player.ship.fuel = player.ship.fuel - player.region.get_fuel_cost(
+            this_region.getX(), this_region.getY())
+        player.region = this_region
+    region_info = {'region_x' : this_region.getX(),
+                   'region_y' : this_region.getY(),
+                   'region_tech' : this_region.getTechLevel()}
     region_info['fuel'] = player.ship.fuel
     regions = Universe.getInstance().regions
     fuel_costs = {}
@@ -186,9 +218,14 @@ def persia():
 @app.route('/Java')
 def java():
     global player
-    region_info = {'region_x' : Universe.getInstance().regions[7].getX(),
-                   'region_y' : Universe.getInstance().regions[7].getY(),
-                   'region_tech' : Universe.getInstance().regions[7].getTechLevel()}
+    this_region = Universe.getInstance().regions[7]
+    if (player.region.getName() is not 'Java'):
+        player.ship.fuel = player.ship.fuel - player.region.get_fuel_cost(
+            this_region.getX(), this_region.getY())
+        player.region = this_region
+    region_info = {'region_x' : this_region.getX(),
+                   'region_y' : this_region.getY(),
+                   'region_tech' : this_region.getTechLevel()}
     region_info['fuel'] = player.ship.fuel
     regions = Universe.getInstance().regions
     fuel_costs = {}
@@ -200,9 +237,14 @@ def java():
 @app.route('/Byzantium')
 def byzantium():
     global player
-    region_info = {'region_x' : Universe.getInstance().regions[8].getX(),
-                   'region_y' : Universe.getInstance().regions[8].getY(),
-                   'region_tech' : Universe.getInstance().regions[8].getTechLevel()}
+    this_region = Universe.getInstance().regions[8]
+    if (player.region.getName() is not 'Byzantium'):
+        player.ship.fuel = player.ship.fuel - player.region.get_fuel_cost(
+            this_region.getX(), this_region.getY())
+        player.region = this_region
+    region_info = {'region_x' : this_region.getX(),
+                   'region_y' : this_region.getY(),
+                   'region_tech' : this_region.getTechLevel()}
     region_info['fuel'] = player.ship.fuel
     regions = Universe.getInstance().regions
     fuel_costs = {}
@@ -214,9 +256,14 @@ def byzantium():
 @app.route('/Arabia')
 def arabia():
     global player
-    region_info = {'region_x' : Universe.getInstance().regions[9].getX(),
-                   'region_y' : Universe.getInstance().regions[9].getY(),
-                   'region_tech' : Universe.getInstance().regions[9].getTechLevel()}
+    this_region = Universe.getInstance().regions[9]
+    if (player.region.getName() is not 'Arabia'):
+        player.ship.fuel = player.ship.fuel - player.region.get_fuel_cost(
+            this_region.getX(), this_region.getY())
+        player.region = this_region
+    region_info = {'region_x' : this_region.getX(),
+                   'region_y' : this_region.getY(),
+                   'region_tech' : this_region.getTechLevel()}
     region_info['fuel'] = player.ship.fuel
     regions = Universe.getInstance().regions
     fuel_costs = {}

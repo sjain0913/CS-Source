@@ -37,7 +37,7 @@
         var tRegion = document.getElementById("TD6").replace('/', '');
         var fuel_cost = "{{ region_info['fuel_costs'][" + tRegion + "] }}";
         var current_fuel = "{{ region_info['fuel'] }}";
-        
+        print(tRegion)
         if (current_fuel < fuel_cost) {
             alert("You do not have enough fuel");
         }
