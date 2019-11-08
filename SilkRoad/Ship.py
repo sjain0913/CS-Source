@@ -29,10 +29,10 @@ class Ship:
 
     def change_ship_type(self, ship_type):
         if ship_type == Ship.ships[1]:
-            ship_upgrade(Ship.ships[1], 4, 10, 200)
+            self.ship_upgrade(Ship.ships[1], 4, 10, 200)
         elif ship_type == Ship.ships[2]:
-            ship_upgrade(Ship.ships[2], 6, 15, 350)
+            self.ship_upgrade(Ship.ships[2], 6, 15, 350)
         elif ship_type == Ship.ships[3]:
-            ship_upgrade(Ship.ships[3], 8, 20, 500)
+            self.ship_upgrade(Ship.ships[3], 8, 20, 500)
         elif ship_type == Ship.ships[4]:
-            ship_upgrade(Ship.ships[4], 10, 25, 650)
+            self.ship_upgrade(Ship.ships[4], 10, 25, 650)
