@@ -10,9 +10,9 @@ class Trader:
     def negotiate_prices(self):
         chance_of_success = random.randint(30, 70) * (app.player.merchant / 3)
         if (chance_of_success >= 40):
-            
+            pass
         else:
-
+            pass
 
     def rob(self):
         chance_of_success = random.randint(30,70) * (app.player.cannoneer / 3)

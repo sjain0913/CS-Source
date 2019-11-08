@@ -135,12 +135,15 @@ def china():
     this_region = Universe.getInstance().regions[0]
     if (player.region.getName() is not 'China'):
         trav = player.travel(this_region)
-    if trav == "Trader":
-        return redirect(url_for('trader'))
-    elif trav == "Pirate":
-        return redirect(url_for('pirate'))
-    elif trav == "Navy":
-        return redirect(url_for('navy'))
+    else:
+        trav = {}
+    if 'enc' in trav:
+        if (trav['enc'] == "Trader"):
+            return redirect(url_for('trader'), trav = trav)
+        elif trav['enc'] == "Pirate":
+            return redirect(url_for('pirate'), trav = trav)
+        elif trav['enc'] == "Navy":
+            return redirect(url_for('navy'), trav = trav)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
@@ -160,12 +163,15 @@ def india():
     this_region = Universe.getInstance().regions[1]
     if (player.region.getName() is not 'India'):
         trav = player.travel(this_region)
-    if trav['enc'] == "Trader":
-        return redirect(url_for('trader'), trav = trav)
-    elif trav['enc'] == "Pirate":
-        return redirect(url_for('pirate'), trav = trav)
-    elif trav['enc'] == "Navy":
-        return redirect(url_for('navy'), trav = trav)
+    else:
+        trav = {}
+    if 'enc' in trav:
+        if trav['enc'] == "Trader":
+            return redirect(url_for('trader'), trav = trav)
+        elif trav['enc'] == "Pirate":
+            return redirect(url_for('pirate'), trav = trav)
+        elif trav['enc'] == "Navy":
+            return redirect(url_for('navy'), trav = trav)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
@@ -185,12 +191,15 @@ def denmark():
     this_region = Universe.getInstance().regions[2]
     if (player.region.getName() is not 'Denmark'):
         trav = player.travel(this_region)
-    if trav['enc'] == "Trader":
-        return redirect(url_for('trader'), trav = trav)
-    elif trav['enc'] == "Pirate":
-        return redirect(url_for('pirate'), trav = trav)
-    elif trav['enc'] == "Navy":
-        return redirect(url_for('navy'), trav = trav)
+    else:
+        trav = {}
+    if 'enc' in trav:
+        if trav['enc'] == "Trader":
+            return redirect(url_for('trader'), trav = trav)
+        elif trav['enc'] == "Pirate":
+            return redirect(url_for('pirate'), trav = trav)
+        elif trav['enc'] == "Navy":
+            return redirect(url_for('navy'), trav = trav)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
@@ -210,12 +219,15 @@ def britain():
     this_region = Universe.getInstance().regions[3]
     if (player.region.getName() is not 'Britain'):
         trav = player.travel(this_region)
-    if trav['enc'] == "Trader":
-        return redirect(url_for('trader'), trav = trav)
-    elif trav['enc'] == "Pirate":
-        return redirect(url_for('pirate'), trav = trav)
-    elif trav['enc'] == "Navy":
-        return redirect(url_for('navy'), trav = trav)
+    else:
+        trav = {}
+    if 'enc' in trav:
+        if trav['enc'] == "Trader":
+            return redirect(url_for('trader'), trav = trav)
+        elif trav['enc'] == "Pirate":
+            return redirect(url_for('pirate'), trav = trav)
+        elif trav['enc'] == "Navy":
+            return redirect(url_for('navy'), trav = trav)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
@@ -235,12 +247,15 @@ def egypt():
     this_region = Universe.getInstance().regions[4]
     if (player.region.getName() is not 'Egypt'):
         trav = player.travel(this_region)
-    if trav['enc'] == "Trader":
-        return redirect(url_for('trader'), trav = trav)
-    elif trav['enc'] == "Pirate":
-        return redirect(url_for('pirate'), trav = trav)
-    elif trav['enc'] == "Navy":
-        return redirect(url_for('navy'), trav = trav)
+    else:
+        trav = {}
+    if 'enc' in trav:
+        if trav['enc'] == "Trader":
+            return redirect(url_for('trader'), trav = trav)
+        elif trav['enc'] == "Pirate":
+            return redirect(url_for('pirate'), trav = trav)
+        elif trav['enc'] == "Navy":
+            return redirect(url_for('navy'), trav = trav)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
@@ -260,12 +275,15 @@ def somalia():
     this_region = Universe.getInstance().regions[5]
     if (player.region.getName() is not 'Somalia'):
         trav = player.travel(this_region)
-    if trav['enc'] == "Trader":
-        return redirect(url_for('trader'), trav = trav)
-    elif trav['enc'] == "Pirate":
-        return redirect(url_for('pirate'), trav = trav)
-    elif trav['enc'] == "Navy":
-        return redirect(url_for('navy'), trav = trav)
+    else:
+        trav = {}
+    if 'enc' in trav:
+        if trav['enc'] == "Trader":
+            return redirect(url_for('trader'), trav = trav)
+        elif trav['enc'] == "Pirate":
+            return redirect(url_for('pirate'), trav = trav)
+        elif trav['enc'] == "Navy":
+            return redirect(url_for('navy'), trav = trav)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
@@ -285,12 +303,15 @@ def persia():
     this_region = Universe.getInstance().regions[6]
     if (player.region.getName() is not 'Persia'):
         trav = player.travel(this_region)
-    if trav['enc'] == "Trader":
-        return redirect(url_for('trader'), trav = trav)
-    elif trav['enc'] == "Pirate":
-        return redirect(url_for('pirate'), trav = trav)
-    elif trav['enc'] == "Navy":
-        return redirect(url_for('navy'), trav = trav)
+    else:
+        trav = {}
+    if 'enc' in trav:
+        if trav['enc'] == "Trader":
+            return redirect(url_for('trader'), trav = trav)
+        elif trav['enc'] == "Pirate":
+            return redirect(url_for('pirate'), trav = trav)
+        elif trav['enc'] == "Navy":
+            return redirect(url_for('navy'), trav = trav)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
@@ -310,12 +331,15 @@ def java():
     this_region = Universe.getInstance().regions[7]
     if (player.region.getName() is not 'Java'):
         trav = player.travel(this_region)
-    if trav['enc'] == "Trader":
-        return redirect(url_for('trader'), trav = trav)
-    elif trav['enc'] == "Pirate":
-        return redirect(url_for('pirate'), trav = trav)
-    elif trav['enc'] == "Navy":
-        return redirect(url_for('navy'), trav = trav)
+    else:
+        trav = {}
+    if 'enc' in trav:
+        if trav['enc'] == "Trader":
+            return redirect(url_for('trader'), trav = trav)
+        elif trav['enc'] == "Pirate":
+            return redirect(url_for('pirate'), trav = trav)
+        elif trav['enc'] == "Navy":
+            return redirect(url_for('navy'), trav = trav)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
@@ -335,12 +359,15 @@ def byzantium():
     this_region = Universe.getInstance().regions[8]
     if (player.region.getName() is not 'Byzantium'):
         trav = player.travel(this_region)
-    if trav['enc'] == "Trader":
-        return redirect(url_for('trader'), trav = trav)
-    elif trav['enc'] == "Pirate":
-        return redirect(url_for('pirate'), trav = trav)
-    elif trav['enc'] == "Navy":
-        return redirect(url_for('navy'), trav = trav)
+    else:
+        trav = {}
+    if 'enc' in trav:
+        if trav['enc'] == "Trader":
+            return redirect(url_for('trader'), trav = trav)
+        elif trav['enc'] == "Pirate":
+            return redirect(url_for('pirate'), trav = trav)
+        elif trav['enc'] == "Navy":
+            return redirect(url_for('navy'), trav = trav)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
@@ -360,12 +387,15 @@ def arabia():
     this_region = Universe.getInstance().regions[9]
     if (player.region.getName() is not 'Arabia'):
         trav = player.travel(this_region)
-    if trav['enc'] == "Trader":
-        return redirect(url_for('trader'), trav = trav)
-    elif trav['enc'] == "Pirate":
-        return redirect(url_for('pirate'), trav = trav)
-    elif trav['enc'] == "Navy":
-        return redirect(url_for('navy'), trav = trav)
+    else:
+        trav = {}
+    if 'enc' in trav:
+        if trav['enc'] == "Trader":
+            return redirect(url_for('trader'), trav = trav)
+        elif trav['enc'] == "Pirate":
+            return redirect(url_for('pirate'), trav = trav)
+        elif trav['enc'] == "Navy":
+            return redirect(url_for('navy'), trav = trav)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),

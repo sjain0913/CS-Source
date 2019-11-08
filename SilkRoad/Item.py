@@ -2,7 +2,7 @@ class Item:
     stone_items = ["Ivory", "Animal Hide", "Meat"]
     bronze_items = ["Dye", "Lumber", "Wine"]
     iron_items = ["Cloth", "Iron", "Jewelry"]
-    early_middle_items = ["Copper, Gold, Honey"]
+    early_middle_items = ["Copper", "Gold", "Honey"]
     late_middle_items = ["Brass", "Gunpowder", "Silk"]
     early_modern_items = ["Coffee", "Paper", "Opium"]
     modern_items = ["Oil", "Rubber", "Textile"]
