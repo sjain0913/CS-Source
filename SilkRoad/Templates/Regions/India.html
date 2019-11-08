@@ -15,16 +15,16 @@
                 <legend> Select a Region</legend>
                 <p> 
                     <label><u>R</u>egion Select</label>
-                    <select accesskey="R" onchange="goToNewPage(this.options[this.selectedIndex].value)">
-                        <option value="/Byzantium">Byzantium</option>
-                        <option value="/China">China</option>
-                        <option value="/Denmark">Denmark</option>
-                        <option value="/Egypt">Egypt</option>
-                        <option value="/GreatBritain">GreatBritain</option>
-                        <option value="/Arabia">Arabia</option>
-                        <option value="/Java">Java</option>
-                        <option value="/Persia">Persia</option>
-                        <option value="/Somalia">Somalia</option>
+                    <select id="TD7" accesskey="R" onchange="canITravel(this.options[this.selectedIndex].value)">
+                        <option value="/Byzantium">Byzantium {{region_info['fuel_costs']['Byzantium']}}</option>
+                        <option value="/China">China {{region_info['fuel_costs']['China']}}</option>
+                        <option value="/Denmark">Denmark {{region_info['fuel_costs']['Denmark']}}</option>
+                        <option value="/Egypt">Egypt {{region_info['fuel_costs']['Egypt']}}</option>
+                        <option value="/Britain">Britain {{region_info['fuel_costs']['Britain']}}</option>
+                        <option value="/Arabia">Arabia {{region_info['fuel_costs']['Arabia']}}</option>
+                        <option value="/Java">Java {{region_info['fuel_costs']['Java']}}</option>
+                        <option value="/Persia">Persia {{region_info['fuel_costs']['Persia']}}</option>
+                        <option value="/Somalia">Somalia {{region_info['fuel_costs']['Somalia']}}</option>
                     </select>
                 </p>
             </fieldset>
@@ -33,8 +33,18 @@
 </html>
 
 <script type="text/javascript">
-
-    
+    function canITravel(url) {
+        var tRegion = document.getElementById("TD7").replace('/', '');
+        var fuel_cost = "{{ region_info['fuel_costs'][" + tRegion + "] }}";
+        var current_fuel = "{{ region_info['fuel'] }}";
+        
+        if (current_fuel < fuel_cost) {
+            alert("You do not have enough fuel");
+        }
+        else {
+            goToNewPage(url);
+        }
+    }
 
     function goToNewPage(url) {
         if (url != "") {
