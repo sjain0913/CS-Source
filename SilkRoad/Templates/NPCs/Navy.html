@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SilkRoad</title>
+    </head>
+    <body>
+        <h1>
+            Oh no! The Local Navy have boarded your ship and demand x items!
+        </h1>
+        <div>
+            <form name="navySelect" method="post" action="">
+                <input type="radio" name="nchoice" value="Forfeit" id='n1'/>Forfeit Items!
+                <input type="radio" name="nchoice" value="Flee" id='n2'/>Flee Navy
+                <input type="radio" name="nchoice" value="Fight" id ='n3'/>Fight Them Off!
+            </form>
+        </div>
+        <div>
+            <form method="get"> 
+                <button onclick="parseForm()">Submit</button>
+            </form>
+        </div>
+    </body>
+</html>
+
+<script type="text/javascript">
+    function parseForm() {
+        var navy = "";
+        var xhttp = new XMLHttpRequest();
+
+        if (document.getElementById('n1').checked) {
+            navy = "forfeit";
+        }
+        else if (document.getElementById('n2').checked) {
+            navy = "flee";
+        }
+        else {
+            navy = "fight";
+        }
+        xhttp.open("POST", "/NavyReceiver", true);
+        xhttp.RequestHeader('Content-Type', 'application/json');
+        xhttp.send(JSON.stringify({
+            'navyChoice' : navy
+        }));
+    }
+</script>

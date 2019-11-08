@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SilkRoad</title>
+    </head>
+    <body>
+        <h1>
+            Oh no! Pirates board your ship and demand x credits! How will you respond?
+        </h1>
+        <div>
+            <form name="pirateSelect" method="post" action="">
+                <input type="radio" name="pchoice" value="Pay" id='p1'/>Pay Up!
+                <input type="radio" name="pchoice" value="Flee" id='p2'/>Flee Pirates
+                <input type="radio" name="pchoice" value="Fight" id ='p3'/>Fight Them Off!
+            </form>
+        </div>
+        <div>
+            <form method="get"> 
+                <button onclick="parseForm()">Submit</button>
+            </form>
+        </div>
+    </body>
+</html>
+
+<script type="text/javascript">
+    function parseForm() {
+        var pirate = "";
+        var xhttp = new XMLHttpRequest();
+
+        if (document.getElementById('p1').checked) {
+            pirate = "pay";
+        }
+        else if (document.getElementById('p2').checked) {
+            pirate = "flee";
+        }
+        else {
+            pirate = "fight";
+        }
+        xhttp.open("POST", "/PirateReceiver", true);
+        xhttp.RequestHeader('Content-Type', 'application/json');
+        xhttp.send(JSON.stringify({
+            'pirateChoice' : pirate
+        }));
+    }
+</script>
