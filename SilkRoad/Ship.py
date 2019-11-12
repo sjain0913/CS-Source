@@ -1,6 +1,6 @@
 class Ship:
     ships = ["Clipper", "Brig", "Battleship", "Galleon"]
-    
+
     def __init__(self, ship_type):
         self.ship_type = ship_type
         if ship_type == Ship.ships[0]:
@@ -20,7 +20,7 @@ class Ship:
             self.fuel_cap = 25
             self.health = 650
         self.fuel = self.fuel_cap
-    
+
     def ship_upgrade(self, ship_type, cargo_space, fuel_cap, health):
         self.ship_type = ship_type
         self.cargo_space = cargo_space
