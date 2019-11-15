@@ -1,5 +1,5 @@
 from Universe import Universe
-from Player import Player
+import Player
 from Region import Region
 from Ship import Ship
 import app

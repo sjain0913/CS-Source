@@ -25,6 +25,7 @@ class Navy:
         else:
             self.success = False 
             app.player.remove_from_inv(self.black_listed_item)
+            #should also lose credits and health
 
     def forfeit(self, item_list):
         app.player.remove_from_inv(self.black_listed_item)
