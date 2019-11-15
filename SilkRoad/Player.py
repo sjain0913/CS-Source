@@ -1,6 +1,10 @@
 import random
 from Item import Item
+<<<<<<< HEAD
+import app, random, Game
+=======
 import app
+>>>>>>> master
 class Player:
     def __init__(self, name):
         self.name = name
@@ -12,6 +16,7 @@ class Player:
         self.credits = credits
         self.ship = None
         self.inventory = {}
+        self.game = Game
 
     def add_to_inv(self, item):
         if self.inventory[item] is not None:
@@ -125,3 +130,9 @@ class Player:
 
     def decrement_craftsman(self):
         self.craftsman -= 1
+<<<<<<< HEAD
+
+    def setGame(self, Game):
+        self.game = Game
+=======
+>>>>>>> master

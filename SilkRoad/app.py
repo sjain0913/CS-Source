@@ -54,6 +54,7 @@ def playerdata():
     global game
     global player
     game.startGame()
+    player.setGame(game)
     if game.getDifficulty() == 1:
         skillpts = 16
         player.credits = 1000
