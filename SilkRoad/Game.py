@@ -16,13 +16,13 @@ class Game:
         regionNum = random.randint(0,9)
         player = app.player
         player.ship = Ship("Clipper")
-        player.setRegion(Universe.getInstance().regions[regionNum])
+        player.region = Universe.getInstance().regions[regionNum]
         if (self.difficulty is 'easy'):
-            player.setCredits(1000)
+            player.credits = 1000
         elif (self.difficulty is 'medium'):
-            player.setCredits(500)
+            player.credits = 500
         else:
-            player.setCredits(100)
+            player.credits = 100
 
     def getDifficulty(self):
         return self.difficulty

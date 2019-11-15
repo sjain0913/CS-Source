@@ -14,6 +14,8 @@ game = None
 def title_screen():
     global player
     player = None
+    global game
+    game = None
     Universe.__instance = None
     return render_template('TitleScreen.html')
 
