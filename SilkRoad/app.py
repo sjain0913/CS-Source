@@ -1,11 +1,9 @@
-from flask import Flask, flash, render_template, request, session, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for
 from Player import Player
 from Universe import Universe
 from Pirates import Pirates
-from Navy import Navy
 from Trader import Trader
 from Game import Game
-import json
 
 app = Flask(__name__)
 player = None
@@ -25,16 +23,15 @@ def diff():
     return render_template("Difficulty.html")
 
 
-@app.route('/DifficultyReceiver', methods=['POST'])
+@app.route('/DifficultyReceiver', ['POST'])
 def difficultyparse():
     data = request.get_json()
     global game
     game = Game(data['difficulty'], ['China', 'India', 'Denmark', 'Britain',
-                                          'Egypt', 'Somalia', 'Persia', 'Java',
-                                          'Byzantium', 'Arabia'])
+                                     'Egypt', 'Somalia', 'Persia', 'Java',
+                                     'Byzantium', 'Arabia'])
     global player
     player = Player(data['name'])
-    return None
 
 
 @app.route('/config')
@@ -48,7 +45,7 @@ def config():
         skillpts = 12
     else:
         skillpts = 8
-    return render_template("Config.html", skillpts=skillpts)
+    return render_template("Config.html", skillpts)
 
 
 @app.route('/playerdata')
@@ -73,11 +70,12 @@ def playerdata():
         player.craftsman = 0
         player.cannoneer = 0
         return render_template("Failure.html")
-    player_data = [player.name, player.credits, player.region.getName(), player.sailor, player.cannoneer, player.barterer, player.craftsman]
-    return render_template("PlayerData.html", player_data=player_data)
+    player_data = [player.name, player.credits, player.region.getName(), player.sailor,
+                   player.cannoneer, player.barterer, player.craftsman]
+    return render_template("PlayerData.html", player_data)
 
 
-@app.route('/SkillReceiver', methods=['POST'])
+@app.route('/SkillReceiver', ['POST'])
 def skillparse():
     data = request.get_json()
     global player
@@ -90,7 +88,7 @@ def skillparse():
 def trader():
     return render_template("NPCs/Trader.html")
 
-@app.route('/TraderReceiver', methods=['POST'])
+@app.route('/TraderReceiver', ['POST'])
 def traderparse():
     data = request.get_json()
     choice = data['traderChoice']
@@ -107,9 +105,9 @@ def traderparse():
 @app.route('/pirate')
 def pirate():
     return render_template("NPCs/Pirate.html")
-    
 
-@app.route('/PirateReceiver', methods=['POST'])
+
+@app.route('/PirateReceiver', ['POST'])
 def pirateparse():
     data = request.get_json()
     choice = data['pirateChoice']
@@ -125,26 +123,28 @@ def pirateparse():
 def navy():
     return render_template("NPCs/Navy.html")
 
-@app.route('/NavyReceiver', methods=['POST'])
-def navyparse():    
+@app.route('/NavyReceiver', ['POST'])
+def navyparse():
     data = request.get_json()
     choice = data['navyChoice']
+    return choice
+
 
 @app.route('/China')
 def china():
     global player
     this_region = Universe.getInstance().regions[0]
-    if (player.region.getName() is not 'China'):
+    if player.region.getName() != 'China':
         trav = player.travel(this_region)
     else:
         trav = {}
     if 'enc' in trav:
-        if (trav['enc'] == "Trader"):
-            return redirect(url_for('trader'), trav = trav)
+        if trav['enc'] == "Trader":
+            return redirect(url_for('trader'), trav)
         elif trav['enc'] == "Pirate":
-            return redirect(url_for('pirate'), trav = trav)
+            return redirect(url_for('pirate'), trav)
         elif trav['enc'] == "Navy":
-            return redirect(url_for('navy'), trav = trav)
+            return redirect(url_for('navy'), trav)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
@@ -156,23 +156,24 @@ def china():
     for i in regions:
         fuel_costs[i.getName()] = regions[0].get_fuel_cost(i.getX(), i.getY())
     region_info['fuel_costs'] = fuel_costs
-    return render_template("Regions/China.html", region_info=region_info)
+    return render_template("Regions/China.html", region_info)
+
 
 @app.route('/India')
 def india():
     global player
     this_region = Universe.getInstance().regions[1]
-    if (player.region.getName() is not 'India'):
+    if player.region.getName() != 'India':
         trav = player.travel(this_region)
     else:
         trav = {}
     if 'enc' in trav:
         if trav['enc'] == "Trader":
-            return redirect(url_for('trader'), trav = trav)
+            return redirect(url_for('trader'), trav)
         elif trav['enc'] == "Pirate":
-            return redirect(url_for('pirate'), trav = trav)
+            return redirect(url_for('pirate'), trav)
         elif trav['enc'] == "Navy":
-            return redirect(url_for('navy'), trav = trav)
+            return redirect(url_for('navy'), trav)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
@@ -184,23 +185,24 @@ def india():
     for i in regions:
         fuel_costs[i.getName()] = regions[1].get_fuel_cost(i.getX(), i.getY())
     region_info['fuel_costs'] = fuel_costs
-    return render_template("Regions/India.html", region_info=region_info)
+    return render_template("Regions/India.html", region_info)
+
 
 @app.route('/Denmark')
 def denmark():
     global player
     this_region = Universe.getInstance().regions[2]
-    if (player.region.getName() is not 'Denmark'):
+    if player.region.getName() != 'Denmark':
         trav = player.travel(this_region)
     else:
         trav = {}
     if 'enc' in trav:
         if trav['enc'] == "Trader":
-            return redirect(url_for('trader'), trav = trav)
+            return redirect(url_for('trader'), trav)
         elif trav['enc'] == "Pirate":
-            return redirect(url_for('pirate'), trav = trav)
+            return redirect(url_for('pirate'), trav)
         elif trav['enc'] == "Navy":
-            return redirect(url_for('navy'), trav = trav)
+            return redirect(url_for('navy'), trav)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
@@ -212,23 +214,24 @@ def denmark():
     for i in regions:
         fuel_costs[i.getName()] = regions[2].get_fuel_cost(i.getX(), i.getY())
     region_info['fuel_costs'] = fuel_costs
-    return render_template("Regions/Denmark.html", region_info=region_info)
+    return render_template("Regions/Denmark.html", region_info)
+
 
 @app.route('/Britain')
 def britain():
     global player
     this_region = Universe.getInstance().regions[3]
-    if (player.region.getName() is not 'Britain'):
+    if player.region.getName() != 'Britain':
         trav = player.travel(this_region)
     else:
         trav = {}
     if 'enc' in trav:
         if trav['enc'] == "Trader":
-            return redirect(url_for('trader'), trav = trav)
+            return redirect(url_for('trader'), trav)
         elif trav['enc'] == "Pirate":
-            return redirect(url_for('pirate'), trav = trav)
+            return redirect(url_for('pirate'), trav)
         elif trav['enc'] == "Navy":
-            return redirect(url_for('navy'), trav = trav)
+            return redirect(url_for('navy'), trav)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
@@ -240,23 +243,24 @@ def britain():
     for i in regions:
         fuel_costs[i.getName()] = regions[3].get_fuel_cost(i.getX(), i.getY())
     region_info['fuel_costs'] = fuel_costs
-    return render_template("Regions/Britain.html", region_info=region_info)
+    return render_template("Regions/Britain.html", region_info)
+
 
 @app.route('/Egypt')
 def egypt():
     global player
     this_region = Universe.getInstance().regions[4]
-    if (player.region.getName() is not 'Egypt'):
+    if player.region.getName() != 'Egypt':
         trav = player.travel(this_region)
     else:
         trav = {}
     if 'enc' in trav:
         if trav['enc'] == "Trader":
-            return redirect(url_for('trader'), trav = trav)
+            return redirect(url_for('trader'), trav)
         elif trav['enc'] == "Pirate":
-            return redirect(url_for('pirate'), trav = trav)
+            return redirect(url_for('pirate'), trav)
         elif trav['enc'] == "Navy":
-            return redirect(url_for('navy'), trav = trav)
+            return redirect(url_for('navy'), trav)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
@@ -268,23 +272,24 @@ def egypt():
     for i in regions:
         fuel_costs[i.getName()] = regions[4].get_fuel_cost(i.getX(), i.getY())
     region_info['fuel_costs'] = fuel_costs
-    return render_template("Regions/Egypt.html", region_info=region_info)
+    return render_template("Regions/Egypt.html", region_info)
+
 
 @app.route('/Somalia')
 def somalia():
     global player
     this_region = Universe.getInstance().regions[5]
-    if (player.region.getName() is not 'Somalia'):
+    if player.region.getName() != 'Somalia':
         trav = player.travel(this_region)
     else:
         trav = {}
     if 'enc' in trav:
         if trav['enc'] == "Trader":
-            return redirect(url_for('trader'), trav = trav)
+            return redirect(url_for('trader'), trav)
         elif trav['enc'] == "Pirate":
-            return redirect(url_for('pirate'), trav = trav)
+            return redirect(url_for('pirate'), trav)
         elif trav['enc'] == "Navy":
-            return redirect(url_for('navy'), trav = trav)
+            return redirect(url_for('navy'), trav)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
@@ -296,23 +301,24 @@ def somalia():
     for i in regions:
         fuel_costs[i.getName()] = regions[5].get_fuel_cost(i.getX(), i.getY())
     region_info['fuel_costs'] = fuel_costs
-    return render_template("Regions/Somalia.html", region_info=region_info)
+    return render_template("Regions/Somalia.html", region_info)
+
 
 @app.route('/Persia')
 def persia():
     global player
     this_region = Universe.getInstance().regions[6]
-    if (player.region.getName() is not 'Persia'):
+    if player.region.getName() != 'Persia':
         trav = player.travel(this_region)
     else:
         trav = {}
     if 'enc' in trav:
         if trav['enc'] == "Trader":
-            return redirect(url_for('trader'), trav = trav)
+            return redirect(url_for('trader'), trav)
         elif trav['enc'] == "Pirate":
-            return redirect(url_for('pirate'), trav = trav)
+            return redirect(url_for('pirate'), trav)
         elif trav['enc'] == "Navy":
-            return redirect(url_for('navy'), trav = trav)
+            return redirect(url_for('navy'), trav)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
@@ -324,23 +330,24 @@ def persia():
     for i in regions:
         fuel_costs[i.getName()] = regions[6].get_fuel_cost(i.getX(), i.getY())
     region_info['fuel_costs'] = fuel_costs
-    return render_template("Regions/Persia.html", region_info=region_info)
+    return render_template("Regions/Persia.html", region_info)
+
 
 @app.route('/Java')
 def java():
     global player
     this_region = Universe.getInstance().regions[7]
-    if (player.region.getName() is not 'Java'):
+    if player.region.getName() != 'Java':
         trav = player.travel(this_region)
     else:
         trav = {}
     if 'enc' in trav:
         if trav['enc'] == "Trader":
-            return redirect(url_for('trader'), trav = trav)
+            return redirect(url_for('trader'), trav)
         elif trav['enc'] == "Pirate":
-            return redirect(url_for('pirate'), trav = trav)
+            return redirect(url_for('pirate'), trav)
         elif trav['enc'] == "Navy":
-            return redirect(url_for('navy'), trav = trav)
+            return redirect(url_for('navy'), trav)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
@@ -352,23 +359,24 @@ def java():
     for i in regions:
         fuel_costs[i.getName()] = regions[7].get_fuel_cost(i.getX(), i.getY())
     region_info['fuel_costs'] = fuel_costs
-    return render_template("Regions/Java.html", region_info=region_info)
+    return render_template("Regions/Java.html", region_info)
+
 
 @app.route('/Byzantium')
 def byzantium():
     global player
     this_region = Universe.getInstance().regions[8]
-    if (player.region.getName() is not 'Byzantium'):
+    if player.region.getName() != 'Byzantium':
         trav = player.travel(this_region)
     else:
         trav = {}
     if 'enc' in trav:
         if trav['enc'] == "Trader":
-            return redirect(url_for('trader'), trav = trav)
+            return redirect(url_for('trader'), trav)
         elif trav['enc'] == "Pirate":
-            return redirect(url_for('pirate'), trav = trav)
+            return redirect(url_for('pirate'), trav)
         elif trav['enc'] == "Navy":
-            return redirect(url_for('navy'), trav = trav)
+            return redirect(url_for('navy'), trav)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
@@ -380,23 +388,24 @@ def byzantium():
     for i in regions:
         fuel_costs[i.getName()] = regions[8].get_fuel_cost(i.getX(), i.getY())
     region_info['fuel_costs'] = fuel_costs
-    return render_template("Regions/Byzantium.html", region_info=region_info)
+    return render_template("Regions/Byzantium.html", region_info)
+
 
 @app.route('/Arabia')
 def arabia():
     global player
     this_region = Universe.getInstance().regions[9]
-    if (player.region.getName() is not 'Arabia'):
+    if player.region.getName() != 'Arabia':
         trav = player.travel(this_region)
     else:
         trav = {}
     if 'enc' in trav:
         if trav['enc'] == "Trader":
-            return redirect(url_for('trader'), trav = trav)
+            return redirect(url_for('trader'), trav)
         elif trav['enc'] == "Pirate":
-            return redirect(url_for('pirate'), trav = trav)
+            return redirect(url_for('pirate'), trav)
         elif trav['enc'] == "Navy":
-            return redirect(url_for('navy'), trav = trav)
+            return redirect(url_for('navy'), trav)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
@@ -408,9 +417,9 @@ def arabia():
     for i in regions:
         fuel_costs[i.getName()] = regions[9].get_fuel_cost(i.getX(), i.getY())
     region_info['fuel_costs'] = fuel_costs
-    return render_template("Regions/Arabia.html", region_info=region_info)
+    return render_template("Regions/Arabia.html", region_info)
 
 
 if __name__ == '__main__':
     # app.debug = True
-    app.run(host='0.0.0.0')
+    app.run('0.0.0.0')
