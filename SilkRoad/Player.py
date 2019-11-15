@@ -127,9 +127,6 @@ class Player:
 
     def decrement_craftsman(self):
         self.craftsman -= 1
-<<<<<<< HEAD
 
     def setGame(self, Game):
         self.game = Game
-=======
->>>>>>> master
