@@ -1,5 +1,5 @@
 from Universe import Universe
-import Player
+from Player import Player
 from Region import Region
 from Ship import Ship
 import app
@@ -16,7 +16,7 @@ class Game:
         regionNum = random.randint(0,9)
         player = app.player
         player.ship = Ship("Clipper")
-        player.region = Universe.getInstance().regions[regionNum]
+        player.region = Universe.get_instance().regions[regionNum]
         if (self.difficulty is 'easy'):
             player.credits = 1000
         elif (self.difficulty is 'medium'):

@@ -13,7 +13,6 @@ class Player:
         self.credits = credits
         self.ship = None
         self.inventory = {}
-        self.game = Game
 
     def add_to_inv(self, item):
         if self.inventory[item] is not None:
@@ -30,7 +29,7 @@ class Player:
     def travel(self, region):
         trav = {}
         trav['toRegion'] = region
-        if game.getDifficulty() == 1:
+        if app.game.getDifficulty() == 1:
             if random.randint(0, 9) == 0:
                 trav['enc'] = "Trader"
             elif random.randint(0, 3) == 0:
@@ -41,7 +40,7 @@ class Player:
                 app.player.ship.fuel = app.player.ship.fuel - app.player.region.get_fuel_cost(
                     region.getX(), region.getY())
                 app.player.region = region
-        if game.getDifficulty() == 2:
+        if app.game.getDifficulty() == 2:
             if random.randint(0, 6) == 0:
                 trav['enc'] = "Trader"
             elif random.randint(0, 5) == 0:
@@ -52,7 +51,7 @@ class Player:
                 app.player.ship.fuel = app.player.ship.fuel - app.player.region.get_fuel_cost(
                     region.getX(), region.getY())
                 app.player.region = region
-        if game.getDifficulty() == 3:
+        if app.game.getDifficulty() == 3:
             if random.randint(0, 3) == 0:
                 trav['enc'] = "Trader"
             elif random.randint(0, 7) == 0:
@@ -127,9 +126,6 @@ class Player:
 
     def decrement_craftsman(self):
         self.craftsman -= 1
-<<<<<<< HEAD
 
-    def setGame(self, Game):
-        self.game = Game
-=======
->>>>>>> master
+    def set_game(self, game):
+        self.game = game
