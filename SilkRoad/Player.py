@@ -1,10 +1,7 @@
 import random
 from Item import Item
-<<<<<<< HEAD
-import app, random, Game
-=======
 import app
->>>>>>> master
+from Game import Game
 class Player:
     def __init__(self, name):
         self.name = name
