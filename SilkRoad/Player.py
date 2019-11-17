@@ -1,7 +1,5 @@
 import random
 from Item import Item
-import app
-from Game import Game
 class Player:
     def __init__(self, name):
         self.name = name
@@ -18,7 +16,7 @@ class Player:
         if self.inventory[item] is not None:
             self.inventory[item].inc_number()
         else:
-            self.inventory[item] = Item(item, (app.player.barterer / 3), 1)
+            self.inventory[item] = Item(item, (self.barterer / 3), 1)
 
     def remove_from_inv(self, item):
         if self.inventory[item] > 1:
@@ -29,7 +27,7 @@ class Player:
     def travel(self, region):
         trav = {}
         trav['toRegion'] = region
-        if app.game.getDifficulty() == 1:
+        if self.game.getDifficulty() == 1:
             if random.randint(0, 9) == 0:
                 trav['enc'] = "Trader"
             elif random.randint(0, 3) == 0:
@@ -37,10 +35,10 @@ class Player:
             elif random.randint(0, 2) == 0:
                 trav['enc'] = "Navy"
             else:
-                app.player.ship.fuel = app.player.ship.fuel - app.player.region.get_fuel_cost(
+                self.ship.fuel = self.ship.fuel - self.region.get_fuel_cost(
                     region.getX(), region.getY())
-                app.player.region = region
-        if app.game.getDifficulty() == 2:
+                self.region = region
+        if self.game.getDifficulty() == 2:
             if random.randint(0, 6) == 0:
                 trav['enc'] = "Trader"
             elif random.randint(0, 5) == 0:
@@ -48,10 +46,10 @@ class Player:
             elif random.randint(0, 3) == 0:
                 trav['enc'] = "Navy"
             else:
-                app.player.ship.fuel = app.player.ship.fuel - app.player.region.get_fuel_cost(
+                self.ship.fuel = self.ship.fuel - self.region.get_fuel_cost(
                     region.getX(), region.getY())
-                app.player.region = region
-        if app.game.getDifficulty() == 3:
+                self.region = region
+        if self.game.getDifficulty() == 3:
             if random.randint(0, 3) == 0:
                 trav['enc'] = "Trader"
             elif random.randint(0, 7) == 0:
@@ -59,9 +57,9 @@ class Player:
             elif random.randint(0, 4) == 0:
                 trav['enc'] = "Navy"
             else:
-                app.player.ship.fuel = app.player.ship.fuel - app.player.region.get_fuel_cost(
+                self.ship.fuel = self.ship.fuel - self.region.get_fuel_cost(
                     region.getX(), region.getY())
-                app.player.region = region
+                self.region = region
         return trav
 
     def set_sailor(self, sailor):

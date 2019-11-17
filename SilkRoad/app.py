@@ -113,7 +113,8 @@ def pirate():
 def pirateparse():
     data = request.get_json()
     choice = data['pirateChoice']
-    pir = Pirates()
+    global player
+    pir = Pirates(player)
     if choice == "pay":
         pir.pay()
     elif choice == "flee":
@@ -135,9 +136,10 @@ def navyparse():
 @app.route('/China')
 def china():
     global player
+    global game
     this_region = Universe.get_instance().regions[0]
     if player.region.getName() != 'China':
-        trav = player.travel(this_region)
+        trav = player.travel(this_region, game)
     else:
         trav = {}
     if 'enc' in trav:
@@ -166,7 +168,7 @@ def india():
     global player
     this_region = Universe.get_instance().regions[1]
     if player.region.getName() != 'India':
-        trav = player.travel(this_region)
+        trav = player.travel(this_region, game)
     else:
         trav = {}
     if 'enc' in trav:
@@ -195,7 +197,7 @@ def denmark():
     global player
     this_region = Universe.get_instance().regions[2]
     if player.region.getName() != 'Denmark':
-        trav = player.travel(this_region)
+        trav = player.travel(this_region, game)
     else:
         trav = {}
     if 'enc' in trav:
@@ -224,7 +226,7 @@ def britain():
     global player
     this_region = Universe.get_instance().regions[3]
     if player.region.getName() != 'Britain':
-        trav = player.travel(this_region)
+        trav = player.travel(this_region, game)
     else:
         trav = {}
     if 'enc' in trav:
@@ -253,7 +255,7 @@ def egypt():
     global player
     this_region = Universe.get_instance().regions[4]
     if player.region.getName() != 'Egypt':
-        trav = player.travel(this_region)
+        trav = player.travel(this_region, game)
     else:
         trav = {}
     if 'enc' in trav:
@@ -282,7 +284,7 @@ def somalia():
     global player
     this_region = Universe.get_instance().regions[5]
     if player.region.getName() != 'Somalia':
-        trav = player.travel(this_region)
+        trav = player.travel(this_region, game)
     else:
         trav = {}
     if 'enc' in trav:
@@ -311,7 +313,7 @@ def persia():
     global player
     this_region = Universe.get_instance().regions[6]
     if player.region.getName() != 'Persia':
-        trav = player.travel(this_region)
+        trav = player.travel(this_region, game)
     else:
         trav = {}
     if 'enc' in trav:
@@ -340,7 +342,7 @@ def java():
     global player
     this_region = Universe.get_instance().regions[7]
     if player.region.getName() != 'Java':
-        trav = player.travel(this_region)
+        trav = player.travel(this_region, game)
     else:
         trav = {}
     if 'enc' in trav:
@@ -369,7 +371,7 @@ def byzantium():
     global player
     this_region = Universe.get_instance().regions[8]
     if player.region.getName() != 'Byzantium':
-        trav = player.travel(this_region)
+        trav = player.travel(this_region, game)
     else:
         trav = {}
     if 'enc' in trav:
@@ -398,7 +400,7 @@ def arabia():
     global player
     this_region = Universe.get_instance().regions[9]
     if player.region.getName() != 'Arabia':
-        trav = player.travel(this_region)
+        trav = player.travel(this_region, game)
     else:
         trav = {}
     if 'enc' in trav:
