@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
-from Player import Player
 from Universe import Universe
+from Player import Player
 from Pirates import Pirates
 from Trader import Trader
 from Game import Game
@@ -156,7 +156,7 @@ def china():
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
-        fuel_costs[i.getName()] = regions[0].get_fuel_cost(i.getX(), i.getY())
+        fuel_costs[i.getName()] = regions[0].get_fuel_cost(i.getX(), i.getY(), player)
     region_info['fuel_costs'] = fuel_costs
     return render_template("Regions/China.html", region_info=region_info)
 
@@ -185,7 +185,7 @@ def india():
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
-        fuel_costs[i.getName()] = regions[1].get_fuel_cost(i.getX(), i.getY())
+        fuel_costs[i.getName()] = regions[1].get_fuel_cost(i.getX(), i.getY(), player)
     region_info['fuel_costs'] = fuel_costs
     return render_template("Regions/India.html", region_info=region_info)
 
@@ -214,7 +214,7 @@ def denmark():
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
-        fuel_costs[i.getName()] = regions[2].get_fuel_cost(i.getX(), i.getY())
+        fuel_costs[i.getName()] = regions[2].get_fuel_cost(i.getX(), i.getY(), player)
     region_info['fuel_costs'] = fuel_costs
     return render_template("Regions/Denmark.html", region_info=region_info)
 
@@ -243,7 +243,7 @@ def britain():
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
-        fuel_costs[i.getName()] = regions[3].get_fuel_cost(i.getX(), i.getY())
+        fuel_costs[i.getName()] = regions[3].get_fuel_cost(i.getX(), i.getY(), player)
     region_info['fuel_costs'] = fuel_costs
     return render_template("Regions/Britain.html", region_info=region_info)
 
@@ -272,7 +272,7 @@ def egypt():
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
-        fuel_costs[i.getName()] = regions[4].get_fuel_cost(i.getX(), i.getY())
+        fuel_costs[i.getName()] = regions[4].get_fuel_cost(i.getX(), i.getY(), player)
     region_info['fuel_costs'] = fuel_costs
     return render_template("Regions/Egypt.html", region_info=region_info)
 
@@ -301,7 +301,7 @@ def somalia():
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
-        fuel_costs[i.getName()] = regions[5].get_fuel_cost(i.getX(), i.getY())
+        fuel_costs[i.getName()] = regions[5].get_fuel_cost(i.getX(), i.getY(), player)
     region_info['fuel_costs'] = fuel_costs
     return render_template("Regions/Somalia.html", region_info=region_info)
 
@@ -330,7 +330,7 @@ def persia():
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
-        fuel_costs[i.getName()] = regions[6].get_fuel_cost(i.getX(), i.getY())
+        fuel_costs[i.getName()] = regions[6].get_fuel_cost(i.getX(), i.getY(), player)
     region_info['fuel_costs'] = fuel_costs
     return render_template("Regions/Persia.html", region_info=region_info)
 
@@ -359,7 +359,7 @@ def java():
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
-        fuel_costs[i.getName()] = regions[7].get_fuel_cost(i.getX(), i.getY())
+        fuel_costs[i.getName()] = regions[7].get_fuel_cost(i.getX(), i.getY(), player)
     region_info['fuel_costs'] = fuel_costs
     return render_template("Regions/Java.html", region_info=region_info)
 
@@ -388,7 +388,7 @@ def byzantium():
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
-        fuel_costs[i.getName()] = regions[8].get_fuel_cost(i.getX(), i.getY())
+        fuel_costs[i.getName()] = regions[8].get_fuel_cost(i.getX(), i.getY(), player)
     region_info['fuel_costs'] = fuel_costs
     return render_template("Regions/Byzantium.html", region_info=region_info)
 
@@ -417,7 +417,7 @@ def arabia():
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
-        fuel_costs[i.getName()] = regions[9].get_fuel_cost(i.getX(), i.getY())
+        fuel_costs[i.getName()] = regions[9].get_fuel_cost(i.getX(), i.getY(), player)
     region_info['fuel_costs'] = fuel_costs
     return render_template("Regions/Arabia.html", region_info=region_info)
 
