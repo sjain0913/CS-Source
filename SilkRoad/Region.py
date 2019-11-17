@@ -1,5 +1,4 @@
 from TechLevel import TechLevel
-import app
 from Market import Market
 import math
 class Region:
@@ -10,25 +9,25 @@ class Region:
         self.__name = name
         self.market = Market(TechLevel)
 
-    def get_fuel_cost(self, x, y):
+    def get_fuel_cost(self, x, y, player):
         return (3 * math.sqrt(x-self.__x * x-self.__x +
-                              y-self.__y * y-self.__y)) / (28 * app.player.getSailor())
+                              y-self.__y * y-self.__y)) / (28 * player.get_sailor())
 
-    def price_multiplier(self):
+    def price_multiplier(self, player):
         if self.__techLevel == TechLevel(0):
-            return 0.5 * 10.0/(app.player.barterer)
+            return 0.5 * 10.0/(player.barterer)
         elif self.__techLevel == TechLevel(1):
-            return 0.75 * 10.0/app.player.barterer
+            return 0.75 * 10.0/(player.barterer)
         elif self.__techLevel == TechLevel(2):
-            return 1.0 * 10.0/(app.player.barterer)
+            return 1.0 * 10.0/(player.barterer)
         elif self.__techLevel == TechLevel(3):
-            return 1.25 * 10.0/(app.player.barterer)
+            return 1.25 * 10.0/(player.barterer)
         elif self.__techLevel == TechLevel(4):
-            return 1.5 * 10.0/(app.player.barterer)
+            return 1.5 * 10.0/(player.barterer)
         elif self.__techLevel == TechLevel(5):
-            return 1.75 * 10.0/(app.player.barterer)
+            return 1.75 * 10.0/(player.barterer)
         elif self.__techLevel == TechLevel(6):
-            return 2.0 * 10.0/(app.player.barterer)
+            return 2.0 * 10.0/(player.barterer)
 
     def get_x(self):
         return self.__x
