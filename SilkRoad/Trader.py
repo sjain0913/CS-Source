@@ -1,28 +1,28 @@
 import random
-import app
 from Player import Player
 import Ship
 from Market import Market
 class Trader:
 
-    def __init__(self):
+    def __init__(self, player):
         self.market = Market("Trader")
         self.success = True
+        self.player = player
 
     def negotiate_prices(self):
-        chance_of_success = random.randint(30, 70) * (app.player.barterer / 3)
+        chance_of_success = random.randint(30, 70) * (self.player.barterer / 3)
         if chance_of_success >= 40:
             pass
         else:
             pass
 
     def rob(self):
-        chance_of_success = random.randint(30, 70) * (app.player.cannoneer / 3)
+        chance_of_success = random.randint(30, 70) * (self.player.cannoneer / 3)
         if chance_of_success >= 60:
             for i in self.market.items.keys():
-                app.player.add_to_inv(i)
+                self.player.add_to_inv(i)
         else:
-            app.player.ship.health -= 50
+            self.player.ship.health -= 50
 
     def buy(self, item):
         self.market.buy(item)
