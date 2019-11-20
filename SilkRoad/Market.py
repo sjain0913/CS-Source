@@ -41,3 +41,4 @@ class Market:
             temp = Item.trader_items
         for i in temp:
             self.items[i] = Item(i, self.price_mult, random.randint(0,10))
+        return self.items
