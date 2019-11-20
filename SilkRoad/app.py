@@ -72,7 +72,7 @@ def playerdata():
         player.craftsman = 0
         player.cannoneer = 0
         return render_template("Failure.html")
-    player_data = [player.name, player.credits, player.region.getName(), player.sailor,
+    player_data = [player.name, player.credits, player.region.get_name(), player.sailor,
                    player.cannoneer, player.barterer, player.craftsman]
     return render_template("PlayerData.html", player_data = player_data)
 
@@ -138,7 +138,7 @@ def china():
     global player
     global game
     this_region = Universe.get_instance().regions[0]
-    if player.region.getName() != 'China':
+    if player.region.get_name() != 'China':
         trav = player.travel(this_region, game)
     else:
         trav = {}
@@ -158,7 +158,7 @@ def china():
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
-        fuel_costs[i.getName()] = regions[0].get_fuel_cost(i.getX(), i.getY(), player)
+        fuel_costs[i.get_name()] = regions[0].get_fuel_cost(i.getX(), i.getY(), player)
     region_info['fuel_costs'] = fuel_costs
     return render_template("Regions/China.html", region_info=region_info)
 
@@ -167,7 +167,7 @@ def china():
 def india():
     global player
     this_region = Universe.get_instance().regions[1]
-    if player.region.getName() != 'India':
+    if player.region.get_name() != 'India':
         trav = player.travel(this_region, game)
     else:
         trav = {}
@@ -187,7 +187,7 @@ def india():
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
-        fuel_costs[i.getName()] = regions[1].get_fuel_cost(i.getX(), i.getY(), player)
+        fuel_costs[i.get_name()] = regions[1].get_fuel_cost(i.getX(), i.getY(), player)
     region_info['fuel_costs'] = fuel_costs
     return render_template("Regions/India.html", region_info=region_info)
 
@@ -196,7 +196,7 @@ def india():
 def denmark():
     global player
     this_region = Universe.get_instance().regions[2]
-    if player.region.getName() != 'Denmark':
+    if player.region.get_name() != 'Denmark':
         trav = player.travel(this_region, game)
     else:
         trav = {}
@@ -216,7 +216,7 @@ def denmark():
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
-        fuel_costs[i.getName()] = regions[2].get_fuel_cost(i.getX(), i.getY(), player)
+        fuel_costs[i.get_name()] = regions[2].get_fuel_cost(i.getX(), i.getY(), player)
     region_info['fuel_costs'] = fuel_costs
     return render_template("Regions/Denmark.html", region_info=region_info)
 
@@ -225,7 +225,7 @@ def denmark():
 def britain():
     global player
     this_region = Universe.get_instance().regions[3]
-    if player.region.getName() != 'Britain':
+    if player.region.get_name() != 'Britain':
         trav = player.travel(this_region, game)
     else:
         trav = {}
@@ -245,7 +245,7 @@ def britain():
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
-        fuel_costs[i.getName()] = regions[3].get_fuel_cost(i.getX(), i.getY(), player)
+        fuel_costs[i.get_name()] = regions[3].get_fuel_cost(i.getX(), i.getY(), player)
     region_info['fuel_costs'] = fuel_costs
     return render_template("Regions/Britain.html", region_info=region_info)
 
@@ -254,7 +254,7 @@ def britain():
 def egypt():
     global player
     this_region = Universe.get_instance().regions[4]
-    if player.region.getName() != 'Egypt':
+    if player.region.get_name() != 'Egypt':
         trav = player.travel(this_region, game)
     else:
         trav = {}
@@ -274,7 +274,7 @@ def egypt():
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
-        fuel_costs[i.getName()] = regions[4].get_fuel_cost(i.getX(), i.getY(), player)
+        fuel_costs[i.get_name()] = regions[4].get_fuel_cost(i.getX(), i.getY(), player)
     region_info['fuel_costs'] = fuel_costs
     return render_template("Regions/Egypt.html", region_info=region_info)
 
@@ -283,7 +283,7 @@ def egypt():
 def somalia():
     global player
     this_region = Universe.get_instance().regions[5]
-    if player.region.getName() != 'Somalia':
+    if player.region.get_name() != 'Somalia':
         trav = player.travel(this_region, game)
     else:
         trav = {}
@@ -303,7 +303,7 @@ def somalia():
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
-        fuel_costs[i.getName()] = regions[5].get_fuel_cost(i.getX(), i.getY(), player)
+        fuel_costs[i.get_name()] = regions[5].get_fuel_cost(i.getX(), i.getY(), player)
     region_info['fuel_costs'] = fuel_costs
     return render_template("Regions/Somalia.html", region_info=region_info)
 
@@ -312,7 +312,7 @@ def somalia():
 def persia():
     global player
     this_region = Universe.get_instance().regions[6]
-    if player.region.getName() != 'Persia':
+    if player.region.get_name() != 'Persia':
         trav = player.travel(this_region, game)
     else:
         trav = {}
@@ -332,7 +332,7 @@ def persia():
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
-        fuel_costs[i.getName()] = regions[6].get_fuel_cost(i.getX(), i.getY(), player)
+        fuel_costs[i.get_name()] = regions[6].get_fuel_cost(i.getX(), i.getY(), player)
     region_info['fuel_costs'] = fuel_costs
     return render_template("Regions/Persia.html", region_info=region_info)
 
@@ -341,7 +341,7 @@ def persia():
 def java():
     global player
     this_region = Universe.get_instance().regions[7]
-    if player.region.getName() != 'Java':
+    if player.region.get_name() != 'Java':
         trav = player.travel(this_region, game)
     else:
         trav = {}
@@ -361,7 +361,7 @@ def java():
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
-        fuel_costs[i.getName()] = regions[7].get_fuel_cost(i.getX(), i.getY(), player)
+        fuel_costs[i.get_name()] = regions[7].get_fuel_cost(i.getX(), i.getY(), player)
     region_info['fuel_costs'] = fuel_costs
     return render_template("Regions/Java.html", region_info=region_info)
 
@@ -370,7 +370,7 @@ def java():
 def byzantium():
     global player
     this_region = Universe.get_instance().regions[8]
-    if player.region.getName() != 'Byzantium':
+    if player.region.get_name() != 'Byzantium':
         trav = player.travel(this_region, game)
     else:
         trav = {}
@@ -390,7 +390,7 @@ def byzantium():
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
-        fuel_costs[i.getName()] = regions[8].get_fuel_cost(i.getX(), i.getY(), player)
+        fuel_costs[i.get_name()] = regions[8].get_fuel_cost(i.getX(), i.getY(), player)
     region_info['fuel_costs'] = fuel_costs
     return render_template("Regions/Byzantium.html", region_info=region_info)
 
@@ -399,7 +399,7 @@ def byzantium():
 def arabia():
     global player
     this_region = Universe.get_instance().regions[9]
-    if player.region.getName() != 'Arabia':
+    if player.region.get_name() != 'Arabia':
         trav = player.travel(this_region, game)
     else:
         trav = {}
@@ -419,7 +419,7 @@ def arabia():
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
-        fuel_costs[i.getName()] = regions[9].get_fuel_cost(i.getX(), i.getY(), player)
+        fuel_costs[i.get_name()] = regions[9].get_fuel_cost(i.getX(), i.getY(), player)
     region_info['fuel_costs'] = fuel_costs
     return render_template("Regions/Arabia.html", region_info=region_info)
 
