@@ -11,14 +11,14 @@
         <p>Fuel: {{region_info['fuel']}}
         <img height=200 width=300 src="Images/Arabia.jpg">
 
-        <h1>{{ region_market[market] }}</h1>
+        <h1>{{ region_info[market] }}</h1>
 
         Local Merchant: I see you have taken a liking to my wares. What item would you like to buy?
         <form name="itemBought" method = "post" action = '/buyingItem'>
             <input type = "text" name="itembough" id='b1'>
         </form>
 
-        <h2>{{ region_market[inventory] }}</h2>
+        <h2>{{ region_info[inventory] }}</h2>
 
         Local Merchant: Or would you rather sell something?
         <form name="itemSold" method = "post" action = '/sellingItem'>
@@ -66,13 +66,15 @@
     }
 
     function canITravel(url) {
+        var tRegion = url.replace('/', '');
+        console.log(tRegion);
         var current_fuel = "{{ region_info['fuel'] }}";
-        if (tRegion == '/Byzantium') {
+        if (tRegion == 'Byzantium') {
             var fuel_cost = "{{ region_info['fuel_costs']['Byzantium'] }}";
             console.log(fuel_cost);
             console.log(current_fuel);
-            console.log(current_fuel < fuel_cost);
-            if (current_fuel < fuel_cost) {
+            console.log(current_fuel < fuel_cost)
+            if (Number(current_fuel) < Number(fuel_cost)) {
                 alert("You do not have enough fuel!");
             }
             else {

@@ -24,7 +24,7 @@ class Player:
         else:
             self.inventory[item] = None
 
-    def travel(self, region):
+    def travel(self, region, game):
         trav = {}
         trav['toRegion'] = region
         if self.game.getDifficulty() == 1:
@@ -36,7 +36,7 @@ class Player:
                 trav['enc'] = "Navy"
             else:
                 self.ship.fuel = self.ship.fuel - self.region.get_fuel_cost(
-                    region.getX(), region.getY())
+                    region.getX(), region.getY(), self)
                 self.region = region
         if self.game.getDifficulty() == 2:
             if random.randint(0, 6) == 0:
@@ -47,7 +47,7 @@ class Player:
                 trav['enc'] = "Navy"
             else:
                 self.ship.fuel = self.ship.fuel - self.region.get_fuel_cost(
-                    region.getX(), region.getY())
+                    region.getX(), region.getY(), self)
                 self.region = region
         if self.game.getDifficulty() == 3:
             if random.randint(0, 3) == 0:
@@ -58,7 +58,7 @@ class Player:
                 trav['enc'] = "Navy"
             else:
                 self.ship.fuel = self.ship.fuel - self.region.get_fuel_cost(
-                    region.getX(), region.getY())
+                    region.getX(), region.getY(), self)
                 self.region = region
         return trav
 
