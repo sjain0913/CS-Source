@@ -2,6 +2,7 @@ import random
 from Item import Item
 import app
 from Game import Game
+
 class Player:
     def __init__(self, name):
         self.name = name
