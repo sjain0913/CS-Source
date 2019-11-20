@@ -11,14 +11,14 @@
         <p>Fuel: {{region_info['fuel']}}
         <img height=200 width=300 src="Images/Persia.jpg">
 
-        <h1>{{ region_info[market] }}</h1>
+        <h1>{{region_info['market']}}</h1>
 
         Local Merchant: I see you have taken a liking to my wares. What item would you like to buy?
         <form name="itemBought" method = "post" action = '/buyingItem'>
             <input type = "text" name="itembough" id='b1'>
         </form>
 
-        <h2>{{ region_info[inventory] }}</h2>
+        <h2>{{region_info['inventory']}}</h2>
         
         Local Merchant: Or would you rather sell something?
         <form name="itemSold" method = "post" action = '/sellingItem'>
@@ -35,6 +35,7 @@
                 <p> 
                     <label><u>R</u>egion Select</label>
                     <select accesskey="R" onchange="canITravel(this.options[this.selectedIndex].value)">
+                        <option>Click Me!</option>
                         <option value="/Byzantium">Byzantium {{region_info['fuel_costs']['Byzantium']}}</option>
                         <option value="/China">China {{region_info['fuel_costs']['China']}}</option>
                         <option value="/Denmark">Denmark {{region_info['fuel_costs']['Denmark']}}</option>
@@ -67,7 +68,6 @@
 
     function canITravel(url) {
         var tRegion = url.replace('/', '');
-        console.log(tRegion);
         var current_fuel = "{{ region_info['fuel'] }}";
         if (tRegion == 'Byzantium') {
             var fuel_cost = "{{ region_info['fuel_costs']['Byzantium'] }}";
@@ -80,7 +80,7 @@
         }
         else if (tRegion == 'China') {
             var fuel_cost = "{{ region_info['fuel_costs']['China'] }}";
-            if (current_fuel < fuel_cost) {
+            if (Number(current_fuel) < Number(fuel_cost)) {
                 alert("You do not have enough fuel!");
             }
             else {
@@ -89,7 +89,7 @@
         }
         else if (tRegion == 'Denmark') {
             var fuel_cost = "{{ region_info['fuel_costs']['Denmark'] }}";
-            if (current_fuel < fuel_cost) {
+            if (Number(current_fuel) < Number(fuel_cost)) {
                 alert("You do not have enough fuel!");
             }
             else {
@@ -98,7 +98,7 @@
         }
         else if (tRegion == 'Egypt') {
             var fuel_cost = "{{ region_info['fuel_costs']['Egypt'] }}";
-            if (current_fuel < fuel_cost) {
+            if (Number(current_fuel) < Number(fuel_cost)) {
                 alert("You do not have enough fuel!");
             }
             else {
@@ -107,7 +107,7 @@
         }
         else if (tRegion == 'Britain') {
             var fuel_cost = "{{ region_info['fuel_costs']['Britain'] }}";
-            if (current_fuel < fuel_cost) {
+            if (Number(current_fuel) < Number(fuel_cost)) {
                 alert("You do not have enough fuel!");
             }
             else {
@@ -116,7 +116,7 @@
         }
         else if (tRegion == 'India') {
             var fuel_cost = "{{ region_info['fuel_costs']['India'] }}";
-            if (current_fuel < fuel_cost) {
+            if (Number(current_fuel) < Number(fuel_cost)) {
                 alert("You do not have enough fuel!");
             }
             else {
@@ -125,7 +125,7 @@
         }
         else if (tRegion == 'Java') {
             var fuel_cost = "{{ region_info['fuel_costs']['Java'] }}";
-            if (current_fuel < fuel_cost) {
+            if (Number(current_fuel) < Number(fuel_cost)) {
                 alert("You do not have enough fuel!");
             }
             else {
@@ -134,7 +134,7 @@
         }
         else if (tRegion == 'Somalia') {
             var fuel_cost = "{{ region_info['fuel_costs']['Somalia'] }}";
-            if (current_fuel < fuel_cost) {
+            if (Number(current_fuel) < Number(fuel_cost)) {
                 alert("You do not have enough fuel!");
             }
             else {
@@ -143,7 +143,7 @@
         }
         else if (tRegion == "Arabia") {
             var fuel_cost = "{{ region_info['fuel_costs']['Arabia'] }}";
-            if (current_fuel < fuel_cost) {
+            if (Number(current_fuel) < Number(fuel_cost)) {
                 alert("You do not have enough fuel!");
             }
             else {

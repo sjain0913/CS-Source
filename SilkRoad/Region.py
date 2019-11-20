@@ -10,10 +10,6 @@ class Region:
         self.market = Market(TechLevel)
 
     def get_fuel_cost(self, x, y, player):
-        print(x)
-        print(y)
-        print(self.__x)
-        print(self.__y)
         return (3 * math.sqrt((x-self.__x) * (x-self.__x) +
                               (y-self.__y) * (y-self.__y))) / (28 * player.get_sailor())
 
