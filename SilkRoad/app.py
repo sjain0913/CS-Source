@@ -152,7 +152,7 @@ def china():
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
-                   'market' : this_region.market,
+                   'market' : this_region.market.items,
                    'inventory' : player.inventory,
                    'fuel' : player.ship.fuel}
     regions = Universe.get_instance().regions
@@ -181,7 +181,7 @@ def india():
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
-                   'market' : this_region.market,
+                   'market' : this_region.market.items,
                    'inventory' : player.inventory,
                    'fuel' : player.ship.fuel}
     regions = Universe.get_instance().regions
@@ -210,7 +210,7 @@ def denmark():
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
-                   'market' : this_region.market,
+                   'market' : this_region.market.items,
                    'inventory' : player.inventory,
                    'fuel' : player.ship.fuel}
     regions = Universe.get_instance().regions
@@ -239,7 +239,7 @@ def britain():
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
-                   'market' : this_region.market,
+                   'market' : this_region.market.items,
                    'inventory' : player.inventory,
                    'fuel' : player.ship.fuel}
     regions = Universe.get_instance().regions
@@ -268,7 +268,7 @@ def egypt():
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
-                   'market' : this_region.market,
+                   'market' : this_region.market.items,
                    'inventory' : player.inventory,
                    'fuel' : player.ship.fuel}
     regions = Universe.get_instance().regions
@@ -297,7 +297,7 @@ def somalia():
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
-                   'market' : this_region.market,
+                   'market' : this_region.market.items,
                    'inventory' : player.inventory,
                    'fuel' : player.ship.fuel}
     regions = Universe.get_instance().regions
@@ -326,7 +326,7 @@ def persia():
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
-                   'market' : this_region.market,
+                   'market' : this_region.market.items,
                    'inventory' : player.inventory,
                    'fuel' : player.ship.fuel}
     regions = Universe.get_instance().regions
@@ -355,7 +355,7 @@ def java():
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
-                   'market' : this_region.market,
+                   'market' : this_region.market.items,
                    'inventory' : player.inventory,
                    'fuel' : player.ship.fuel}
     regions = Universe.get_instance().regions
@@ -384,7 +384,7 @@ def byzantium():
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
-                   'market' : this_region.market,
+                   'market' : this_region.market.items,
                    'inventory' : player.inventory,
                    'fuel' : player.ship.fuel}
     regions = Universe.get_instance().regions
@@ -413,7 +413,7 @@ def arabia():
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
-                   'market' : this_region.market,
+                   'market' : this_region.market.items,
                    'inventory' : player.inventory,
                    'fuel' : player.ship.fuel}
     regions = Universe.get_instance().regions
