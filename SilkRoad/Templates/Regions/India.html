@@ -8,7 +8,6 @@
         <p>Region: India</p>
         <p>Coordinates: ({{region_info['region_x']}},{{region_info['region_y']}})</p>
         <p>Technology Level: {{region_info['region_tech']}}</p>
-        <p>Fuel: {{region_info['fuel']}}
         <img height=200 width=300 src="Images/India.jpg">
 
         <h1>{{region_info['market']}}</h1>
@@ -23,6 +22,15 @@
         Local Merchant: Or would you rather sell something?
         <form name="itemSold" method = "post" action = '/sellingItem'>
             <input type = "text" name="itemsold" id='s1'>
+        </form>
+
+        <h3>Fuel: {{region_info['fuel']}}</h3>
+
+        Pier Worker: Would you like to refuel?
+        <form name="refuel" method="post" action="">
+            <input type="radio" name="fuel" value="1" id='f1'/>1 Gallon of Fuel
+            <input type="radio" name="fuel" value="5" id='f2'/>5 Gallons of Fuel
+            <input type="radio" name="fuel" value="Max" id ='f3'/>Fill Fuel Tank
         </form>
 
         <form method="get" action = ''>
@@ -57,12 +65,23 @@
     function parseForm() {
         var buy = document.getElementById('b1').value;
         var sell = document.getElementById('s1').value;
+        var fuel = 0;
         var xhttp = new XMLHttpRequest();
+
+        if (document.getElementById('f1').checked) {
+            fuel = 1;
+        } else if (document.getElementById('f2').checked) {
+            fuel = 5;
+        } else if (document.getElementById('f3').checked) {
+            fuel = "max"
+        }
+
         xhttp.open("POST", "/MarketReceiver", true);
         xhttp.RequestHeader('Content-Type', 'application/json');
         xhttp.send(JSON.stringify({
             'itemBought' : buy,
-            'itemSold' : sell
+            'itemSold' : sell,
+            'refuel' : fuel
         }));
     }
 
