@@ -89,7 +89,11 @@ def skillparse():
 
 @app.route('/trader')
 def trader():
-    return render_template("NPCs/Trader.html")
+    region_info = {'market' : Trader.market.items,
+                   'inventory' : player.inventory,
+                   'fuel' : player.ship.fuel,
+                   'health' : player.ship.health}
+    return render_template("NPCs/Trader.html", region_info = region_info)
 
 @app.route('/TraderReceiver', methods=['POST'])
 def traderparse():
@@ -168,7 +172,7 @@ def marketparse():
             player.region.market.add_to_market(found)
             player.remove_from_inv(found)
             return redirect(url_for(player.region.__name))
-    elif refuel != '':
+    elif refuel != 0:
         if refuel == 1:
             player.ship.fuel = player.ship.fuel + 1
             player.credits = player.credits - (2 * player.region.market.price_mult)
@@ -179,6 +183,7 @@ def marketparse():
             fuelcost = 2 * (player.ship.fuelcap - player.ship.fuel)
             player.ship.fuel = player.ship.fuelcap
             player.credits = player.credits - (fuelcost * player.region.market.price_mult)
+    print(player.ship.fuel)
 
 @app.route('/China')
 def china():
@@ -191,17 +196,18 @@ def china():
         trav = {}
     if 'enc' in trav:
         if trav['enc'] == "Trader":
-            return redirect(url_for('trader'), trav)
+            return redirect('NPCs/Trader.html', trav)
         elif trav['enc'] == "Pirate":
-            return redirect(url_for('pirate'), trav)
+            return redirect('NPCs/Pirate.html', trav)
         elif trav['enc'] == "Navy":
-            return redirect(url_for('navy'), trav)
+            return redirect('NPCs/Navy.html', trav)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
                    'market' : this_region.market.items,
                    'inventory' : player.inventory,
-                   'fuel' : player.ship.fuel}
+                   'fuel' : player.ship.fuel,
+                   'health' : player.ship.health}
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
@@ -220,17 +226,18 @@ def india():
         trav = {}
     if 'enc' in trav:
         if trav['enc'] == "Trader":
-            return redirect(url_for('trader'), trav)
+            return redirect('NPCs/Trader.html', trav)
         elif trav['enc'] == "Pirate":
-            return redirect(url_for('pirate'), trav)
+            return redirect('NPCs/Pirate.html', trav)
         elif trav['enc'] == "Navy":
-            return redirect(url_for('navy'), trav)
+            return redirect('NPCs/Navy.html', trav)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
                    'market' : this_region.market.items,
                    'inventory' : player.inventory,
-                   'fuel' : player.ship.fuel}
+                   'fuel' : player.ship.fuel,
+                   'health' : player.ship.health}
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
@@ -249,17 +256,18 @@ def denmark():
         trav = {}
     if 'enc' in trav:
         if trav['enc'] == "Trader":
-            return redirect(url_for('trader'), trav)
+            return render_template('NPCs/Trader.html', toRegion=trav['toRegion'])
         elif trav['enc'] == "Pirate":
-            return redirect(url_for('pirate'), trav)
+            return render_template('NPCs/Pirate.html', toRegion=trav['toRegion'])
         elif trav['enc'] == "Navy":
-            return redirect(url_for('navy'), trav)
+            return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
                    'market' : this_region.market.items,
                    'inventory' : player.inventory,
-                   'fuel' : player.ship.fuel}
+                   'fuel' : player.ship.fuel,
+                   'health' : player.ship.health}
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
@@ -278,17 +286,18 @@ def britain():
         trav = {}
     if 'enc' in trav:
         if trav['enc'] == "Trader":
-            return redirect(url_for('trader'), trav)
+            return redirect('NPCs/Trader.html', trav)
         elif trav['enc'] == "Pirate":
-            return redirect(url_for('pirate'), trav)
+            return redirect('NPCs/Pirate.html', trav)
         elif trav['enc'] == "Navy":
-            return redirect(url_for('navy'), trav)
+            return redirect('NPCs/Navy.html', trav)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
                    'market' : this_region.market.items,
                    'inventory' : player.inventory,
-                   'fuel' : player.ship.fuel}
+                   'fuel' : player.ship.fuel,
+                   'health' : player.ship.health}
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
@@ -307,17 +316,18 @@ def egypt():
         trav = {}
     if 'enc' in trav:
         if trav['enc'] == "Trader":
-            return redirect(url_for('trader'), trav)
+            return redirect('NPCs/Trader.html', trav)
         elif trav['enc'] == "Pirate":
-            return redirect(url_for('pirate'), trav)
+            return redirect('NPCs/Pirate.html', trav)
         elif trav['enc'] == "Navy":
-            return redirect(url_for('navy'), trav)
+            return redirect('NPCs/Navy.html', trav)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
                    'market' : this_region.market.items,
                    'inventory' : player.inventory,
-                   'fuel' : player.ship.fuel}
+                   'fuel' : player.ship.fuel,
+                   'health' : player.ship.health}
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
@@ -336,17 +346,18 @@ def somalia():
         trav = {}
     if 'enc' in trav:
         if trav['enc'] == "Trader":
-            return redirect(url_for('trader'), trav)
+            return redirect('NPCs/Trader.html', trav)
         elif trav['enc'] == "Pirate":
-            return redirect(url_for('pirate'), trav)
+            return redirect('NPCs/Pirate.html', trav)
         elif trav['enc'] == "Navy":
-            return redirect(url_for('navy'), trav)
+            return redirect('NPCs/Navy.html', trav)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
                    'market' : this_region.market.items,
                    'inventory' : player.inventory,
-                   'fuel' : player.ship.fuel}
+                   'fuel' : player.ship.fuel,
+                   'health' : player.ship.health}
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
@@ -365,17 +376,18 @@ def persia():
         trav = {}
     if 'enc' in trav:
         if trav['enc'] == "Trader":
-            return redirect(url_for('trader'), trav)
+            return redirect("NPCs/Trader.html", trav)
         elif trav['enc'] == "Pirate":
-            return redirect(url_for('pirate'), trav)
+            return redirect("NPCs/Pirate.html", trav)
         elif trav['enc'] == "Navy":
-            return redirect(url_for('navy'), trav)
+            return redirect("NPCS/Navy.html", trav)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
                    'market' : this_region.market.items,
                    'inventory' : player.inventory,
-                   'fuel' : player.ship.fuel}
+                   'fuel' : player.ship.fuel,
+                   'health' : player.ship.health}
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
@@ -394,17 +406,18 @@ def java():
         trav = {}
     if 'enc' in trav:
         if trav['enc'] == "Trader":
-            return redirect(url_for('trader'), trav)
+            return redirect("NPCs/Trader.html", trav)
         elif trav['enc'] == "Pirate":
-            return redirect(url_for('pirate'), trav)
+            return redirect("NPCs/Pirate.html", trav)
         elif trav['enc'] == "Navy":
-            return redirect(url_for('navy'), trav)
+            return redirect("NPCs/Navy.html", trav)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
                    'market' : this_region.market.items,
                    'inventory' : player.inventory,
-                   'fuel' : player.ship.fuel}
+                   'fuel' : player.ship.fuel,
+                   'health' : player.ship.health}
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
@@ -423,17 +436,18 @@ def byzantium():
         trav = {}
     if 'enc' in trav:
         if trav['enc'] == "Trader":
-            return redirect(url_for('trader'), trav)
+            return redirect("NPCs/Trader.html", trav)
         elif trav['enc'] == "Pirate":
-            return redirect(url_for('pirate'), trav)
+            return redirect("NPCs/Pirate.html", trav)
         elif trav['enc'] == "Navy":
-            return redirect(url_for('navy'), trav)
+            return redirect("NPCs/Navy.html", trav)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
                    'market' : this_region.market.items,
                    'inventory' : player.inventory,
-                   'fuel' : player.ship.fuel}
+                   'fuel' : player.ship.fuel,
+                   'health' : player.ship.health}
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
@@ -452,17 +466,18 @@ def arabia():
         trav = {}
     if 'enc' in trav:
         if trav['enc'] == "Trader":
-            return redirect(url_for('trader'), trav)
+            return redirect('NPCs/Trader.html', trav)
         elif trav['enc'] == "Pirate":
-            return redirect(url_for('pirate'), trav)
+            return redirect('NPCs/Pirate.html', trav)
         elif trav['enc'] == "Navy":
-            return redirect(url_for('navy'), trav)
+            return redirect('NPCs/Navy.html', trav)
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
                    'market' : this_region.market.items,
                    'inventory' : player.inventory,
-                   'fuel' : player.ship.fuel}
+                   'fuel' : player.ship.fuel,
+                   'health' : player.ship.health}
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:

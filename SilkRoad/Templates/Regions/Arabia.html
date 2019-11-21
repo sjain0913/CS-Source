@@ -76,7 +76,7 @@
         } else if (document.getElementById('f3').checked) {
             fuel = "max"
         }
-
+        console.log(fuel);
         xhttp.open("POST", "/MarketReceiver", true);
         xhttp.RequestHeader('Content-Type', 'application/json');
         xhttp.send(JSON.stringify({
