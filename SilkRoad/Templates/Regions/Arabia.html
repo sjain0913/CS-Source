@@ -33,6 +33,11 @@
             <input type="radio" name="fuel" value="Max" id ='f3'/>Fill Fuel Tank
         </form>
 
+        <h4>Ship Health: {{region_info['health']}}</h4>
+        <form name="rebuilding" method="post" action="">
+            <input type="radio" name="build" value=""/>
+        </form>
+
         <form method="get" action = ''>
             <button onclick="parseForm()">Submit</button>
         </form>

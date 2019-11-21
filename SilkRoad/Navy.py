@@ -16,7 +16,7 @@ class Navy:
             self.success = True
         else:
             self.success = False
-            app.player.ship.health -= random.randint(25,50)
+            app.player.ship.health = app.player.ship.health - random.randint(25,50)
         
     def fight(self, success):
         chance_of_success = random.randint(30, 70) * (app.player.cannoneer / 3)
@@ -25,6 +25,8 @@ class Navy:
         else:
             self.success = False 
             app.player.remove_from_inv(self.black_listed_item)
+            app.player.ship.health = app.player.ship.health - random.randint(25,50)
+            app.player.credits = app.player.credits - random.randint(50,100)
             #should also lose credits and health
 
     def forfeit(self, item_list):

@@ -21,7 +21,7 @@ class Pirates:
             self.success = False
             self.player.ship.health -= random.randint(25, 50)
             if self.player.credits < self.ransom:
-                self.credits += self.player.credits
+                self.credits = self.credits + self.player.credits
                 self.player.credits = 0
                 self.player.remove_from_inv(self.stolen_item)
             else:
