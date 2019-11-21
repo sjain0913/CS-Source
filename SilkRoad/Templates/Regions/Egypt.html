@@ -24,6 +24,8 @@
             <input type = "text" name="itemsold" id='s1'>
         </form>
 
+        <h3>Fuel: {{region_info['fuel']}}</h3>
+
         Pier Worker: Would you like to refuel?
         <form name="refuel" method="post" action="">
             <input type="radio" name="fuel" value="1" id='f1'/>1 Gallon of Fuel
@@ -31,7 +33,7 @@
             <input type="radio" name="fuel" value="Max" id ='f3'/>Fill Fuel Tank
         </form>
 
-        <h3>Fuel: {{region_info['fuel']}}</h3>
+        <h4>Ship Health: {{region_info['health']}}</h4>
 
         <form method="get" action = ''>
                 <button onclick="parseForm()">Submit</button>
