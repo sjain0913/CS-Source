@@ -8,6 +8,7 @@
         <p>Region: India</p>
         <p>Coordinates: ({{region_info['region_x']}},{{region_info['region_y']}})</p>
         <p>Technology Level: {{region_info['region_tech']}}</p>
+        <p>Credits: {{region_info['credits']}}</p>
         <img height=200 width=300 src="Images/India.jpg">
 
         <h1>{{region_info['market']}}</h1>
@@ -34,6 +35,11 @@
         </form>
 
         <h4>Ship Health: {{region_info['health']}}</h4>
+        <form name="repairing" method="post" action="">
+                <input type="radio" name="repair" value="10" id="r1"/>10 Health Points
+                <input type="radio" name="repair" value="50" id="r2"/>50 Health Points
+                <input type="radio" name="repair" value="max" id="r3"/>Fill Health Points
+        </form>
 
         <form method="get" action = ''>
                 <button onclick="parseForm()">Submit</button>
@@ -68,6 +74,7 @@
         var buy = document.getElementById('b1').value;
         var sell = document.getElementById('s1').value;
         var fuel = 0;
+        var repair = 0;
         var xhttp = new XMLHttpRequest();
 
         if (document.getElementById('f1').checked) {
@@ -77,6 +84,15 @@
         } else if (document.getElementById('f3').checked) {
             fuel = "max"
         }
+
+        if (document.getElementById('r1').checked) {
+            repair = 10;
+        } else if (document.getElementById('r2').checked) {
+            repair = 50;
+        } else if (document.getElementById('r3').checked) {
+            repair = "max"
+        }
+
         console.log(fuel);
         xhttp.open("POST", "/MarketReceiver", true);
         xhttp.setRequestHeader('Content-Type', 'application/json');

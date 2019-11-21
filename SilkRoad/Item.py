@@ -19,7 +19,8 @@ class Item:
                    "Copper" : 4, "Gold" : 10, "Honey" : 6,
                    "Brass" : 8, "Gunpowder" : 9, "Silk" : 13,
                    "Coffee" : 7, "Paper" : 5, "Opium" : 10,
-                   "Oil" : 12, "Rubber" : 6, "Textile" : 7}
+                   "Oil" : 12, "Rubber" : 6, "Textile" : 7,
+                   "Golden Goose" : 50}
 
     def __init__(self, name, price_mult, number):
         self.name = name

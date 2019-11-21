@@ -93,7 +93,10 @@ def trader():
     global trade
     global player
     trade = Trader(player)
-    region_info = {'market' : trade.market.items,
+    market_list = {}
+    for item in trade.market.items.keys():
+        market_list[item] = trade.market.items[item].buy_value
+    region_info = {'market' : market_list,
                    'inventory' : player.inventory,
                    'fuel' : player.ship.fuel,
                    'health' : player.ship.health}
@@ -127,8 +130,10 @@ def pirateparse():
     if choice == "pay":
         pir.pay()
     elif choice == "flee":
+        player.karma = player.karma - 5
         pir.flee()
     else:
+        player.karma = player.karma + 5
         pir.fight()
 
 @app.route('/navy')
@@ -147,6 +152,7 @@ def marketparse():
     buy_item = data['itemBought']
     sell_item = data['itemSold']
     refuel = data['refuel']
+    repair = data['repair']
     global player
     if buy_item != '':
         found = ''
@@ -161,6 +167,8 @@ def marketparse():
             player.credits = player.credits - boughtItem.buy_value
             player.region.market.remove_from_market(found)
             player.add_to_inv(found)
+            if "Golden Goose" in player.inventory:
+                return render_template("Victory.html")
             return redirect(url_for(player.region.__name))
     elif sell_item != '':
         found = ''
@@ -187,6 +195,17 @@ def marketparse():
             fuelcost = 2 * (player.ship.fuel_cap - player.ship.fuel)
             player.ship.fuel = player.ship.fuel_cap
             player.credits = player.credits - (fuelcost * player.region.market.price_mult)
+    elif repair != 0:
+        if repair == 10:
+            player.ship.health += 10
+            player.credits -= (2 / player.craftsman)
+        elif repair == 50:
+            player.ship.health += 50
+            player.credits -= (10 / player.craftsman)
+        elif repair == "max":
+            healthcost = 3 * (player.ship.health_cap - player.ship.health)
+            player.ship.health = 200
+            player.credits -= (100 / player.craftsman)
     print(player.ship.fuel)
 
 @app.route('/China')
@@ -195,7 +214,7 @@ def china():
     global game
     this_region = Universe.get_instance().regions[0]
     market_list = {}
-    for item in player.region.market.items.keys:
+    for item in player.region.market.items.keys():
         market_list[item] = player.region.market.items[item].buy_value
     region_info = {'region_x' : this_region.getX(),
                 'region_y' : this_region.getY(),
@@ -203,7 +222,8 @@ def china():
                 'market' : market_list,
                 'inventory' : player.inventory,
                 'fuel' : player.ship.fuel,
-                'health' : player.ship.health}
+                'health' : player.ship.health,
+                'credits' : player.credits}
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
@@ -222,6 +242,8 @@ def china():
             return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
     else:
         return render_template("Regions/China.html", region_info=region_info)
+    if (player.ship.health == 0):
+        return render_template('GameOver.html')
 
 
 @app.route('/India')
@@ -229,7 +251,7 @@ def india():
     global player
     this_region = Universe.get_instance().regions[1]
     market_list = {}
-    for item in player.region.market.items.keys:
+    for item in player.region.market.items.keys():
         market_list[item] = player.region.market.items[item].buy_value
     region_info = {'region_x' : this_region.getX(),
                 'region_y' : this_region.getY(),
@@ -237,7 +259,8 @@ def india():
                 'market' : market_list,
                 'inventory' : player.inventory,
                 'fuel' : player.ship.fuel,
-                'health' : player.ship.health}
+                'health' : player.ship.health,
+                'credits' : player.credits}
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
@@ -256,6 +279,8 @@ def india():
             return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
     else:
         return render_template("Regions/India.html", region_info=region_info)
+    if (player.ship.health == 0):
+        return render_template('GameOver.html')
 
 
 @app.route('/Denmark')
@@ -263,7 +288,7 @@ def denmark():
     global player
     this_region = Universe.get_instance().regions[2]
     market_list = {}
-    for item in player.region.market.items.keys:
+    for item in player.region.market.items.keys():
         market_list[item] = player.region.market.items[item].buy_value
     region_info = {'region_x' : this_region.getX(),
                 'region_y' : this_region.getY(),
@@ -271,7 +296,8 @@ def denmark():
                 'market' : market_list,
                 'inventory' : player.inventory,
                 'fuel' : player.ship.fuel,
-                'health' : player.ship.health}
+                'health' : player.ship.health,
+                'credits' : player.credits}
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
@@ -290,6 +316,8 @@ def denmark():
             return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
     else:
         return render_template("Regions/Denmark.html", region_info=region_info)
+    if (player.ship.health == 0):
+        return render_template('GameOver.html')
 
 
 @app.route('/Britain')
@@ -297,7 +325,7 @@ def britain():
     global player
     this_region = Universe.get_instance().regions[3]
     market_list = {}
-    for item in player.region.market.items.keys:
+    for item in player.region.market.items.keys()():
         market_list[item] = player.region.market.items[item].buy_value
     region_info = {'region_x' : this_region.getX(),
                 'region_y' : this_region.getY(),
@@ -305,7 +333,8 @@ def britain():
                 'market' : market_list,
                 'inventory' : player.inventory,
                 'fuel' : player.ship.fuel,
-                'health' : player.ship.health}
+                'health' : player.ship.health,
+                'credits' : player.credits}
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
@@ -324,6 +353,8 @@ def britain():
             return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
     else:
         return render_template("Regions/Britain.html", region_info=region_info)
+    if (player.ship.health == 0):
+        return render_template('GameOver.html')
 
 
 @app.route('/Egypt')
@@ -331,7 +362,7 @@ def egypt():
     global player
     this_region = Universe.get_instance().regions[4]
     market_list = {}
-    for item in player.region.market.items.keys:
+    for item in player.region.market.items.keys():
         market_list[item] = player.region.market.items[item].buy_value
     region_info = {'region_x' : this_region.getX(),
                 'region_y' : this_region.getY(),
@@ -339,7 +370,8 @@ def egypt():
                 'market' : market_list,
                 'inventory' : player.inventory,
                 'fuel' : player.ship.fuel,
-                'health' : player.ship.health}
+                'health' : player.ship.health,
+                'credits' : player.credits}
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
@@ -358,6 +390,8 @@ def egypt():
             return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
     else:
         return render_template("Regions/Egypt.html", region_info=region_info)
+    if (player.ship.health == 0):
+        return render_template('GameOver.html')
 
 
 @app.route('/Somalia')
@@ -365,7 +399,7 @@ def somalia():
     global player
     this_region = Universe.get_instance().regions[5]
     market_list = {}
-    for item in player.region.market.items.keys:
+    for item in player.region.market.items.keys():
         market_list[item] = player.region.market.items[item].buy_value
     region_info = {'region_x' : this_region.getX(),
                 'region_y' : this_region.getY(),
@@ -373,7 +407,8 @@ def somalia():
                 'market' : market_list,
                 'inventory' : player.inventory,
                 'fuel' : player.ship.fuel,
-                'health' : player.ship.health}
+                'health' : player.ship.health,
+                'credits' : player.credits}
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
@@ -392,6 +427,8 @@ def somalia():
             return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
     else:
         return render_template("Regions/Somalia.html", region_info=region_info)
+    if (player.ship.health == 0):
+        return render_template('GameOver.html')
 
 
 @app.route('/Persia')
@@ -399,7 +436,7 @@ def persia():
     global player
     this_region = Universe.get_instance().regions[6]
     market_list = {}
-    for item in player.region.market.items.keys:
+    for item in player.region.market.items.keys():
         market_list[item] = player.region.market.items[item].buy_value
     region_info = {'region_x' : this_region.getX(),
                 'region_y' : this_region.getY(),
@@ -407,7 +444,8 @@ def persia():
                 'market' : market_list,
                 'inventory' : player.inventory,
                 'fuel' : player.ship.fuel,
-                'health' : player.ship.health}
+                'health' : player.ship.health,
+                'credits' : player.credits}
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
@@ -426,6 +464,8 @@ def persia():
             return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
     else:
         return render_template("Regions/Persia.html", region_info=region_info)
+    if (player.ship.health == 0):
+        return render_template('GameOver.html')
 
 
 @app.route('/Java')
@@ -433,7 +473,7 @@ def java():
     global player
     this_region = Universe.get_instance().regions[7]
     market_list = {}
-    for item in player.region.market.items.keys:
+    for item in player.region.market.items.keys():
         market_list[item] = player.region.market.items[item].buy_value
     region_info = {'region_x' : this_region.getX(),
                 'region_y' : this_region.getY(),
@@ -441,7 +481,8 @@ def java():
                 'market' : market_list,
                 'inventory' : player.inventory,
                 'fuel' : player.ship.fuel,
-                'health' : player.ship.health}
+                'health' : player.ship.health,
+                'credits' : player.credits}
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
@@ -460,6 +501,8 @@ def java():
             return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
     else:
         return render_template("Regions/Java.html", region_info=region_info)
+    if (player.ship.health == 0):
+        return render_template('GameOver.html')
 
 
 @app.route('/Byzantium')
@@ -467,7 +510,7 @@ def byzantium():
     global player
     this_region = Universe.get_instance().regions[8]
     market_list = {}
-    for item in player.region.market.items.keys:
+    for item in player.region.market.items.keys():
         market_list[item] = player.region.market.items[item].buy_value
     region_info = {'region_x' : this_region.getX(),
                 'region_y' : this_region.getY(),
@@ -475,7 +518,8 @@ def byzantium():
                 'market' : market_list,
                 'inventory' : player.inventory,
                 'fuel' : player.ship.fuel,
-                'health' : player.ship.health}
+                'health' : player.ship.health,
+                'credits' : player.credits}
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
@@ -494,6 +538,8 @@ def byzantium():
             return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
     else:
         return render_template("Regions/Byzantium.html", region_info=region_info)
+    if (player.ship.health == 0):
+        return render_template('GameOver.html')
 
 
 @app.route('/Arabia')
@@ -501,7 +547,7 @@ def arabia():
     global player
     this_region = Universe.get_instance().regions[9]
     market_list = {}
-    for item in player.region.market.items.keys:
+    for item in player.region.market.items.keys():
         market_list[item] = player.region.market.items[item].buy_value
     region_info = {'region_x' : this_region.getX(),
                 'region_y' : this_region.getY(),
@@ -509,7 +555,8 @@ def arabia():
                 'market' : market_list,
                 'inventory' : player.inventory,
                 'fuel' : player.ship.fuel,
-                'health' : player.ship.health}
+                'health' : player.ship.health,
+                'credits' : player.credits}
     regions = Universe.get_instance().regions
     fuel_costs = {}
     for i in regions:
@@ -528,6 +575,8 @@ def arabia():
             return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
     else:
         return render_template("Regions/Arabia.html", region_info=region_info)
+    if (player.ship.health == 0):
+        return render_template('GameOver.html')
 
 
 if __name__ == '__main__':
