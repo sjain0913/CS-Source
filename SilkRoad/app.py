@@ -10,6 +10,7 @@ app = Flask(__name__)
 player = None
 universe = None
 game = None
+trade = None
 
 @app.route('/')
 def title_screen():
@@ -89,7 +90,10 @@ def skillparse():
 
 @app.route('/trader')
 def trader():
-    region_info = {'market' : Trader.market.items,
+    global trade
+    global player
+    trade = Trader(player)
+    region_info = {'market' : trade.market.items,
                    'inventory' : player.inventory,
                    'fuel' : player.ship.fuel,
                    'health' : player.ship.health}
@@ -99,7 +103,7 @@ def trader():
 def traderparse():
     data = request.get_json()
     choice = data['traderChoice']
-    trade = Trader()
+    global trade
     if choice == "buy":
         trade.buy(data['itemBought'])
     elif choice == "sell":
@@ -180,8 +184,8 @@ def marketparse():
             player.ship.fuel = player.ship.fuel + 5
             player.credits = player.credits - (10 * player.region.market.price_mult)
         elif refuel == "max":
-            fuelcost = 2 * (player.ship.fuelcap - player.ship.fuel)
-            player.ship.fuel = player.ship.fuelcap
+            fuelcost = 2 * (player.ship.fuel_cap - player.ship.fuel)
+            player.ship.fuel = player.ship.fuel_cap
             player.credits = player.credits - (fuelcost * player.region.market.price_mult)
     print(player.ship.fuel)
 
@@ -190,6 +194,21 @@ def china():
     global player
     global game
     this_region = Universe.get_instance().regions[0]
+    market_list = {}
+    for item in player.region.market.items.keys:
+        market_list[item] = player.region.market.items[item].buy_value
+    region_info = {'region_x' : this_region.getX(),
+                'region_y' : this_region.getY(),
+                'region_tech' : this_region.getTechLevel(),
+                'market' : market_list,
+                'inventory' : player.inventory,
+                'fuel' : player.ship.fuel,
+                'health' : player.ship.health}
+    regions = Universe.get_instance().regions
+    fuel_costs = {}
+    for i in regions:
+        fuel_costs[i.get_name()] = regions[0].get_fuel_cost(i.getX(), i.getY(), player)
+    region_info['fuel_costs'] = fuel_costs
     if player.region.get_name() != 'China':
         trav = player.travel(this_region, game)
     else:
@@ -201,25 +220,29 @@ def china():
             return render_template('NPCs/Pirate.html', toRegion=trav['toRegion'])
         elif trav['enc'] == "Navy":
             return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
-    region_info = {'region_x' : this_region.getX(),
-                   'region_y' : this_region.getY(),
-                   'region_tech' : this_region.getTechLevel(),
-                   'market' : this_region.market.items,
-                   'inventory' : player.inventory,
-                   'fuel' : player.ship.fuel,
-                   'health' : player.ship.health}
-    regions = Universe.get_instance().regions
-    fuel_costs = {}
-    for i in regions:
-        fuel_costs[i.get_name()] = regions[0].get_fuel_cost(i.getX(), i.getY(), player)
-    region_info['fuel_costs'] = fuel_costs
-    return render_template("Regions/China.html", region_info=region_info)
+    else:
+        return render_template("Regions/China.html", region_info=region_info)
 
 
 @app.route('/India')
 def india():
     global player
     this_region = Universe.get_instance().regions[1]
+    market_list = {}
+    for item in player.region.market.items.keys:
+        market_list[item] = player.region.market.items[item].buy_value
+    region_info = {'region_x' : this_region.getX(),
+                'region_y' : this_region.getY(),
+                'region_tech' : this_region.getTechLevel(),
+                'market' : market_list,
+                'inventory' : player.inventory,
+                'fuel' : player.ship.fuel,
+                'health' : player.ship.health}
+    regions = Universe.get_instance().regions
+    fuel_costs = {}
+    for i in regions:
+        fuel_costs[i.get_name()] = regions[1].get_fuel_cost(i.getX(), i.getY(), player)
+    region_info['fuel_costs'] = fuel_costs
     if player.region.get_name() != 'India':
         trav = player.travel(this_region, game)
     else:
@@ -231,25 +254,29 @@ def india():
             return render_template('NPCs/Pirate.html', toRegion=trav['toRegion'])
         elif trav['enc'] == "Navy":
             return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
-    region_info = {'region_x' : this_region.getX(),
-                   'region_y' : this_region.getY(),
-                   'region_tech' : this_region.getTechLevel(),
-                   'market' : this_region.market.items,
-                   'inventory' : player.inventory,
-                   'fuel' : player.ship.fuel,
-                   'health' : player.ship.health}
-    regions = Universe.get_instance().regions
-    fuel_costs = {}
-    for i in regions:
-        fuel_costs[i.get_name()] = regions[1].get_fuel_cost(i.getX(), i.getY(), player)
-    region_info['fuel_costs'] = fuel_costs
-    return render_template("Regions/India.html", region_info=region_info)
+    else:
+        return render_template("Regions/India.html", region_info=region_info)
 
 
 @app.route('/Denmark')
 def denmark():
     global player
     this_region = Universe.get_instance().regions[2]
+    market_list = {}
+    for item in player.region.market.items.keys:
+        market_list[item] = player.region.market.items[item].buy_value
+    region_info = {'region_x' : this_region.getX(),
+                'region_y' : this_region.getY(),
+                'region_tech' : this_region.getTechLevel(),
+                'market' : market_list,
+                'inventory' : player.inventory,
+                'fuel' : player.ship.fuel,
+                'health' : player.ship.health}
+    regions = Universe.get_instance().regions
+    fuel_costs = {}
+    for i in regions:
+        fuel_costs[i.get_name()] = regions[2].get_fuel_cost(i.getX(), i.getY(), player)
+    region_info['fuel_costs'] = fuel_costs
     if player.region.get_name() != 'Denmark':
         trav = player.travel(this_region, game)
     else:
@@ -261,25 +288,29 @@ def denmark():
             return render_template('NPCs/Pirate.html', toRegion=trav['toRegion'])
         elif trav['enc'] == "Navy":
             return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
-    region_info = {'region_x' : this_region.getX(),
-                   'region_y' : this_region.getY(),
-                   'region_tech' : this_region.getTechLevel(),
-                   'market' : this_region.market.items,
-                   'inventory' : player.inventory,
-                   'fuel' : player.ship.fuel,
-                   'health' : player.ship.health}
-    regions = Universe.get_instance().regions
-    fuel_costs = {}
-    for i in regions:
-        fuel_costs[i.get_name()] = regions[2].get_fuel_cost(i.getX(), i.getY(), player)
-    region_info['fuel_costs'] = fuel_costs
-    return render_template("Regions/Denmark.html", region_info=region_info)
+    else:
+        return render_template("Regions/Denmark.html", region_info=region_info)
 
 
 @app.route('/Britain')
 def britain():
     global player
     this_region = Universe.get_instance().regions[3]
+    market_list = {}
+    for item in player.region.market.items.keys:
+        market_list[item] = player.region.market.items[item].buy_value
+    region_info = {'region_x' : this_region.getX(),
+                'region_y' : this_region.getY(),
+                'region_tech' : this_region.getTechLevel(),
+                'market' : market_list,
+                'inventory' : player.inventory,
+                'fuel' : player.ship.fuel,
+                'health' : player.ship.health}
+    regions = Universe.get_instance().regions
+    fuel_costs = {}
+    for i in regions:
+        fuel_costs[i.get_name()] = regions[3].get_fuel_cost(i.getX(), i.getY(), player)
+    region_info['fuel_costs'] = fuel_costs
     if player.region.get_name() != 'Britain':
         trav = player.travel(this_region, game)
     else:
@@ -291,25 +322,29 @@ def britain():
             return render_template('NPCs/Pirate.html', toRegion=trav['toRegion'])
         elif trav['enc'] == "Navy":
             return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
-    region_info = {'region_x' : this_region.getX(),
-                   'region_y' : this_region.getY(),
-                   'region_tech' : this_region.getTechLevel(),
-                   'market' : this_region.market.items,
-                   'inventory' : player.inventory,
-                   'fuel' : player.ship.fuel,
-                   'health' : player.ship.health}
-    regions = Universe.get_instance().regions
-    fuel_costs = {}
-    for i in regions:
-        fuel_costs[i.get_name()] = regions[3].get_fuel_cost(i.getX(), i.getY(), player)
-    region_info['fuel_costs'] = fuel_costs
-    return render_template("Regions/Britain.html", region_info=region_info)
+    else:
+        return render_template("Regions/Britain.html", region_info=region_info)
 
 
 @app.route('/Egypt')
 def egypt():
     global player
     this_region = Universe.get_instance().regions[4]
+    market_list = {}
+    for item in player.region.market.items.keys:
+        market_list[item] = player.region.market.items[item].buy_value
+    region_info = {'region_x' : this_region.getX(),
+                'region_y' : this_region.getY(),
+                'region_tech' : this_region.getTechLevel(),
+                'market' : market_list,
+                'inventory' : player.inventory,
+                'fuel' : player.ship.fuel,
+                'health' : player.ship.health}
+    regions = Universe.get_instance().regions
+    fuel_costs = {}
+    for i in regions:
+        fuel_costs[i.get_name()] = regions[4].get_fuel_cost(i.getX(), i.getY(), player)
+    region_info['fuel_costs'] = fuel_costs
     if player.region.get_name() != 'Egypt':
         trav = player.travel(this_region, game)
     else:
@@ -321,25 +356,29 @@ def egypt():
             return render_template('NPCs/Pirate.html', toRegion=trav['toRegion'])
         elif trav['enc'] == "Navy":
             return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
-    region_info = {'region_x' : this_region.getX(),
-                   'region_y' : this_region.getY(),
-                   'region_tech' : this_region.getTechLevel(),
-                   'market' : this_region.market.items,
-                   'inventory' : player.inventory,
-                   'fuel' : player.ship.fuel,
-                   'health' : player.ship.health}
-    regions = Universe.get_instance().regions
-    fuel_costs = {}
-    for i in regions:
-        fuel_costs[i.get_name()] = regions[4].get_fuel_cost(i.getX(), i.getY(), player)
-    region_info['fuel_costs'] = fuel_costs
-    return render_template("Regions/Egypt.html", region_info=region_info)
+    else:
+        return render_template("Regions/Egypt.html", region_info=region_info)
 
 
 @app.route('/Somalia')
 def somalia():
     global player
     this_region = Universe.get_instance().regions[5]
+    market_list = {}
+    for item in player.region.market.items.keys:
+        market_list[item] = player.region.market.items[item].buy_value
+    region_info = {'region_x' : this_region.getX(),
+                'region_y' : this_region.getY(),
+                'region_tech' : this_region.getTechLevel(),
+                'market' : market_list,
+                'inventory' : player.inventory,
+                'fuel' : player.ship.fuel,
+                'health' : player.ship.health}
+    regions = Universe.get_instance().regions
+    fuel_costs = {}
+    for i in regions:
+        fuel_costs[i.get_name()] = regions[5].get_fuel_cost(i.getX(), i.getY(), player)
+    region_info['fuel_costs'] = fuel_costs
     if player.region.get_name() != 'Somalia':
         trav = player.travel(this_region, game)
     else:
@@ -351,25 +390,29 @@ def somalia():
             return render_template('NPCs/Pirate.html', toRegion=trav['toRegion'])
         elif trav['enc'] == "Navy":
             return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
-    region_info = {'region_x' : this_region.getX(),
-                   'region_y' : this_region.getY(),
-                   'region_tech' : this_region.getTechLevel(),
-                   'market' : this_region.market.items,
-                   'inventory' : player.inventory,
-                   'fuel' : player.ship.fuel,
-                   'health' : player.ship.health}
-    regions = Universe.get_instance().regions
-    fuel_costs = {}
-    for i in regions:
-        fuel_costs[i.get_name()] = regions[5].get_fuel_cost(i.getX(), i.getY(), player)
-    region_info['fuel_costs'] = fuel_costs
-    return render_template("Regions/Somalia.html", region_info=region_info)
+    else:
+        return render_template("Regions/Somalia.html", region_info=region_info)
 
 
 @app.route('/Persia')
 def persia():
     global player
     this_region = Universe.get_instance().regions[6]
+    market_list = {}
+    for item in player.region.market.items.keys:
+        market_list[item] = player.region.market.items[item].buy_value
+    region_info = {'region_x' : this_region.getX(),
+                'region_y' : this_region.getY(),
+                'region_tech' : this_region.getTechLevel(),
+                'market' : market_list,
+                'inventory' : player.inventory,
+                'fuel' : player.ship.fuel,
+                'health' : player.ship.health}
+    regions = Universe.get_instance().regions
+    fuel_costs = {}
+    for i in regions:
+        fuel_costs[i.get_name()] = regions[6].get_fuel_cost(i.getX(), i.getY(), player)
+    region_info['fuel_costs'] = fuel_costs
     if player.region.get_name() != 'Persia':
         trav = player.travel(this_region, game)
     else:
@@ -381,25 +424,29 @@ def persia():
             return render_template('NPCs/Pirate.html', toRegion=trav['toRegion'])
         elif trav['enc'] == "Navy":
             return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
-    region_info = {'region_x' : this_region.getX(),
-                   'region_y' : this_region.getY(),
-                   'region_tech' : this_region.getTechLevel(),
-                   'market' : this_region.market.items,
-                   'inventory' : player.inventory,
-                   'fuel' : player.ship.fuel,
-                   'health' : player.ship.health}
-    regions = Universe.get_instance().regions
-    fuel_costs = {}
-    for i in regions:
-        fuel_costs[i.get_name()] = regions[6].get_fuel_cost(i.getX(), i.getY(), player)
-    region_info['fuel_costs'] = fuel_costs
-    return render_template("Regions/Persia.html", region_info=region_info)
+    else:
+        return render_template("Regions/Persia.html", region_info=region_info)
 
 
 @app.route('/Java')
 def java():
     global player
     this_region = Universe.get_instance().regions[7]
+    market_list = {}
+    for item in player.region.market.items.keys:
+        market_list[item] = player.region.market.items[item].buy_value
+    region_info = {'region_x' : this_region.getX(),
+                'region_y' : this_region.getY(),
+                'region_tech' : this_region.getTechLevel(),
+                'market' : market_list,
+                'inventory' : player.inventory,
+                'fuel' : player.ship.fuel,
+                'health' : player.ship.health}
+    regions = Universe.get_instance().regions
+    fuel_costs = {}
+    for i in regions:
+        fuel_costs[i.get_name()] = regions[7].get_fuel_cost(i.getX(), i.getY(), player)
+    region_info['fuel_costs'] = fuel_costs
     if player.region.get_name() != 'Java':
         trav = player.travel(this_region, game)
     else:
@@ -411,25 +458,29 @@ def java():
             return render_template('NPCs/Pirate.html', toRegion=trav['toRegion'])
         elif trav['enc'] == "Navy":
             return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
-    region_info = {'region_x' : this_region.getX(),
-                   'region_y' : this_region.getY(),
-                   'region_tech' : this_region.getTechLevel(),
-                   'market' : this_region.market.items,
-                   'inventory' : player.inventory,
-                   'fuel' : player.ship.fuel,
-                   'health' : player.ship.health}
-    regions = Universe.get_instance().regions
-    fuel_costs = {}
-    for i in regions:
-        fuel_costs[i.get_name()] = regions[7].get_fuel_cost(i.getX(), i.getY(), player)
-    region_info['fuel_costs'] = fuel_costs
-    return render_template("Regions/Java.html", region_info=region_info)
+    else:
+        return render_template("Regions/Java.html", region_info=region_info)
 
 
 @app.route('/Byzantium')
 def byzantium():
     global player
     this_region = Universe.get_instance().regions[8]
+    market_list = {}
+    for item in player.region.market.items.keys:
+        market_list[item] = player.region.market.items[item].buy_value
+    region_info = {'region_x' : this_region.getX(),
+                'region_y' : this_region.getY(),
+                'region_tech' : this_region.getTechLevel(),
+                'market' : market_list,
+                'inventory' : player.inventory,
+                'fuel' : player.ship.fuel,
+                'health' : player.ship.health}
+    regions = Universe.get_instance().regions
+    fuel_costs = {}
+    for i in regions:
+        fuel_costs[i.get_name()] = regions[8].get_fuel_cost(i.getX(), i.getY(), player)
+    region_info['fuel_costs'] = fuel_costs
     if player.region.get_name() != 'Byzantium':
         trav = player.travel(this_region, game)
     else:
@@ -441,26 +492,30 @@ def byzantium():
             return render_template('NPCs/Pirate.html', toRegion=trav['toRegion'])
         elif trav['enc'] == "Navy":
             return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
-    region_info = {'region_x' : this_region.getX(),
-                   'region_y' : this_region.getY(),
-                   'region_tech' : this_region.getTechLevel(),
-                   'market' : this_region.market.items,
-                   'inventory' : player.inventory,
-                   'fuel' : player.ship.fuel,
-                   'health' : player.ship.health}
-    regions = Universe.get_instance().regions
-    fuel_costs = {}
-    for i in regions:
-        fuel_costs[i.get_name()] = regions[8].get_fuel_cost(i.getX(), i.getY(), player)
-    region_info['fuel_costs'] = fuel_costs
-    return render_template("Regions/Byzantium.html", region_info=region_info)
+    else:
+        return render_template("Regions/Byzantium.html", region_info=region_info)
 
 
 @app.route('/Arabia')
 def arabia():
     global player
     this_region = Universe.get_instance().regions[9]
-    if player.region.get_name() != 'Arabia':
+    market_list = {}
+    for item in player.region.market.items.keys:
+        market_list[item] = player.region.market.items[item].buy_value
+    region_info = {'region_x' : this_region.getX(),
+                'region_y' : this_region.getY(),
+                'region_tech' : this_region.getTechLevel(),
+                'market' : market_list,
+                'inventory' : player.inventory,
+                'fuel' : player.ship.fuel,
+                'health' : player.ship.health}
+    regions = Universe.get_instance().regions
+    fuel_costs = {}
+    for i in regions:
+        fuel_costs[i.get_name()] = regions[9].get_fuel_cost(i.getX(), i.getY(), player)
+    region_info['fuel_costs'] = fuel_costs
+    if player.region.get_name() != 'Java':
         trav = player.travel(this_region, game)
     else:
         trav = {}
@@ -471,19 +526,8 @@ def arabia():
             return render_template('NPCs/Pirate.html', toRegion=trav['toRegion'])
         elif trav['enc'] == "Navy":
             return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
-    region_info = {'region_x' : this_region.getX(),
-                   'region_y' : this_region.getY(),
-                   'region_tech' : this_region.getTechLevel(),
-                   'market' : this_region.market.items,
-                   'inventory' : player.inventory,
-                   'fuel' : player.ship.fuel,
-                   'health' : player.ship.health}
-    regions = Universe.get_instance().regions
-    fuel_costs = {}
-    for i in regions:
-        fuel_costs[i.get_name()] = regions[9].get_fuel_cost(i.getX(), i.getY(), player)
-    region_info['fuel_costs'] = fuel_costs
-    return render_template("Regions/Arabia.html", region_info=region_info)
+    else:
+        return render_template("Regions/Arabia.html", region_info=region_info)
 
 
 if __name__ == '__main__':
