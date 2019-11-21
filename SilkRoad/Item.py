@@ -12,7 +12,7 @@ class Item:
                     "Copper", "Gold", "Honey",
                     "Brass", "Gunpowder", "Silk",
                     "Coffee", "Paper", "Opium",
-                    "Oil", "Rubber", "Textile"]
+                    "Oil", "Rubber", "Textile", "Golden Goose"]
     base_values = {"Ivory" : 6, "Animal Hide" : 2, "Meat" : 1,
                    "Dye" : 7, "Lumber" : 4, "Wine" : 9,
                    "Cloth" : 4, "Iron" : 5, "Jewelry" : 12,

@@ -196,11 +196,11 @@ def china():
         trav = {}
     if 'enc' in trav:
         if trav['enc'] == "Trader":
-            return redirect('NPCs/Trader.html', trav)
+            return render_template('NPCs/Trader.html', toRegion=trav['toRegion'])
         elif trav['enc'] == "Pirate":
-            return redirect('NPCs/Pirate.html', trav)
+            return render_template('NPCs/Pirate.html', toRegion=trav['toRegion'])
         elif trav['enc'] == "Navy":
-            return redirect('NPCs/Navy.html', trav)
+            return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
@@ -226,11 +226,11 @@ def india():
         trav = {}
     if 'enc' in trav:
         if trav['enc'] == "Trader":
-            return redirect('NPCs/Trader.html', trav)
+            return render_template('NPCs/Trader.html', toRegion=trav['toRegion'])
         elif trav['enc'] == "Pirate":
-            return redirect('NPCs/Pirate.html', trav)
+            return render_template('NPCs/Pirate.html', toRegion=trav['toRegion'])
         elif trav['enc'] == "Navy":
-            return redirect('NPCs/Navy.html', trav)
+            return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
@@ -286,11 +286,11 @@ def britain():
         trav = {}
     if 'enc' in trav:
         if trav['enc'] == "Trader":
-            return redirect('NPCs/Trader.html', trav)
+            return render_template('NPCs/Trader.html', toRegion=trav['toRegion'])
         elif trav['enc'] == "Pirate":
-            return redirect('NPCs/Pirate.html', trav)
+            return render_template('NPCs/Pirate.html', toRegion=trav['toRegion'])
         elif trav['enc'] == "Navy":
-            return redirect('NPCs/Navy.html', trav)
+            return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
@@ -316,11 +316,11 @@ def egypt():
         trav = {}
     if 'enc' in trav:
         if trav['enc'] == "Trader":
-            return redirect('NPCs/Trader.html', trav)
+            return render_template('NPCs/Trader.html', toRegion=trav['toRegion'])
         elif trav['enc'] == "Pirate":
-            return redirect('NPCs/Pirate.html', trav)
+            return render_template('NPCs/Pirate.html', toRegion=trav['toRegion'])
         elif trav['enc'] == "Navy":
-            return redirect('NPCs/Navy.html', trav)
+            return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
@@ -346,11 +346,11 @@ def somalia():
         trav = {}
     if 'enc' in trav:
         if trav['enc'] == "Trader":
-            return redirect('NPCs/Trader.html', trav)
+            return render_template('NPCs/Trader.html', toRegion=trav['toRegion'])
         elif trav['enc'] == "Pirate":
-            return redirect('NPCs/Pirate.html', trav)
+            return render_template('NPCs/Pirate.html', toRegion=trav['toRegion'])
         elif trav['enc'] == "Navy":
-            return redirect('NPCs/Navy.html', trav)
+            return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
@@ -376,11 +376,11 @@ def persia():
         trav = {}
     if 'enc' in trav:
         if trav['enc'] == "Trader":
-            return redirect("NPCs/Trader.html", trav)
+            return render_template('NPCs/Trader.html', toRegion=trav['toRegion'])
         elif trav['enc'] == "Pirate":
-            return redirect("NPCs/Pirate.html", trav)
+            return render_template('NPCs/Pirate.html', toRegion=trav['toRegion'])
         elif trav['enc'] == "Navy":
-            return redirect("NPCS/Navy.html", trav)
+            return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
@@ -406,11 +406,11 @@ def java():
         trav = {}
     if 'enc' in trav:
         if trav['enc'] == "Trader":
-            return redirect("NPCs/Trader.html", trav)
+            return render_template('NPCs/Trader.html', toRegion=trav['toRegion'])
         elif trav['enc'] == "Pirate":
-            return redirect("NPCs/Pirate.html", trav)
+            return render_template('NPCs/Pirate.html', toRegion=trav['toRegion'])
         elif trav['enc'] == "Navy":
-            return redirect("NPCs/Navy.html", trav)
+            return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
@@ -436,11 +436,11 @@ def byzantium():
         trav = {}
     if 'enc' in trav:
         if trav['enc'] == "Trader":
-            return redirect("NPCs/Trader.html", trav)
+            return render_template('NPCs/Trader.html', toRegion=trav['toRegion'])
         elif trav['enc'] == "Pirate":
-            return redirect("NPCs/Pirate.html", trav)
+            return render_template('NPCs/Pirate.html', toRegion=trav['toRegion'])
         elif trav['enc'] == "Navy":
-            return redirect("NPCs/Navy.html", trav)
+            return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
@@ -466,11 +466,11 @@ def arabia():
         trav = {}
     if 'enc' in trav:
         if trav['enc'] == "Trader":
-            return redirect('NPCs/Trader.html', trav)
+            return render_template('NPCs/Trader.html', toRegion=trav['toRegion'])
         elif trav['enc'] == "Pirate":
-            return redirect('NPCs/Pirate.html', trav)
+            return render_template('NPCs/Pirate.html', toRegion=trav['toRegion'])
         elif trav['enc'] == "Navy":
-            return redirect('NPCs/Navy.html', trav)
+            return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
     region_info = {'region_x' : this_region.getX(),
                    'region_y' : this_region.getY(),
                    'region_tech' : this_region.getTechLevel(),
