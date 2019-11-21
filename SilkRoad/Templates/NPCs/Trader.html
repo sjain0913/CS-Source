@@ -16,14 +16,14 @@
                 <input type="radio" name="tchoice" value="Negotiate" id="t4"/>Negotiate Better Prices!
             </form>
 
-            <h1>{{ region_market[market] }}</h1>
+            <h1>{{ region_info['market'] }}</h1>
 
             What item would you like to buy?
             <form name="itemBought" method = "post" action = '/buyingItem'>
                 <input type = "text" name="itembough" id='b1'>
             </form>
 
-            <h2>{{ region_market[inventory] }}</h2>
+            <h2>{{ region_info['inventory'] }}</h2>
 
             What item would you like to sell?
             <form name="itemSold" method = "post" action = '/sellingItem'>
