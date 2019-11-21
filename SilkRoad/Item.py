@@ -23,11 +23,9 @@ class Item:
 
     def __init__(self, name, price_mult, number):
         self.name = name
-        self.value = price_mult * Item.base_values[name]
+        self.buy_value = price_mult * Item.base_values[name]
+        self.sell_value = Item.base_values / price_mult
         self.number = number
-
-    def set_value(self, new_value):
-        self.value = new_value
 
     def dec_number(self):
         self.number = self.number - 1

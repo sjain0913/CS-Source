@@ -23,7 +23,7 @@ class Player:
         if self.inventory[item] > 1:
             self.inventory[item].dec_number()
         else:
-            self.inventory[item] = None
+            del(self.inventory[item])
 
     def travel(self, region, game):
         trav = {}

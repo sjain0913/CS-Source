@@ -20,6 +20,17 @@ class Market:
         player.credits = player.credits + to_sell.value
         player.remove_from_inv(item)
 
+    def add_to_market(self, item):
+        if self.items[item] is not None:
+            self.items[item].inc_number()
+        else:
+            self.items[item] = Item(item, self.price_mult, 1)
+
+    def remove_from_market(self, item):
+        self.items[item].dec_number()
+        if self.items[item].number == 0:
+            del(self.items[item])
+    
     def populate_market(self, player):
         self.price_mult = 3 / player.barterer
         temp = []
@@ -40,5 +51,5 @@ class Market:
         else:
             temp = Item.trader_items
         for i in temp:
-            self.items[i] = Item(i, self.price_mult, random.randint(0,10))
+            self.items[i] = Item(i, self.price_mult, random.randint(1,10))
         return self.items
