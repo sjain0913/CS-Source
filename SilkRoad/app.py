@@ -10,6 +10,7 @@ app = Flask(__name__)
 player = None
 universe = None
 game = None
+trade = None
 
 @app.route('/')
 def title_screen():
@@ -89,7 +90,10 @@ def skillparse():
 
 @app.route('/trader')
 def trader():
-    region_info = {'market' : Trader.market.items,
+    global trade
+    global player
+    trade = Trader(player)
+    region_info = {'market' : trade.market.items,
                    'inventory' : player.inventory,
                    'fuel' : player.ship.fuel,
                    'health' : player.ship.health}
@@ -99,7 +103,7 @@ def trader():
 def traderparse():
     data = request.get_json()
     choice = data['traderChoice']
-    trade = Trader()
+    global trade
     if choice == "buy":
         trade.buy(data['itemBought'])
     elif choice == "sell":
