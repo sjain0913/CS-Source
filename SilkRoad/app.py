@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from Universe import Universe
 from Player import Player
 from Pirates import Pirates
 from Trader import Trader
 from Game import Game
+from Item import Item
 
 app = Flask(__name__)
 player = None
@@ -132,6 +133,52 @@ def navyparse():
     choice = data['navyChoice']
     return choice
 
+@app.route('/MarketReceiver', methods=['POST'])
+def marketparse():
+    data = request.get_json()
+    buy_item = data['itemBought']
+    sell_item = data['itemSold']
+    refuel = data['refuel']
+    global player
+    if buy_item != '':
+        found = ''
+        for item in player.region.market.items.values:
+            if buy_item == item.name:
+                found = item.name
+        if found == '':
+            flash('Cannot buy item not in the market')
+            return redirect(url_for(player.region.__name))
+        else:
+            boughtItem = player.region.market.items[found] 
+            player.credits = player.credits - boughtItem.buy_value
+            player.region.market.remove_from_market(found)
+            player.add_to_inv(found)
+            return redirect(url_for(player.region.__name))
+    elif sell_item != '':
+        found = ''
+        for item in player.inventory:
+            if sell_item == item:
+                found = item
+        if found == '':
+            flash('Cannot sell item not in your inventory')
+            return redirect(url_for(player.region.__name))
+        else:
+            soldItem = player.inventory[found] 
+            player.credits = player.credits + soldItem.sell_value
+            player.region.market.add_to_market(found)
+            player.remove_from_inv(found)
+            return redirect(url_for(player.region.__name))
+    elif refuel != '':
+        if refuel == 1:
+            player.ship.fuel = player.ship.fuel + 1
+            player.credits = player.credits - (2 * player.region.market.price_mult)
+        elif refuel == 5:
+            player.ship.fuel = player.ship.fuel + 5
+            player.credits = player.credits - (10 * player.region.market.price_mult)
+        elif refuel == "max":
+            fuelcost = 2 * (player.ship.fuelcap - player.ship.fuel)
+            player.ship.fuel = player.ship.fuelcap
+            player.credits = player.credits - (fuelcost * player.region.market.price_mult)
 
 @app.route('/China')
 def china():
