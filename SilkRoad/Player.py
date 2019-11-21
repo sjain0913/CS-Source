@@ -29,33 +29,36 @@ class Player:
         trav = {}
         trav['toRegion'] = region
         if self.game.getDifficulty() == 1:
-            if random.randint(0, 9) == 0:
+            chance = random.randint(0,15)
+            if chance in [0,1,2,3,4]:
                 trav['enc'] = "Trader"
-            elif random.randint(0, 3) == 0:
+            elif chance in [5,6]:
                 trav['enc'] = "Pirate"
-            elif random.randint(0, 2) == 0:
+            elif chance in [7,8,9]:
                 trav['enc'] = "Navy"
             else:
                 self.ship.fuel = self.ship.fuel - self.region.get_fuel_cost(
                     region.getX(), region.getY(), self)
                 self.region = region
         if self.game.getDifficulty() == 2:
-            if random.randint(0, 6) == 0:
+            chacne = random.randint(0,15)
+            if chacne in [0,1,2]:
                 trav['enc'] = "Trader"
-            elif random.randint(0, 5) == 0:
+            elif chacne in [3,4,5]:
                 trav['enc'] = "Pirate"
-            elif random.randint(0, 3) == 0:
+            elif chacne in [6,7,8,9]:
                 trav['enc'] = "Navy"
             else:
                 self.ship.fuel = self.ship.fuel - self.region.get_fuel_cost(
                     region.getX(), region.getY(), self)
                 self.region = region
         if self.game.getDifficulty() == 3:
-            if random.randint(0, 3) == 0:
+            chance = random.randint(0,15)
+            if chance in [0]:
                 trav['enc'] = "Trader"
-            elif random.randint(0, 7) == 0:
+            elif chance in [1,2,3,4]:
                 trav['enc'] = "Pirate"
-            elif random.randint(0, 4) == 0:
+            elif chance in [5,6,7,8,9]:
                 trav['enc'] = "Navy"
             else:
                 self.ship.fuel = self.ship.fuel - self.region.get_fuel_cost(
