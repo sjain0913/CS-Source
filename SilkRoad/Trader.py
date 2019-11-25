@@ -25,10 +25,10 @@ class Trader:
             self.player.ship.health -= 50
 
     def buy(self, item):
-        self.market.buy(item)
+        self.market.remove_from_market
 
     def sell(self, item):
-        self.market.sell(item)
+        self.market.sell(item, self.player)
 
     def negotiate(self):
         print("for later")
