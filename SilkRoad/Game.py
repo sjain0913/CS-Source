@@ -11,7 +11,7 @@ class Game:
         self.difficulty = difficulty
         self.regions = regions
 
-    def startGame(self):
+    def start_game(self):
         newUniverse = Universe(self.regions)
         regionNum = random.randint(0,9)
         player = app.player
@@ -24,5 +24,5 @@ class Game:
         else:
             player.credits = 100
 
-    def getDifficulty(self):
+    def get_difficulty(self):
         return self.difficulty

@@ -41,7 +41,7 @@ def difficultyparse():
 @app.route('/config')
 def config():
     global game
-    difficulty = game.getDifficulty()
+    difficulty = game.get_difficulty()
     skillpts = 0
     if difficulty == 1:
         skillpts = 16
@@ -57,12 +57,12 @@ def playerdata():
     skillpts = 0
     global game
     global player
-    game.startGame()
+    game.start_game()
     player.set_game(game)
-    if game.getDifficulty() == 1:
+    if game.get_difficulty() == 1:
         skillpts = 16
         player.credits = 1000
-    elif game.getDifficulty() == 2:
+    elif game.get_difficulty() == 2:
         skillpts = 12
         player.credits = 500
     else:
@@ -221,6 +221,7 @@ def china():
         elif trav['enc'] == "Navy":
             return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
     else:
+        this_region.market.populate_market(player)
         return render_template("Regions/China.html", region_info=region_info)
 
 
@@ -255,6 +256,7 @@ def india():
         elif trav['enc'] == "Navy":
             return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
     else:
+        this_region.market.populate_market(player)
         return render_template("Regions/India.html", region_info=region_info)
 
 
@@ -289,6 +291,7 @@ def denmark():
         elif trav['enc'] == "Navy":
             return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
     else:
+        this_region.market.populate_market(player)
         return render_template("Regions/Denmark.html", region_info=region_info)
 
 
@@ -323,6 +326,7 @@ def britain():
         elif trav['enc'] == "Navy":
             return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
     else:
+        this_region.market.populate_market(player)
         return render_template("Regions/Britain.html", region_info=region_info)
 
 
@@ -357,6 +361,7 @@ def egypt():
         elif trav['enc'] == "Navy":
             return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
     else:
+        this_region.market.populate_market(player)
         return render_template("Regions/Egypt.html", region_info=region_info)
 
 
@@ -391,6 +396,7 @@ def somalia():
         elif trav['enc'] == "Navy":
             return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
     else:
+        this_region.market.populate_market(player)
         return render_template("Regions/Somalia.html", region_info=region_info)
 
 
@@ -425,6 +431,7 @@ def persia():
         elif trav['enc'] == "Navy":
             return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
     else:
+        this_region.market.populate_market(player)
         return render_template("Regions/Persia.html", region_info=region_info)
 
 
@@ -459,6 +466,7 @@ def java():
         elif trav['enc'] == "Navy":
             return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
     else:
+        this_region.market.populate_market(player)
         return render_template("Regions/Java.html", region_info=region_info)
 
 
@@ -493,6 +501,7 @@ def byzantium():
         elif trav['enc'] == "Navy":
             return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
     else:
+        this_region.market.populate_market(player)
         return render_template("Regions/Byzantium.html", region_info=region_info)
 
 
@@ -527,6 +536,7 @@ def arabia():
         elif trav['enc'] == "Navy":
             return render_template('NPCs/Navy.html', toRegion=trav['toRegion'])
     else:
+        this_region.market.populate_market(player)
         return render_template("Regions/Arabia.html", region_info=region_info)
 
 
