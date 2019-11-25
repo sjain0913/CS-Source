@@ -29,7 +29,7 @@ class Player:
     def travel(self, region, game):
         trav = {}
         trav['toRegion'] = region
-        if self.game.getDifficulty() == 1:
+        if self.game.get_difficulty() == 1:
             chance = random.randint(0,15+self.karma)
             if chance in [0,1,2,3,4]:
                 trav['enc'] = "Trader"
@@ -41,7 +41,7 @@ class Player:
                 self.ship.fuel = self.ship.fuel - self.region.get_fuel_cost(
                     region.getX(), region.getY(), self)
                 self.region = region
-        if self.game.getDifficulty() == 2:
+        if self.game.get_difficulty() == 2:
             chacne = random.randint(0,15+self.karma)
             if chacne in [0,1,2]:
                 trav['enc'] = "Trader"
@@ -53,7 +53,7 @@ class Player:
                 self.ship.fuel = self.ship.fuel - self.region.get_fuel_cost(
                     region.getX(), region.getY(), self)
                 self.region = region
-        if self.game.getDifficulty() == 3:
+        if self.game.get_difficulty() == 3:
             chance = random.randint(0,15+self.karma)
             if chance in [0]:
                 trav['enc'] = "Trader"
